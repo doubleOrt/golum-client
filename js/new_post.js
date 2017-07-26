@@ -26,9 +26,19 @@ $("#new_post_file_" + $(this).attr("data-index")).click();
 });
 
 
+// for the whole purpose of this #new_post_file_temp thing, see bugs.txt #7.
+$(document).on("click", "#newPostInputs input", function(){
+var clone = $(this).clone();
+clone.attr("id", "new_post_file_temp");
+$(this).after(clone);
+});
+
 $(document).on("change","#newPostInputs input",function(event){
 
 if($(this).val().length > 0) {
+// we have to remove the temporary file holder so we don't end up with a hundred duplicates.	
+$(this).siblings("#new_post_file_temp").remove();	
+	
 var image_file_check = checkImageFile($(this),5000000);
 if(image_file_check != true) {
 Materialize.toast(image_file_check,6000,"red");	
@@ -40,6 +50,13 @@ imagePreview($(this)[0].files[0],$("#shareNewImagesContainer div[data-index=" + 
 
 $("#shareNewImagesContainer div[data-index=" + $(this).attr("data-index") + "]").attr("data-uploaded","true");
 shouldActivateShareButton(true);
+}
+else {
+/* if the current event was a cancel, then replace the changed input with the temp one, since the changed input
+ now holds an empty value while the temporary input has the value that the changed input should have, the value 
+ that points to the previewed image. */
+$(this).siblings("#new_post_file_temp").attr("id", $(this).attr("id"));
+$(this).remove();	
 }
 
 });
