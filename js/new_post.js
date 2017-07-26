@@ -25,8 +25,10 @@ $(document).on("click","#shareNewImagesContainer div",function(){
 $("#new_post_file_" + $(this).attr("data-index")).click();
 });
 
-$(document).on("change","#newPostInputs input",function(){
 
+$(document).on("change","#newPostInputs input",function(event){
+
+if($(this).val().length > 0) {
 var image_file_check = checkImageFile($(this),5000000);
 if(image_file_check != true) {
 Materialize.toast(image_file_check,6000,"red");	
@@ -36,9 +38,10 @@ return false;
 imagePreview($(this)[0].files[0],$("#shareNewImagesContainer div[data-index=" + $(this).attr("data-index") + "] img"),"src");
 
 
-	
 $("#shareNewImagesContainer div[data-index=" + $(this).attr("data-index") + "]").attr("data-uploaded","true");
 shouldActivateShareButton(true);
+}
+
 });
 
 
@@ -74,11 +77,11 @@ cache: false,
 contentType: false,
 processData: false,
 success:function(data){
-	
-Materialize.toast("Post Successful!",2000,"green");
-
+console.log(data);
 //if the post was successfully posted, then open the singlePostModal and populate its innerHTML with the new post's markup.
 if(!isNaN(data)) {
+Materialize.toast("Post Successful!",2000,"green");
+	
 $("#singlePostModal").modal("open", {
 inDuration: 300, // Transition in duration
 outDuration: 150, // Transition out duration	
@@ -100,6 +103,9 @@ removeLoading($("#singlePostsContainer"));
 });		
 });		
 }
+else {
+Materialize.toast(data, "5000", "red");
+}
 
 // reset the #shareNewModal 
 $("#shareNewPostButton").addClass("disabledButton");	
@@ -113,8 +119,6 @@ $('#shareNewModal').find('.modalCloseButton').click();
 
 
 $("#shareNewPostButton").html("post");
-
-
 }	
 });
 

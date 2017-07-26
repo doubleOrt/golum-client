@@ -2,6 +2,8 @@
 
 require_once "common_requires.php";
 require_once "logged_in_importants.php";
+require_once "file_upload_custom_functions.php";
+
 
 /* index 0 should be the path to the uploaded background in case of a success, and empty in a failure case. The second index should be the error message in failure cases, 
 and should be left empty in a successful upload. */
@@ -13,35 +15,31 @@ $MAXIMUM_DAILY_BACKGROUND_UPLOADS = 15;
 
 if(isset($_FILES["new_background"])) {
 
-//this is the path of the image after upload and before renaming the file
-$upload_to = "../users/" . $_SESSION["user_id"] . "/media/backgrounds/";
-
-//the extension of the uploaded file 
-$upload_pathinfo = strtolower(pathinfo($upload_to . basename($_FILES["new_background"]["name"]),PATHINFO_EXTENSION));
-
-//check if file is smaller than 5mb
-if($_FILES["new_background"]["size"] < $MAXIMUM_USER_PROFILE_BACKGROUND_IMAGE_SIZE) {
-//check if file is a jpg, png, or gif.
-if($upload_pathinfo == "jpeg" || $upload_pathinfo == "jpg" || $upload_pathinfo == "png" || $upload_pathinfo == "gif") {
-	
-//move the uploaded file
-if(move_uploaded_file($_FILES["new_background"]["tmp_name"],$upload_to . basename($_FILES["new_background"]["name"]))) {
-
-//what is going to be the id of the new avatar picture ? we get this by getting the id of the last row and adding 1 to it.
-$what_id_query = custom_pdo("SELECT * FROM backgrounds where id_of_user = :base_user_id", [":base_user_id" => $_SESSION["user_id"]])->fetchAll();
-
-$what_id = count($what_id_query) > 0 ? $what_id_query[count($what_id_query)-1]["id"] + 1 : 1;
-
-//this is the new path to the avatar.
-$new_path = "users/". $_SESSION["user_id"] ."/media/backgrounds/" . "$what_id" . "." . $upload_pathinfo;
-
-//rename the file and check if it is successful
-if(rename($upload_to . basename($_FILES["new_background"]["name"]) , "../" . $new_path)) {
-
 $daily_background_uploads_limit_exceeded = daily_background_uploads_limit_exceeded($MAXIMUM_DAILY_BACKGROUND_UPLOADS);
 
 // the background upload limit has not been exceeded.
 if($daily_background_uploads_limit_exceeded === false) {
+	
+
+//what is going to be the id of the new avatar picture ? we get this by getting the id of the last row and adding 1 to it.
+$what_id_query = custom_pdo("SELECT * FROM backgrounds where id_of_user = :base_user_id", [":base_user_id" => $_SESSION["user_id"]])->fetchAll();
+$what_id = count($what_id_query) > 0 ? $what_id_query[count($what_id_query)-1]["id"] + 1 : 1;
+
+$storagePath = "../users/". $_SESSION["user_id"] ."/media/backgrounds/"; // this is relative to this script, better use absolute path.
+$new_name = $what_id;
+$allowedMimes = array('image/png', 'image/jpg', 'image/gif', 'image/pjpeg', 'image/jpeg');
+
+$upload_result = upload($_FILES["new_background"]["tmp_name"], $storagePath, $new_name, $allowedMimes, $MAXIMUM_USER_PROFILE_BACKGROUND_IMAGE_SIZE);
+
+// if upload failed
+if(!is_array($upload_result) || count($upload_result) < 2 || $upload_result[0] !== true) {
+$echo_arr[1] = $upload_result;
+} 	
+else {	
+
+// this is supposed to be the new path to the uploaded file, if the upload is successful.
+$new_path = "users/". $_SESSION["user_id"] ."/media/backgrounds/" . $new_name . "." . $upload_result[1];	
+
 //add a new row to the backgrounds table, check if it is successful.
 $insert_into_backgrounds = custom_pdo("INSERT INTO backgrounds (id_of_user,background_path,date_of) values(:base_user_id, :new_path, :date_of)", [":base_user_id" => $_SESSION["user_id"], ":new_path" => $new_path, ":date_of" => date("Y/m/d H:i")]);
 
@@ -65,39 +63,15 @@ $echo_arr[1] = "Something Went Wrong, Sorry!";
 }
 
 }
+
+}
 // the background upload limit has been exceeded.
 else {
 $echo_arr[1] = "You are uploading too many background images, which costs us a lot! Please wait until tomorrow before you upload another background image!";	
 }
-
-}
-//if there was an error while inserting the row into :avatars".
-else {
-$echo_arr[1] = "Something Went Wrong, Sorry!";
-}	
-
-}
-//if there is an error uploading the file
-else {
-$echo_arr[1] = "Something Went Wrong, Sorry!";
-}
 	
 }
-//if filetype is not one of the filetypes specified above, alert the user.
-else {
-$echo_arr[1] = "Image Type Must Be Either \"JPEG\", \"JPG\" \"PNG\" Or \"GIF\" !";
-}
 
-}
-//if file is larger than the limit
-else {
-$echo_arr[1] = "Image Size Must Be Smaller Than ". ($MAXIMUM_USER_PROFILE_BACKGROUND_IMAGE_SIZE/1000000) . "MB";
-}
-	
-}
-else {
-$echo_arr[1] = "Something Went Wrong, Sorry!";	
-}
 
 
 /* if the user has uploaded more than $amount images in less than $period seconds, returns the time the user has to wait before they can upload another image in seconds, otherwise

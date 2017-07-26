@@ -49,13 +49,8 @@ function custom_pdo($query, $params) {
 global $con;
 try {
 $prepared = $con->prepare($query);
-foreach($params as $key => $value) {
-if(filter_var($value, FILTER_VALIDATE_INT) !== false) {
-$prepared->bindValue($key, (int) $value, PDO::PARAM_INT);	
-}
-else {
+foreach($params as $key => &$value) {
 $prepared->bindParam($key, $value);	
-}
 }
 $prepared->execute();
 return $prepared;	

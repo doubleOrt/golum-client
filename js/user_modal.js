@@ -629,7 +629,7 @@ cache: false,
 contentType: false,
 processData: false,
 success: function(data){
-
+console.log(data);
 /* if the data_arr's first index (path to the new background) is not empty, then the background has been successfully uploaded, otherwise the operation has been a failure 
 and a custom error message is included in the second index. */
 var data_arr = JSON.parse(data);	
@@ -708,6 +708,7 @@ if(background_filetype == "image/jpeg" || background_filetype == "image/jpg" || 
 //check if file is smaller than 5mb
 if(background_size < MAXIMUM_USER_PROFILE_BACKGROUND_IMAGE_SIZE) {					
 if(background_size > 1) {
+
 var data = new FormData();
 data.append('new_background', inputElement[0].files[0]);
 $.post({
@@ -717,7 +718,6 @@ cache: false,
 contentType: false,
 processData: false,
 success: function(data){
-
 
 /* if the data_arr's first index (path to the new background) is not empty, then the background has been successfully uploaded, otherwise the operation has been a failure 
 and a custom error message is included in the second index. */

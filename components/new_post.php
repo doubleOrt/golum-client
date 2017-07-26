@@ -2,71 +2,41 @@
 
 require_once "common_requires.php";
 require_once "logged_in_importants.php";
+require_once "file_upload_custom_functions.php";
+
 
 if(isset($_POST["title"]) && isset($_POST["type"]) && filter_var($_POST["type"], FILTER_VALIDATE_INT) !== false && count($_FILES) > 0) {
 
 //this is the path of the images after upload
 $upload_to = "../posts/";
-
 $counter = 0;
-
 $file_types = "";
-
 
 //what is going to be the id of the new post ? we get this by getting the id of the last row and adding 1 to it.
 $what_id_query = $con->query("SHOW TABLE STATUS LIKE 'posts'")->fetch();
-
 $what_id = $what_id_query["Auto_increment"];
 
-
 foreach($_FILES as $file) {
-$file_path_info = strtolower(pathinfo($upload_to . basename($file["name"]),PATHINFO_EXTENSION));	
 
+$storagePath = '../posts/'; // this is relative to this script, better use absolute path.
+$new_name = $what_id . "-" . $counter;
+$allowedMimes = array('image/png', 'image/jpg', 'image/gif', 'image/pjpeg', 'image/jpeg');
+
+$upload_result = upload($file["tmp_name"], $storagePath, $new_name, $allowedMimes, 5000000);
+if(!is_array($upload_result) || count($upload_result) < 2 || $upload_result[0] !== true) {
+echo $upload_result;
+die();
+} 
+else {	
 if($counter != 0) {
 $file_types .= ",";	
 }
-
-$file_types .= $file_path_info;
-
-if($file_path_info != "jpg" && $file_path_info != "jpeg" && $file_path_info != "png" && $file_path_info != "gif") {
-echo "Image Type Must Be Either \"JPEG\", \"JPG\", \"PNG\" Or \"GIF\" !";	
-die();	
-}
-if($file["size"] >= 5000000) {
-echo "Materialize.toast('Image Size Must Be Smaller Than 5MB',6000,'red');";	
-die();	
-}	
-
-if(move_uploaded_file($file["tmp_name"],$upload_to . basename($file["name"]))) {
-
-//this is the new path to the avatar.
-$new_path = "../posts/" . $what_id . "-" . $counter . "." . $file_path_info;	
-	
-//rename the file and check if it is successful
-if(!rename($upload_to . basename($file["name"]) , $new_path)) {
-echo "Materialize.toast('Sorry, There Was An Error',6000,'red');";	
-die();
-}	
-
-
-if($file_path_info == "jpg" || $file_path_info == "jpeg") {
-$exif = exif_read_data($new_path);
-
-if(isset($exif["Orientation"])) {
-$orientation = $exif['Orientation'];	
-$image_width = imagesx(ImageCreateFromJpeg($new_path));
-resample($new_path,$image_width,$orientation);
-}
-}
-}
-else {
-echo "Materialize.toast('Sorry, There Was An Error',6000,'red');";	
-die();
+$file_types .= $upload_result[1];	
 }
 
 $counter++;
 }
-
+   
 $post_time = time();
 
 // output the post tags from the title into $post_tags
@@ -90,27 +60,5 @@ echo $con->lastInsertId();
 
 
 
-function resample($jpgFile, $width, $orientation) {
-// Get new dimensions
-list($width_orig, $height_orig) = getimagesize($jpgFile);
-$height = (int) (($width / $width_orig) * $height_orig);
-// Resample
-$image_p = imagecreatetruecolor($width, $height);
-$image   = imagecreatefromjpeg($jpgFile);
-imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
-// Fix Orientation
-switch($orientation) {
-case 3:
-$image_p = imagerotate($image_p, 180, 0);
-break;
-case 6:
-$image_p = imagerotate($image_p, -90, 0);
-break;
-case 8:
-$image_p = imagerotate($image_p, 90, 0);
-break;
-}
-imagejpeg($image_p,$jpgFile,100);
-}
 
 ?>

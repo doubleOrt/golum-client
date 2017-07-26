@@ -55,7 +55,7 @@ url:"components/common_requires.php"
 $.get({
 url:"components/login_to_logout.php",
 success:function(data) {
-
+console.log(data);
 var data_arr = JSON.parse(data);
 
 // user shouldn't be here because he hasn't logged in yet
