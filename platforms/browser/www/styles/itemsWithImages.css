@@ -1,0 +1,49 @@
+/* post sections horizontal-scrollable section */
+
+#itemsWithImagesContainer {
+width:100%;	
+height:auto;
+overflow:hidden;
+overflow-x:scroll;
+user-select:none;
+}
+
+#itemsWithImagesContainerChild {
+display:flex;
+flex-direction:row;
+justify-content:center;	
+width:1100px;
+padding:15px;
+}
+
+.itemWithImage {
+padding:0;
+margin-left:10px;
+width:120px;
+height:120px;
+position:relative;
+border-radius:5px;
+overflow:hidden;
+}
+
+.itemWithImage:first-child {
+margin-left:0;	
+}
+
+.itemWithImage:active {
+filter:brightness(50%);	
+}
+
+.itemWithImageName {
+display:block;	
+color:white;
+font-size:13px;	
+font-weight:900;
+padding:8px 0 4px 0;
+width:100%;
+position:absolute;
+left:0;
+bottom:0;
+background:-webkit-linear-gradient(bottom,rgba(0,0,0,.6) 40%,transparent);
+text-align:center;
+}

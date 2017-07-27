@@ -1,9 +1,9 @@
-dependencies/
+www/dependencies/
 
-posts/*
-!posts/.gitkeep
+www/posts/*
+!www/posts/.gitkeep
 
-users/*
-!users/.gitkeep
+www/users/*
+!www/users/.gitkeep
 
-composer_things/vendor
+www/composer_things/vendor

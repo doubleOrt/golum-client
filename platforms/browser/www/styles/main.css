@@ -1,0 +1,683 @@
+ 
+
+/* let's import our css files */
+
+@import url(main_screens.css);
+
+@import url(inputs.css);
+
+@import url(avatars.css);
+
+@import url(modals.css);
+
+@import url(bottom_sheet_modals.css);
+
+@import url(list_rows.css);
+
+@import url(chatModal.css);
+
+@import url(chatPortal.css);
+
+@import url(userModal.css);
+
+@import url(user_tags.css);
+
+@import url(search.css);
+
+@import url(contacts.css);
+
+@import url(settings.css);
+
+@import url(confirmation_code.css);
+
+@import url(new_post.css);
+
+@import url(posts.css);
+
+@import url(commentsModal.css);
+
+@import url(commentRepliesModal.css);
+
+@import url(sendToFriendModal.css);
+
+@import url(votes.css);
+
+@import url(notifications.css);
+
+@import url(itemsWithImages.css);
+
+@import url(tagPostsModal.css);
+
+@import url(bottomNav.css);
+
+
+/* i suppose this is our palette #b3ea06(yellowgreenish) #00d677(green-bluish) #43d3e8 #ffffff #ebeaea #303030 */
+
+
+
+
+
+::-webkit-scrollbar {
+width:2px;
+height:0;	
+}
+ 
+
+html {
+width:100%;
+height:100%;	
+}
+
+body {
+width:100%;
+height:100%;	
+margin:0;
+padding:0;
+}
+
+
+/* increase font-size for tablets */
+@media screen and (min-width:742px) {
+
+body {
+font-size:14px;	
+}
+	
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+color:#f95462;
+}
+
+.waves-effect.wavesCustom .waves-ripple {
+background:rgba(0,0,0,.2) !important;	
+}
+
+.myBackground {
+background:-webkit-linear-gradient(36deg, yellow 10%, green 70%);
+}
+
+
+
+
+a {
+user-select:none;	
+}
+
+
+
+/* associated with loading progress bars */
+#showOnBodyLoad {
+display:none;	
+width:100%;
+height:100%;
+overflow:hidden;
+}
+/* end associated with loading progress bars */
+
+
+
+#megaContainer {
+width:100%;	
+height:100%;
+position:relative;
+padding-left:300px;	
+overflow-y:auto;
+}
+
+#pageContent {
+height:100%;
+width:100%;
+overflow:hidden;
+overflow-y:auto;
+background-color:white;
+}
+
+#allPostsContainer {
+width:100%;
+height:100%;
+position:relative;
+}
+
+#allPostsContainer .emptyNowPlaceholder {
+top:30%;	
+}
+
+
+#topBar {
+position:fixed;
+top:0;
+width:100%;
+display:inline-block;
+z-index:4;
+}
+
+#emojisContainer {
+display:none;	
+}
+
+
+.postModals .modal-content {
+padding:0;	
+}
+
+.postModalsPostsContainer {
+width:100%;
+height:100%;
+margin:0;
+padding:0;	
+padding-bottom:60px;
+overflow:hidden;
+overflow-y:auto;
+}
+
+	
+	
+
+/* buttons floating at the bottom of the page, this gives them a f95462 background, scales the icons up a little bit, and changes their color to white. */
+.bottomFloating {
+position:fixed;
+bottom:20px;
+right:20px;
+font-size:20px;	
+z-index:9999999999999999999999999;
+}
+
+.smallerFontSize {
+font-size:85%;	
+}
+
+.boldText {
+font-weight:bold;	
+}
+
+
+/* common link stylings */
+
+.commonLink {
+color:#2d8ace;
+}
+
+.commonLinkMainColor {
+color:#f95462;	
+}
+
+.commonLink:active, .commonLinkMainColor:active, .commonLinkBlue:active {
+opacity:.4;	
+}
+
+
+
+/* .lightgrey_background_on_active */
+.lightgrey_background_on_active {
+-webkit-transition:background-color .2s ease-out;
+}
+
+.lightgrey_background_on_active:active {
+background-color:#ebeaea;	
+}
+ 
+
+ 
+.opacityChangeOnActive:active {
+opacity:.5; 
+}
+ 
+ 
+ 
+/* common button stylings, gives them a white color and f95462 background-color */
+.commonButton {
+color:white !important;		
+background:-webkit-linear-gradient(36deg, yellow 10%, green 70%);
+padding:0 20px;
+text-align:center;
+font-weight:bold;
+letter-spacing:1px;
+transition:none;
+box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.commonButton:hover {
+color:white !important;	
+background:-webkit-linear-gradient(36deg, yellow 10%, green 70%);
+}
+
+.commonButton[disabled] {
+color:white !important;	
+box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2) !important;
+}
+
+.commonButtonWhite {
+color:#494949 !important;
+background-color:white;
+font-weight:bold;
+letter-spacing:1px;
+transition:none;
+box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.commonButtonWhite:hover {
+color:#494949 !important;
+background-color:white;
+}
+
+.commonButtonWhite:active {
+color:#494949 !important;
+background-color:white !important;
+}
+
+.commonButtonWhite:focus {
+color:#494949 !important;
+background-color:white !important;
+}
+
+.commonButtonWhite[disabled] {
+color:#494949 !important;	
+box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2) !important;
+}
+
+.red_button_light {
+color:red;
+background-color:white;	
+padding:0 15px;
+text-align:center;
+font-weight:bold;
+letter-spacing:1px;
+transition:none;
+}
+
+.red_button_light:hover {
+color:red;
+background-color:white;
+}
+
+.red_button_light:active {
+color:red !important;
+background-color:white !important;
+}
+
+.red_button_light:focus {
+color:red !important;
+background-color:white !important;
+}
+
+
+.red_button_heavy {
+color:white;
+background-color:red;	
+padding:0 15px;
+text-align:center;
+font-weight:bold;
+letter-spacing:1px;
+transition:none;
+}
+
+.red_button_heavy:hover {
+color:white;
+background-color:red;
+}
+
+.red_button_heavy:active {
+color:white !important;
+background-color:red !important;
+}
+
+.red_button_heavy:focus {
+color:white !important;
+background-color:red !important;
+}
+
+
+
+
+.fullWidthAndCenteredText {
+width:100%;
+text-align:center;	
+/* padding 0 so that some materialize styles don't forestall the text-align center */
+padding:0;
+}
+
+	
+	
+	
+	
+
+/* if screen is smaller than 992px, show the nav toggle button. */
+@media screen and (max-width:992px) {
+
+#megaContainer {
+padding-left:0; 
+}
+
+#pageContent {
+height:100%;
+}
+	
+}
+
+
+
+
+
+.wrapper {
+display: block;
+width:100%;
+}
+
+.wrapper:after {
+content:"";
+display:table;
+clear:both;
+}
+
+.ripplelink{
+display:block;
+height:80px;
+text-align:center;
+text-decoration:none;
+position:relative;
+overflow:hidden;
+}
+
+
+.ink {
+display: block;
+position: absolute;
+background:lightgrey;
+border-radius: 100%;
+-webkit-transform:scale(0);
+-moz-transform:scale(0);
+-o-transform:scale(0);
+transform:scale(0);
+}
+
+.lightgrey {
+background:white;	
+}
+
+.cyan{
+  background:#00bcd4;
+}
+
+.lightgreen{
+  background:#8bc34a;
+}
+
+.amber{ 
+  background:#ffc107;
+}
+
+.orange{
+  background:#ff9800;
+}
+
+
+
+
+
+
+/* when something is empty, we use these messages to tell the user it is empty */
+.emptyNowPlaceholder {
+color:#aaaaaa;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+width:75%;
+font-size:16px;
+font-weight:500;
+line-height:20px;
+}
+
+.emptyNowPlaceholder i {
+opacity:1;
+font-size:220%;		
+}
+
+.aaaaaaColor {
+color:#aaaaaa !important;	
+}
+
+
+
+
+
+
+
+
+
+
+
+/* when a user wants to open an image in fullscreen, we use these styles for the elements */
+#fullScreenFileView {
+width:100%;
+height:100%;
+margin:0;
+padding:0;
+background:rgba(0,0,0,.9);	
+display:none;
+z-index:100000;
+position:fixed;
+top:0;
+}
+
+#fullScreenFileViewFile {
+max-width:100%;	
+max-height:100%;	
+position:relative;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
+
+
+
+
+
+
+
+
+/* these are small forms, one textbox and one button (confirmation code section or whatever)*/
+.smallFormContainer {
+display:inline-block;	
+background-color:white;
+height:77px;
+width:100%;
+margin:0 auto;
+}
+
+.smallFormButtonContainer {
+margin:0;	
+position:relative;
+top:50%;
+transform:translate(0,-50%);
+}
+
+.smallFormButtonContainer a {
+text-align:center !important;
+}
+
+.smallFormTopAndShadowed {
+position:fixed;
+top:60px;
+z-index:99999999999999;
+box-shadow:0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);	
+}
+
+
+
+
+
+
+
+/* loading circle border */
+.preloader-wrapper .spinner-layer {
+border-color:#aaaaaa;	
+}
+
+
+
+
+/* remove that ugly bluish highlight color for everything on our app */
+:active, :focus {
+-webkit-tap-highlight-color: rgba(255,255,255,0); 
+}
+
+
+
+/* and here ends the reign of tags */
+
+
+
+.disabledButton {
+pointer-events:none;
+opacity:.4;	
+}
+
+.disabledButtonLight {
+pointer-events:none;
+opacity:.7;	
+}
+
+.semi_transparent {
+opacity:.4;	
+}
+
+
+
+
+
+/* our custom material-designy custom non-full-width card stylings that are used everywhere in the app */
+.myHorizontalCardStyle {
+display:inline-block;	
+width:100%;
+margin:0;
+margin-top:10px;
+position:relative;
+left:50%;
+transform:translate(-50%,0);
+}
+
+.cardStyles {
+background-color:white;
+box-shadow:0 1px 2px rgba(0,0,0,.2);
+border-radius:4px;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.big_font {
+font-size:200% !important;	
+}
+
+
+a {
+color:#2d8ace;	
+font-weight:500;
+}
+
+/* styling for hashtags */
+.hashtag {
+color:#2d8ace;		
+font-weight:500;
+user-select:none;
+}
+
+
+/* en example of the use of these is the "notification seen" icon in the notifications section */
+.focusStealer {
+display:inline-block;	
+color: white;
+background-color: #2d8ace;
+border-radius: 100%;
+line-height: 0;
+padding: 2px;
+border: 2px solid white;
+box-shadow: 0 1px 1px rgba(0,0,0,.3), 0 0 0 15px rgba(108, 203, 238,.2); /* #2d8ace but in rgba since we need some transparency */;
+}
+
+.focusStealer i {
+font-size: 9px;
+font-weight: bold;
+}
+
+
+
+/* global tab styles for all tabs in our app */
+
+.tabs {
+box-shadow:0 1px 1px rgba(0,0,0,.1);	
+z-index:99;
+}
+
+
+.tabs .tab a {
+color:#aaaaaa;
+font-weight:500;
+}
+
+.tabs .tab a:not(.active):hover, .tabs .tab a:not(.active):active, .tabs .tab.disabled a:hover, .tabs .tab.disabled a:active {
+color:yellowgreen !important;	
+}
+
+.tabs .tab a.active {
+color:#494949;	
+font-weight:700;
+border-bottom:2px solid #494949;
+-webkit-animation:tab_indicator_animation .2s ease-out 0s 1 normal forwards;
+}
+
+.tabs .indicator {
+display:none;
+}
+
+
+
+
+.end_of_results {
+display:inline-block;	
+width:75%;
+margin:60px 0 70px 0;
+position:relative;
+left:50%;
+transform:translate(-50%,0%);
+color:grey;
+text-transform:uppercase;
+text-align:center;
+font-weight:500;
+font-size:14px;
+}
+
+.end_of_results i {
+font-size:220%;	
+}
+
+
+
+
+
+.custom_badge {
+display:inline-block;	
+width:18px;
+height:18px;
+line-height:18px;
+color:white;
+font-size:10px;
+font-weight:bold;
+text-align:center;
+background-color:yellowgreen;
+border:1px solid white;
+border-radius:50%;
+box-shadow: 1px 1px 0 rgba(0,0,0,.1);
+}
