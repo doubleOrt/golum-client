@@ -7,3 +7,9 @@ www/users/*
 !www/users/.gitkeep
 
 www/composer_things/vendor
+
+hooks/*
+
+platforms/*
+
+plugins/*
