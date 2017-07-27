@@ -1,0 +1,113 @@
+#chat_portals_modal .modal-content  {
+padding:30px 0;
+background-color:white;
+}
+
+.singleChatPortal {
+-webkit-transition:all .3s ease-out;
+}
+
+.singleChatPortal:active {
+background-color:#ebeaea;	
+}
+
+.singleChatPortalAvatarCol {
+height:100%;	
+position:relative;
+}
+
+.singleChatPortalAvatarContainer {
+display:inline-block;	
+width:50px;
+height:50px;
+border-radius:1000px;
+position:relative;
+top:50%;
+left:50%;
+overflow:hidden;
+transform:translate(-50%,-50%);
+}
+
+.singleChatPortalAvatarContainer:active {
+opacity:.5;
+}
+
+.singleChatPortalRotateDiv {
+width:100%;
+height:100%;
+}
+
+
+
+.chatPortalInfosContainer {	
+height:100%;
+position:relative;
+border-bottom:1px solid #ebeaea;
+}
+
+.chatPortalInfosContainerChild {
+position:relative;
+top:50%;
+transform:translate(0,-50%);
+}
+
+.chatPortalFullName {
+font-family:roboto;
+font-size:100%;
+font-weight:500;
+line-height:16px;
+max-width:95%;
+white-space: nowrap;
+text-overflow: ellipsis;
+position:relative;
+display: inline-block;
+}
+
+.chatPortalFullName .custom_badge {
+display:none;	
+margin-left:3px;	
+margin-top:-1px;	
+}
+
+.chatPortalMessagePreview {
+display: block;		
+font-family:roboto;
+font-size:80%;
+font-weight:500;
+margin-top:2px;
+margin-left:2px;
+color:#aaaaaa;
+max-width:60%;
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+}
+
+.latestMessageContainer {
+display: block;
+font-family:roboto;
+font-size:70%;
+font-weight:500;
+color:#aaaaaa;
+position:absolute;
+right:15px;
+bottom:10px;
+}
+
+
+.removeChat {
+display:none;	
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:#aaaaaa;
+}
+
+.removeChat i {
+font-size:35px;	
+}
+
+.removeChat:active {
+opacity:.4;	
+}

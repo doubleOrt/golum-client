@@ -1,0 +1,294 @@
+#myPostsContainer {	
+display:block;	
+}
+
+.singlePost {
+clear:both;	
+padding:0 !important;	
+margin:0;
+max-width:380px;
+position:relative;
+left:50% !important;
+transform:translate(-50%,0);
+margin-top:60px;
+box-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+
+
+
+.singlePost:last-child {
+margin-bottom:100px;	
+}
+
+.postImagesContainer {
+width:100%;
+height:335px;
+position:relative;
+margin:0;
+padding:0;
+overflow:hidden;
+background:lightsteelblue;
+}
+
+.vote_holder {
+z-index:1;	
+}
+
+.singlePost[data-already-voted=true] .post_images_container_overlay {
+height:100%;	
+}
+
+.post_images_container_overlay {
+display:block;	
+height:35px;
+width:100%;
+background:rgba(0,0,0,.7);	
+border-bottom:1px solid black;
+position:absolute;
+bottom:0;
+left:0;
+transition:all .2s ease-out;
+}
+
+.post_images_container_bottom {
+display:block;	
+height:35px;
+width:100%;
+position:absolute;
+bottom:0;
+left:0;
+z-index:2;
+}
+
+.postSingleImageContainer {
+padding:0 !important;
+overflow:hidden;	
+position:relative;
+background:transparent;
+}
+
+.postSingleImageContainerImage {
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+z-index:0;
+transition:filter .2s ease-out;
+}
+
+
+.postReaction {
+width:80px;
+}
+
+.postReaction img {
+width:45px;
+height:45px;
+position:relative;
+left:50%;
+transform:translate(-50%,0);	
+}
+
+.postReaction .postReactionText {
+color:white;
+text-shadow:0 2px 2px rgba(0,0,0,.6);
+font-size:14px;
+text-align:center;
+text-transform:uppercase;
+letter-spacing:3px;
+margin:0;
+font-weight:bold;
+}
+
+
+.postReactionAnimation {
+-webkit-animation:postReactionAnimation 1.5s ease-out 0s 1 normal forwards !important; 		
+-webkit-transform:scale(0) translate(-50%,-50%);
+transform-origin:left top;
+}
+
+@keyframes postReactionAnimation {
+
+20% {
+-webkit-transform:scale(1) translate(-50%,-50%);	
+}
+
+100% {
+-webkit-transform:scale(1) translate(-50%,-50%);
+opacity:0;		
+visibility:hidden;
+}
+
+}
+
+
+
+
+
+.postBottomContainer {
+width:100%;
+min-height:90px;
+background-color:white;	
+padding:10px 5px 30px 15px;
+margin:0;
+position:relative;
+border-radius:0 0 5px 5px;
+}
+
+.post_text_container {
+display:inline-block;	
+width:80%;
+height:auto;	
+overflow:visible;
+float:left;
+}
+
+.postTitle {
+display:inline-block;
+color:black;
+background-color:white;
+position:relative;	
+z-index:1;	
+width:auto;
+height:100%;
+font-size:12px;
+font-weight:500;
+line-height:16px;
+margin-bottom:5px;
+}
+
+.postSettingsButton {
+color:#aaaaaa;		
+line-height:0;
+border-radius:3px;	
+float:right;
+margin-top:7px;
+user-select:none;
+}
+
+/* poster avatar and name */
+
+.posterInfoMegaContainer {
+display:table;
+position:relative;
+top:50%;
+transform:translate(0,-50%);
+margin-left:10px;
+}
+
+.posterAvatarContainer {
+float:left;	
+display:inline-block;
+width:27px;
+height:27px;	
+}
+
+.posterAvatarContainer .avatarContainerChild {
+border:1px solid #aaaaaa;	
+box-shadow:1px 1px 0 rgba(0,0,0,1);
+}
+
+.posterInfoChild {
+display:inline-block;
+vertical-align:middle;	
+padding-left:10px;
+margin-top:4px;
+}
+
+.posterInfoChild a {
+display:block;	
+font-size:11px;
+text-transform:capitalize;
+line-height:12px;
+font-weight:900;
+text-shadow:1px 1px 0 rgba(0,0,0,1);
+user-select:none;
+}
+
+.post_views {
+color:#ebeaea;
+font-weight:900;	
+font-size:7px;
+margin:0 0 0 1px;
+text-shadow:1px 1px 0 rgba(0,0,0,1);
+}
+
+.post_text_container_child {
+color:#aaaaaa;	
+font-size:9px;
+font-weight:500;
+user-select:none;
+}
+
+
+.post_comments_number {
+display:inline-block;	
+color:#aaaaaa;		
+font-size:12px;	
+margin-bottom:-1px;
+}
+
+
+.singlePost .avatarsHorizontalContainer {
+width:90% !important;	
+}
+
+.singlePost .avatarsHorizontalContainer .avatarContainer {
+width:25px;
+height:25px;
+margin-left:8px;			
+}
+
+
+/* ends here the reign of post avatars and names */
+
+.postButtonsContainer {
+display:block;	
+height:100%;
+position:relative;
+top:50%;
+transform:translate(0,-50%);
+float:right;	
+padding-right:5px;
+}
+
+.postButtonsContainer .btn {
+height:100%;
+padding:0 5px;
+text-align:center;
+box-sizing:border-box;
+color:white;
+border-radius:0 !important;
+font-size:22px;
+text-shadow:1px 2px 0 rgba(0,0,0,1);
+user-select:none;
+}
+
+.postButtonsContainer .btn:active {
+opacity:.5;
+}
+
+.postButtonsContainer .btn:hover, .postButtonsContainer .btn:focus {
+background:transparent;	
+}
+
+.postButtonsContainer .btn i {
+display:inline-block;
+position:relative;
+top:50%;
+transform:translate(0,-50%);
+font-size:100%;
+}
+
+.postButtonsContainer .btn:active {
+background:none !important;	
+}
+
+.postButtonsContainer .btn:focus {
+background:none !important;	
+}
+
+.postButtonsContainer .btn:first-child {
+margin-left:0;	
+}
+

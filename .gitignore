@@ -1,0 +1,15 @@
+www/dependencies/
+
+www/posts/*
+!www/posts/.gitkeep
+
+www/users/*
+!www/users/.gitkeep
+
+www/composer_things/vendor
+
+hooks/*
+
+platforms/*
+
+plugins/*

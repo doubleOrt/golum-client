@@ -1,0 +1,9 @@
+#commentRepliesModal .modal-content {
+padding:0;
+overflow:hidden;
+}
+
+.commentRepliesContainer {
+width:100%;
+height:calc(100%)	
+}
