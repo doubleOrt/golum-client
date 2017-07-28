@@ -1,17 +1,17 @@
 body {
 border-image:-webkit-linear-gradient(left, yellow 20%, green) 10;
 border-style:solid;
-border-width:6px;
+border-width:8px;
 border-bottom:none;
 border-left:none;
 border-right:none;
+box-shadow: 0 1px 0 rgba(0,0,0,1) inset;
+position:relative;
+z-index:1;
 }
-
 
 #megaContainer {
 padding-left:0 !important;	
-background-color:white;
-border-top:1px solid black;
 }
 
 #megaContainer .container {
