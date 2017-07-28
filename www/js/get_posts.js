@@ -151,10 +151,10 @@ var random_num1 = Math.floor(Math.random()*1000000);
 var image_id = "image" + random_num1;
 
 imagesContainerChildren += `
-<div class='col ` + container_grids[x] + ` postSingleImageContainer' data-option-index='` + x + `' style='` + required_height + `' data-image-path='` + data["post_images"][i] + `'>
-<img class='postSingleImageContainerImage' id='` + image_id + `' src='` + data["post_images"][i] + `' alt='Photo ` + x + `'/>
+<div class='col ` + container_grids[x] + ` postSingleImageContainer' data-option-index='` + x + `' style='` + required_height + `' data-image-path='` + data["post_images"][x] + `'>
+<img class='postSingleImageContainerImage' id='` + image_id + `' src='` + data["post_images"][x] + `' alt='Photo ` + x + `'/>
 </div><!-- end .postSingleImageContainer -->
-<div class='col ` + container_grids[x] + ` postSingleImageContainer vote_holder' data-option-index='` + x + `' style='` + required_height + `position:absolute;left:` + ((x == 1 || x == 3) ? "50%" : "0%") + `;top:` + ((x == 2 || x == 3) ? "50%" : "0%") + `' data-image-path='` + data["post_images"][i] + `'>
+<div class='col ` + container_grids[x] + ` postSingleImageContainer vote_holder' data-option-index='` + x + `' style='` + required_height + `position:absolute;left:` + ((x == 1 || x == 3) ? "50%" : "0%") + `;top:` + ((x == 2 || x == 3) ? "50%" : "0%") + `' data-image-path='` + data["post_images"][x] + `'>
 </div>
 <script>
 

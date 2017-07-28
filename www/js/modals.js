@@ -63,9 +63,8 @@ this_modal_modal_overlay.css("z-index", modal_overlay_new_zindex);
 }
 
 
-
-
 openedModals.push(modalId);
+
 // if a callback has been set for whenever the modal is set to visible, call it.
 if(typeof $("#" + openedModals[openedModals.length - 1]).data("on_visible") == "function") {
 $("#" + openedModals[openedModals.length - 1]).data("on_visible")(false);
@@ -77,11 +76,11 @@ is different for each modal */
 if(typeof callback == "function") {	
 callback();
 }
-		
+				
 }
 
 function closeModal(modalId, callback) {
-		
+			
 var this_modal_modal_overlay = $(".modal-overlay[data-modal=" + modalId + "]");
 
 if(typeof $("#" + modalId).attr("data-handle-dismissible-false") != "undefined") {
@@ -192,7 +191,7 @@ z_index_stack = parseFloat($("#" + this_modal_id).css("z-index"));
 
 
 $(document).on("click",".modal-trigger",function(){
-	
+
 // we need to disable the button so the user cannot make multiple calls to openModalCustom
 $(this).css("pointer-events","none");
 var thisModalTrigger = $(this);	
@@ -217,7 +216,9 @@ if($(".modal.open").length < 1 && PROFILE_CONTAINER_ELEMENT.parents("#main_scree
 $("#bottomNav #bottom_nav_user_profile").click();	
 }
 });	
+
 });
+
 
 /* bugs.txt bug-4 */
 var click_on_touch_end;
@@ -236,7 +237,6 @@ click_on_touch_end = false;
 }
 }).on("touchend", ".modalCloseButton", function(){
 if(click_on_touch_end == true) {	
-
 closeModal($(this).attr("data-modal"), function(){
 /* See bugs.txt: bug 2 */	
 if($(".modal.open").length < 1 && PROFILE_CONTAINER_ELEMENT.parents("#main_screen_user_profile").length < 1 && $("#bottom_nav_user_profile").hasClass("active")) {
@@ -249,10 +249,3 @@ $("#bottomNav #bottom_nav_user_profile").click();
 
 
 });
-
-function inViewport($el) {
-    var elH = $el.outerHeight(),
-        H   = $(window).height(),
-        r   = $el[0].getBoundingClientRect(), t=r.top, b=r.bottom;
-    return Math.max(0, t>0? Math.min(elH, H-t) : (b<H?b:H));
-}

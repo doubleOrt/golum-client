@@ -24,6 +24,8 @@
 <script src="dependencies/materialize2/js/materialize.min.js"></script>
 
 
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
+
 
 <!-- main Styles -->
 <link rel="stylesheet" href="styles/main.css">
@@ -40,7 +42,7 @@
 <!-- country flags -->
 <link href="dependencies/flag-icon-css-master/css/flag-icon.min.css" rel="stylesheet">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
@@ -91,6 +93,8 @@ openModalCustom("set_password_for_first_time_modal");
 <script src="dependencies/letter_avatars.js"></script><!-- used to generate letter-avatar images -->
 <script src="js/generic_functions.js"></script> 
 <script src="js/scroll_things.js"></script> 
+<script src="js/log_out.js"></script> 
+<script src="js/back_button.js"></script> 
 <script src="js/modals.js"></script> 
 <script src="js/chat_portals.js"></script> 
 <script src="js/chats.js"></script> 
@@ -110,7 +114,6 @@ openModalCustom("set_password_for_first_time_modal");
 <script src="js/post_sensitive_actions.js"></script>
 <script src="js/favorite_post.js"></script>
 <script src="js/tags.js"></script>
-<script src="js/log_out.js"></script> 
 <script src="js/main_scripts.js"></script> 
 <script src="js/websockets.js"></script> 
 
@@ -305,7 +308,7 @@ openModalCustom("set_password_for_first_time_modal");
 <ul id='profile_settings' class='dropdown-content'>
 <li class="baseUserOnly"><a href='#settingsModal' class='waves-effect waves-lightgrey modal-trigger'>Settings</a></li>
 <li class="notBaseUserOnly"><a id='user_profile_block_button' data-user-id='' data-current-state='' href='#!' class='waves-effect waves-lightgrey'>Block</a></li>
-<li class="baseUserOnly"><a href='#!' class='waves-effect waves-lightgrey log_out'>Logout</a></li>
+<li class="baseUserOnly"><a href='#' class='waves-effect waves-lightgrey log_out'>Logout</a></li>
 </ul>
 </div><!-- end #profile_background_buttons_container -->
 </div><!-- end #profile_background_bottom_overlay -->	
@@ -944,7 +947,7 @@ Identification Info
 
 <div class="modalHeaderContainer">
 <div class='modal-header mobileOnly'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='settingsModal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='settingsModal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'>Settings</span>
@@ -1078,7 +1081,7 @@ Identification Info
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='shareNewModal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='shareNewModal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'>New Post</span>
@@ -1108,7 +1111,7 @@ Identification Info
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='commentsModal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='commentsModal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'>Comments <span id="totalNumberOfCommentsContainer" class="modalHeaderFullNameSecondary"><span id="totalNumberOfComments" data-total-number="0"></span></span></span>
@@ -1140,7 +1143,7 @@ Identification Info
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='commentRepliesModal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='commentRepliesModal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'>Replies <span id="totalNumberOfRepliesContainer" class="modalHeaderFullNameSecondary"><span id="totalNumberOfReplies" data-total-number="0"></span></span></span>
@@ -1189,7 +1192,7 @@ Identification Info
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='userPostsModal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='userPostsModal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'>Posts</span>
@@ -1220,7 +1223,7 @@ Identification Info
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='favorite_posts_modal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='favorite_posts_modal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'>Favs</span>
@@ -1246,7 +1249,7 @@ Identification Info
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='singlePostModal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='singlePostModal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'>Post</span>
@@ -1271,7 +1274,7 @@ Identification Info
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='getPostsByTitleModal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='getPostsByTitleModal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'></span>
@@ -1306,7 +1309,7 @@ Identification Info
 
 <div class="modalHeaderContainer">
 <div class='modal-header' id="tagPostsModalHeader">
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='tagPostsModal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='tagPostsModal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'></span>
@@ -1348,7 +1351,7 @@ Type the code that you received with <b id="confirm_email_modal_email_address_in
 
 <div class="modalHeaderContainer">
 <div class="modal-header mobileOnly">
-<a class="modalCloseButton waves-effect wavesCustom" href="#" data-modal="confirm_email_modal">
+<a class="modalCloseButton waves-effect wavesCustom" data-modal="confirm_email_modal" href="#">
 <i class="material-icons">close</i>
 </a>
 <span class="modalHeaderFullName">Confirm email</span>
@@ -1379,7 +1382,7 @@ Type the code that you received with <b id="confirm_email_modal_email_address_in
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='user_modal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='user_modal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'>User</span>
@@ -1401,7 +1404,7 @@ Type the code that you received with <b id="confirm_email_modal_email_address_in
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom' data-modal='chat_portals_modal'>
+<a class='modalCloseButton waves-effect wavesCustom' data-modal='chat_portals_modal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName'>Chats</span>
@@ -1439,7 +1442,7 @@ Type the code that you received with <b id="confirm_email_modal_email_address_in
 
 <div class="modalHeaderContainer">
 <div class='modal-header'>
-<a class='modalCloseButton waves-effect wavesCustom chatModalCloseButton' data-modal='chatModal'>
+<a class='modalCloseButton waves-effect wavesCustom chatModalCloseButton' data-modal='chatModal' href="#">
 <i class='material-icons'>arrow_back</i>
 </a>
 <span class='modalHeaderFullName chatModalFullName'>

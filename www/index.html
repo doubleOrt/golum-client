@@ -12,11 +12,12 @@
 <script src="dependencies/jquery/jquery.min.js"></script>
 <script src="dependencies/jquery/jquery-ui.min.js" type="text/javascript"></script>
 
-
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet" href="dependencies/materialize2/css/materialize.min.css">  
 <!-- Compiled and minified JavaScript -->
 <script src="dependencies/materialize2/js/materialize.min.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
 
 <!-- icon -->
 <link rel="shortcut icon" href="icons/favicon.png" type="image/x-icon">
@@ -24,7 +25,7 @@
 <!-- country flags -->
 <link href="dependencies/flag-icon-css-master/css/flag-icon.min.css" rel="stylesheet">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Baloo+Bhai|Open+Sans" rel="stylesheet">
 
 
@@ -38,7 +39,9 @@
 $.get({
 url:"http://192.168.1.100/golum/components/logout_to_login.php",
 success:function(data) {
-eval(data);	
+if(data == "1") {
+window.location.href = "logged_in.html";
+}
 }
 });	
 
@@ -46,6 +49,7 @@ eval(data);
 
 <script src="js/generic_functions.js"></script>
 <script src="js/login_and_sign_up.js"></script>
+<script src="js/back_button.js"></script> 
 <script src="js/modals.js"></script>
 <script src="js/forgot_password.js"></script>
 
