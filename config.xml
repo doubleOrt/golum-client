@@ -10,6 +10,10 @@
 <preference name="android-windowSoftInputMode" value="adjustPan" />
 <icon src="www/icons/favicon.png"/>
 
+<config-file platform="android" parent="/manifest/application" mode="merge">
+<activity android:name="Golum" android:theme="@android:style/Theme.Material.Light" />
+</config-file>
+
 <platform name="android">
 <icon src="www/res/icon/android/drawable-ldpi-icon.png" density="ldpi"/>
 <icon src="www/res/icon/android/drawable-mdpi-icon.png" density="mdpi"/>
