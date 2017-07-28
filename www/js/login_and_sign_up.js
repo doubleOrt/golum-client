@@ -139,6 +139,9 @@ $("#login").removeClass("disabledButton");
 $("#login").val("Login");
 }
 
+},
+error: function(jqXHR, textStatus, errorThrown) {
+alert(textStatus, errorThrown);
 }
 }); 
 }
