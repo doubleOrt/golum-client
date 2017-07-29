@@ -1,0 +1,73 @@
+
+/* ------ avatar related ------ */
+
+
+/* the letter avatars */
+.letterAvatarsContainer {
+background-color:#f95462;
+width:100%;
+height:100%;
+position:relative;	
+}
+
+.avatarFirstLetter {
+color:white;	
+display:inline-block;
+font-family:roboto;
+/* font-size is set in inline in the letter_avatars.php file */
+position:relative;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);	
+}
+
+
+   
+.rotateContainer {
+position:relative;
+transform:none;
+display:inline-block;
+width:100%;
+height:100%;
+}
+
+.avatarImages {
+position:absolute;
+}  
+
+.avatarContainer {
+display:block;	
+position:relative; 
+}
+
+.avatarContainerChild {
+width:100%;
+height:100%;	
+border-radius:1000px;
+position:relative;
+overflow:hidden;
+perspective: 1px; /* webkits can't handle grand-child radiuses, another workaround would be to give the border radius directly to the image's parent, but i don't know if this 
+second workaround would fuck with our code or not. */
+} 
+
+.avatarContainerChild:active {
+opacity:.5;	
+}
+
+.userAvatarRotateDiv {
+width:100%;
+height:100%;
+position:relative;
+top:0%;
+left:0%;	
+-webkit-transform-origin: 0 0;
+}
+
+.avatarRotateDiv {
+width:100%;
+height:100%;
+position:relative;
+top:0%;
+left:0%;	
+-webkit-transform-origin: 0 0;	
+}

@@ -1,5 +1,3 @@
-
-
 window.addEventListener("load", attach_device_ready_event,false);
 
 function attach_device_ready_event() {
@@ -10,10 +8,83 @@ function on_device_ready() {
 // Register the event listener
 document.addEventListener("backbutton", on_back_key_pressed, false);
 handle_keyboard_overlaps_if_android();
+$(document).on("click", "#google_login", google_login);
 }
 
 
 
+
+/*  (Google sign-in)-related */
+
+function google_login() {
+	
+trySilentLogin();
+logout();
+
+window.plugins.googleplus.login(
+{
+"webClientId": "567008101486-pq9v5tecvnvk1fehkk2g9hmqh4pti30q.apps.googleusercontent.com"
+},
+function (user_info) {
+$.post({
+url:"http://192.168.1.100/golum/components/external_login.php",
+data: {
+"id": user_info["idToken"]
+},
+success:function(data){
+var data_arr = JSON.parse(data);
+if(data_arr[0] === 1) {
+window.location.href = "logged_in.html";
+}
+else {	
+Materialize.toast(data_arr[1], 6000, "green");
+}
+}
+});
+	
+},
+function (msg) {
+console.log("error: " + msg);
+}
+);		
+	
+}
+
+function trySilentLogin(callback) {
+window.plugins.googleplus.trySilentLogin(
+{
+"webClientId": "567008101486-pq9v5tecvnvk1fehkk2g9hmqh4pti30q.apps.googleusercontent.com"
+},
+function (obj) {
+},
+function (msg) {
+console.log(msg);
+}
+);
+}
+
+function logout(callback) {
+window.plugins.googleplus.logout(
+function (msg) {
+},
+function (msg) {
+console.log(msg);
+}
+);
+}
+
+
+/* end (google-sign-in)-related */
+
+
+
+
+
+
+
+
+
+  
 
 /* (make-sure-android-keyboard-is-not-overlapping-focused-input)-related */
 
@@ -154,3 +225,9 @@ navigator.app.exitApp();
 }
 }	
 }
+
+
+
+
+
+

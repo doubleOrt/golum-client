@@ -19,13 +19,16 @@
 <!-- Compiled and minified JavaScript -->
 <script src="dependencies/materialize2/js/materialize.min.js"></script>
 
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
 
 <!-- icon -->
 <link rel="shortcut icon" href="icons/favicon.png" type="image/x-icon">
 
 
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height">
+
+<!-- IOS tries to recognize telephone numbers and replace them with links to those numbers, this tag disabled that feature -->
+<meta name="format-detection" content="telephone=no" />
+
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -34,6 +37,7 @@
 <link rel="stylesheet" href="styles/inputs.css">
 <link rel="stylesheet" href="styles/modals.css">
 
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
 <script>
 
 $.get({
@@ -46,7 +50,6 @@ window.location.href = "logged_in.html";
 });	
 
 </script> 
-
 <script src="js/generic_functions.js"></script>
 <script src="js/login_and_sign_up.js"></script>
 <script src="js/cordova_things.js"></script> 
@@ -54,8 +57,6 @@ window.location.href = "logged_in.html";
 <script src="js/forgot_password.js"></script>
 
 
-
-<meta name="google-signin-client_id" content="154556605033-dnrn5oc0hub7gslgl61aa2qpeo0rctmc.apps.googleusercontent.com">
 
 </head>
 <body>
@@ -105,7 +106,7 @@ window.location.href = "logged_in.html";
 
 <div class="col l12 m12 s12">
 <div id="social_logins_container">
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<button type="button" id="google_login" class="image_social_button"></button>
 </div>
 </div>
 
@@ -218,57 +219,6 @@ it is a login form, so to workaround that, we moved this to the top of the input
 
 
 </div>
-
-
-
-
-
-
-
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-<script>
-
-
-function onSignIn(googleUser) {
-
-var auth2 = gapi.auth2.getAuthInstance();
-
-// prevents auto sign-in
-auth2.signOut();
-
-// prevents Google from signing-in a user automatically to the last account (i think) they signed into in our app.
-auth2.disconnect();
-
-if (auth2.isSignedIn.get()) {
-var profile = auth2.currentUser.get().getBasicProfile();
-
-$.post({
-url:"http://192.168.1.100/golum/components/external_login.php",
-data: {
-"id": googleUser.getAuthResponse().id_token
-},
-success:function(data){
-console.log(data);
-var data_arr = JSON.parse(data);
-
-if(data_arr[0] === 1) {
-window.location.href = "logged_in.html";
-}
-else {
-Materialize.toast(data_arr[1], 6000, "green");
-}
-
-}
-});
-
-}
-
-}
-
-
-
-</script>
 
 
 </body>

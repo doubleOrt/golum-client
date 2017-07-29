@@ -1,0 +1,16 @@
+#tagPostsModal .modal-content {
+padding:0;
+height:calc(100% - 110px)
+margin-top:110px; /* this inconsistency is intentional */
+}
+
+#tagPostsContainer {
+position:relative;
+height:100%;
+overflow:hidden;
+overflow-y:scroll;
+}
+
+#tagPostsModal .singlePost:first-child {
+margin-top:130px;	
+}

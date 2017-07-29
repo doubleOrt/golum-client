@@ -1,0 +1,49 @@
+
+
+/* default styling for all inputs */
+
+::-webkit-input-placeholder {
+color:#aaaaaa;	
+font-weight:500;
+}
+
+.input-field input[type=text]:not(.independent_styles), .input-field input[type=password]:not(.independent_styles), .input-field input[type=email]:not(.independent_styles) {
+border-bottom: 2px solid lightgrey;
+color:grey;
+box-shadow:none;
+}
+
+.input-field input[type=text]:not(.independent_styles):focus, .input-field input[type=password]:not(.independent_styles):focus, .input-field input[type=email]:not(.independent_styles):focus {
+border-image: -webkit-linear-gradient(36deg, yellow, green) 10 !important;
+border-style: solid;
+border-top: none;
+border-left: none;
+border-right: none;
+border-bottom-width: 2px !important;
+color:black;
+box-shadow:none !important;
+}
+
+
+.input-field input[type=text]:not(.independent_styles) + label, .input-field input[type=email]:not(.independent_styles) + label, .input-field input[type=password]:not(.independent_styles) + label {
+color: grey;
+}
+
+
+.input-field input[type=text]:not(.independent_styles):focus + label, .input-field input[type=email]:not(.independent_styles):focus + label, .input-field input[type=password]:focus + label {
+color: yellowgreen !important;
+}
+
+
+.input-field input {
+text-indent:2%;
+}
+
+
+input[type="submit"] {
+letter-spacing:1px;	
+}
+
+input[type="submit"]:focus {
+outline:none; 
+}

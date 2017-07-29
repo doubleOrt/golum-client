@@ -150,3 +150,29 @@ position:relative;
 left:50%;
 transform:translate(-50%,0%);	
 }
+
+
+
+#google_login {
+background:url("../icons/social_buttons/google_sign_in_light.png");
+background-size:191px 46px;
+border-radius:4px;
+width:191px;
+height:46px;	
+transition:background .1s ease-out;
+}
+
+#google_login:focus {
+background:url("../icons/social_buttons/google_sign_in_light_focus.png");		
+background-size:191px 46px;
+}
+
+#google_login:active {
+background:url("../icons/social_buttons/google_sign_in_light_active.png");	
+background-size:191px 46px;
+}
+
+.image_social_button {
+background:none;
+border:none;	
+}

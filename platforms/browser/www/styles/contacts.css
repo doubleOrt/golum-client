@@ -1,0 +1,199 @@
+
+.contactsModalContents {
+width:100%;
+height:100%;
+padding:0 !important;
+background-color:#f4f4f4;
+}
+
+.contactsModalContentsChild {
+width:100%;
+height:100%;	
+position:relative;
+padding-top:20px;
+overflow-x:hidden;
+overflow-y:scroll;
+}
+
+.singleLetterContainer {
+width:100%;
+height:30px;
+margin-top:20px;	
+}
+
+.singleLetterContainer:first-child {
+margin-top:0;	
+}
+
+.singleLetter {
+padding:0;
+font-size:170%;
+text-align:center;
+}
+
+.contactsSingleRow {
+display:block !important;
+width:100%;
+height:80px !important;
+position:relative;
+margin:0 !important;
+}
+
+.contactsSingleRow:last-child .contactsInfosContainer, .contactsSingleRow:last-child .removeContactContainer {
+border-bottom:none;	
+}
+
+.contactsSingleRow .col {
+padding:0;
+}
+
+.contactsAvatarRow {
+position:relative;	
+height:100%;
+}
+
+.contactsAvatarContainer {
+display:block;
+position:relative;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:45px;
+height:45px;
+border-radius:100%;
+overflow:hidden;
+}
+
+.contactsAvatarContainer:active {
+opacity:.5;
+}
+
+.contactsAvatarRotateDiv {
+width:100%;
+height:100%;
+}
+
+
+.contactsInfosContainer {	
+height:100%;
+position:relative;
+border-bottom:1px solid #ebeaea;
+}
+
+.contactsInfosContainerChild {
+display:inline-block;
+position:absolute;
+top:50%;
+transform:translate(0,-50%);
+padding-left:5px;
+width:90%;
+overflow:hidden;
+}
+
+
+.contactsFullName {
+font-size:115%;
+line-height:16px;
+white-space: nowrap;
+text-overflow: ellipsis;
+display: block;
+overflow:hidden;
+font-style:capitalize;
+padding-bottom:5px;
+text-transform:capitalize;
+}
+
+.contactsFullName::first-letter {
+color:#f95462;
+}
+
+/* we don't directly add these styles to the above rule because in the above rule, the display mode must be set to block in order for the ellipsis to work, so we are adding the styles
+to a child span of the above element */
+.contactsFullNameText {
+font-family:roboto;
+color:black;
+}
+
+.contactsUserName {
+color:grey;	
+font-family:open sans;
+font-size:70%;
+margin-top:-2px;
+}
+
+
+
+.removeContactContainer {
+height:100%;	
+position:relative;
+border-bottom:1px solid #ebeaea;
+}
+
+.removeContactContainer button {
+color:#f95462;	
+background:none;
+border:none;
+position:relative;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);	
+padding:0;
+line-height:0;	
+-webkit-transition:text-shadow .1s ease-out;
+display:none;
+}
+
+.removeContactContainer button i {
+font-size:250%;
+}
+
+.removeContactContainer button:hover {
+opacity:.6;
+}
+
+.removeContactContainer button:active {
+opacity:.3;	
+}
+
+
+
+
+
+
+
+.contactsModalTop {
+display:flex;
+flex-direction:row;
+justify-content:center;		
+margin-bottom:30px;
+width:100%;
+}
+
+.contactsModalSingleElement {
+display:table;
+float:left;
+padding:8px 20px 8px 10px;
+margin-left:10px;
+}
+
+.contactsModalSingleElement:first-child  {
+margin-left:0;	
+}
+
+.contactsModalSingleElement img {
+width:40px;
+height:40px;	
+display:table-cell;
+vertical-align:middle;
+}
+
+.contactsModalSingleElementMainText {
+color:#f95462;
+letter-spacing:2px;
+font-size:20px;	
+font-weight:bold;	
+display:table-cell;
+vertical-align:middle;
+padding-left:10px;
+}
+

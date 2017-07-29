@@ -1,0 +1,100 @@
+
+.votesContainer {
+display:none;	
+width:100%;
+height:calc(100% - 35px); /* have to compensate for the bottom overlay */
+padding:10px 0;
+position:relative;
+z-index:1;
+user-select:none;
+}
+
+.votesContainerChild {
+position:relative;
+top:40%;
+transform:translate(0,-50%);	
+}
+
+.singlePost[data-post-type="3"] .votesContainerChild, .singlePost[data-post-type="4"] .votesContainerChild {
+top:15%;
+transform:translate(0,0);
+}
+
+.singlePost[data-post-type="3"] .votesIcon, .singlePost[data-post-type="4"] .votesIcon {
+padding:7px;
+}
+
+.singlePost[data-post-type="3"] .votesIcon i, .singlePost[data-post-type="4"] .votesIcon i {
+font-size:20px;
+}
+
+.singlePost[data-post-type="3"] .totalVotesNumber, .singlePost[data-post-type="4"] .totalVotesNumber {
+margin-top:2px;
+}
+
+.singlePost[data-post-type="3"] .totalVotesPercentage, .singlePost[data-post-type="4"] .totalVotesPercentage {
+line-height:20px;
+font-size:20px;
+}
+
+
+
+.votesIcon {
+display:inline-block;	
+position:relative;
+left:50%;
+transform:translate(-50%,0%);	
+padding:10px;
+border:2px solid white;
+border-radius:1000px;
+box-shadow:1px 2px 0 rgba(0,0,0,1);
+}
+
+.votesIcon i {
+text-shadow: 1px 3px 0 rgba(0,0,0,.6);	
+}
+
+.votesIcon[data-user-vote=true] {
+background:-webkit-linear-gradient(36deg, crimson, lightsalmon) !important;
+}
+
+.singlePost[data-post-type="1"] .votesIcon[data-user-vote=true], .singlePost[data-post-type="2"] .votesIcon[data-user-vote=true] {
+box-shadow:1px 2px 0 rgba(0,0,0,1), 0 0 0 3px rgba(0,0,0,1) inset
+}
+
+.singlePost[data-post-type="3"] .votesIcon[data-user-vote=true], .singlePost[data-post-type="4"] .votesIcon[data-user-vote=true] {
+box-shadow:1px 2px 0 rgba(0,0,0,1), 0 0 0 2px rgba(0,0,0,1) inset
+}
+
+.votesIcon.minorityVoteBackgroundColor {
+background:transparent;	
+}
+
+
+.votesIcon i {
+display:block;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+}
+
+.totalVotesNumber {
+text-align:center;
+color:white;
+text-shadow:0 2px 2px rgba(0,0,0,.6);
+margin-top:6px;
+font-size:12px;
+font-weight:bold;
+}
+
+.totalVotesPercentage {
+text-align:center;
+color:white;
+text-shadow:0 2px 2px rgba(0,0,0,.6);
+font-size:24px;
+font-weight:bold;	
+line-height:24px;
+}
+
+
+
