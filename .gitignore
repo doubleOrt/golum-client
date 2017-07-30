@@ -1,0 +1,9 @@
+hooks/*
+
+platoforms/* 
+
+plugins/* 
+
+.cordova/*
+
+node_modules/*
