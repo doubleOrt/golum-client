@@ -176,5 +176,13 @@
         "variables": {
             "REVERSED_CLIENT_ID": "com.googleusercontent.apps.567008101486-tle9u2u38ffh2u2of3bj1287ahsor2vr"
         }
+    },
+    "phonegap-plugin-push": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-push@1.10.5"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

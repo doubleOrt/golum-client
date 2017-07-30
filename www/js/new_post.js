@@ -98,27 +98,8 @@ console.log(data);
 //if the post was successfully posted, then open the singlePostModal and populate its innerHTML with the new post's markup.
 if(!isNaN(data)) {
 Materialize.toast("Post Successful!",2000,"green");
-	
-$("#singlePostModal").modal("open", {
-inDuration: 300, // Transition in duration
-outDuration: 150, // Transition out duration	
-startingTop: "100%",
-endingTop: "50%",	
-ready:function(){
-var this_modal = $(this);	
-setTimeout(function(){z_index_stack = parseFloat(this_modal.css("z-index"));},300);
-}
-});
-// empty #singlePostsContainer
-$("#singlePostsContainer").html("");
-showLoading($("#singlePostsContainer"), "50%");
+open_single_post(data);
 closeModal("shareNewModal");
-openModalCustom("singlePostModal");
-getPosts("http://192.168.1.100/golum/components/get_single_post.php",{"post_id":data},function(data_arr){
-markUpProcessor(data_arr,$("#singlePostsContainer"), "We don't know why the post didn't appear either :(", function(){
-removeLoading($("#singlePostsContainer"));	
-});		
-});		
 }
 else {
 Materialize.toast(data, "5000", "red");
@@ -131,10 +112,7 @@ $("#post_title").val("");
 $("#options_num").val("1");
 $("#options_num").material_select();
 resetNewPostInputs();
-
 $('#shareNewModal').find('.modalCloseButton').click();
-
-
 $("#shareNewPostButton").html("post");
 }	
 });

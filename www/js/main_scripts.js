@@ -1,15 +1,12 @@
-
 // will be set on document load. This element will contain a "data-user-id" attribute that points to the id of the logged_in user.
 var BASE_USER_ID_HOLDER;
 
+
 $(document).ready(function(){
- 
-BASE_USER_ID_HOLDER = $("#megaContainer");
-	 	 
-		 		 
-		 
-		 
-		 
+	
+	
+BASE_USER_ID_HOLDER = $("#megaContainer");	
+
 //hide the loading bar and show the document body
 removeLoading($("#main_screen_main_posts_container"));
 $("#showOnBodyLoad").show();
@@ -185,8 +182,7 @@ $($(this).attr("data-onfocus-toggle")).fadeIn();
 /* main screens and their relation to the #bottomNav */
 
 $(document).on("click", "[data-open-main-screen]" , function() {
-$(".main_screen").removeClass("main_screen_active");
-$($(this).attr("data-open-main-screen")).addClass("main_screen_active");
+open_main_screen($($(this).attr("data-open-main-screen")));
 });
 
 

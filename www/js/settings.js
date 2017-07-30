@@ -51,7 +51,7 @@ var this_modal = $(this);
 setTimeout(function(){z_index_stack = parseFloat(this_modal.css("z-index"));},300);
 }
 });
-openModalCustom("confirm_email_modal");
+openModalCustom("confirm_email_modal", false);
 $("#confirm_email_modal_email_address_in_text").html(data_arr[1]);
 SETTINGS_CONFIRM_EMAIL_SECTION_CONTAINER.show();
 }

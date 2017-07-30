@@ -17,6 +17,9 @@
     <allow-navigation href="*" />
     <allow-intent href="*" />
     <access origin="*" />
+    <gap:plugin name="cordova-plugin-googleplus" source="npm">
+        <param name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.567008101486-tle9u2u38ffh2u2of3bj1287ahsor2vr" />
+    </gap:plugin>
     <preference name="android-minSdkVersion" value="14" />
     <preference name="orientation" value="portrait" />
     <preference name="fullscreen" value="false" />

@@ -210,6 +210,29 @@ return `<div id='` + row_id + `' class='contactsSingleRow row showUserModal moda
 </script>`;	
 }
 
+function get_user_followings(user_id) {
+SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT.attr("data-user-id", user_id);
+SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT.attr("data-end-of-results", "false");
+SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT.html("");	
+showLoading(SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT, "50%");
+get_user_followers_or_followings(user_id, 0, 1, function(data){
+get_user_followings_callback(data, function(){
+removeLoading(SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT);	
+});	
+});	
+}
+
+function get_user_followers(user_id) {
+SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT.attr("data-user-id", user_id);
+SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT.attr("data-end-of-results", "false");
+SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT.html("");	
+showLoading(SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT, "50%");
+get_user_followers_or_followings(user_id, 0, 0, function(data){
+get_user_followers_callback(data, function(){
+removeLoading(SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT);
+});
+});	
+}
 
 
 $(document).ready(function(){
@@ -220,15 +243,7 @@ SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT = $("#followings_modal_content_child");
 	
 // users clicked a button that is supposed to retrieve the number of followers for the user specified by the id in the element's data-user-id attribute.
 $(document).on("click",".get_followers",function(){
-SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT.attr("data-user-id", $(this).attr("data-user-id"));
-SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT.attr("data-end-of-results", "false");
-SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT.html("");	
-showLoading(SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT, "50%");
-get_user_followers_or_followings(SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT.attr("data-user-id"), 0, 0, function(data){
-get_user_followers_callback(data, function(){
-removeLoading(SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT);
-});
-});
+get_user_followers($(this).attr("data-user-id"));
 });
 // user is infinite scrolling their notifications section 
 SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT.scroll(function(){
@@ -247,15 +262,7 @@ remove_secondary_loading(SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT);
 
 // users clicked a button that is supposed to retrieve the number of followings for the user specified by the id in the element's data-user-id attribute.
 $(document).on("click",".get_followings",function(){	
-SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT.attr("data-user-id", $(this).attr("data-user-id"));
-SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT.attr("data-end-of-results", "false");
-SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT.html("");	
-showLoading(SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT, "50%");
-get_user_followers_or_followings($(this).attr("data-user-id"), 0, 1, function(data){
-get_user_followings_callback(data, function(){
-removeLoading(SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT);	
-});	
-});
+get_user_followings($(this).attr("data-user-id"));
 });
 // user is infinite scrolling their notifications section 
 SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT.scroll(function(){

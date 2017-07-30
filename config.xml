@@ -4,7 +4,7 @@
     <description>Golum Golum Golum</description>
     <author email="fantasybl8@gmail.com">PhoneGap Team</author>
     <content src="index.html" />
-    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-minSdkVersion" value="15" />
     <preference name="orientation" value="portrait" />
     <preference name="fullscreen" value="false" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
@@ -93,9 +93,14 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+	
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <plugin name="cordova-plugin-device" spec="~1.1.6" />
-	<gap:plugin name="cordova-plugin-googleplus" source="npm">
-	<param name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.567008101486-tle9u2u38ffh2u2of3bj1287ahsor2vr" />
-	</gap:plugin>
+    <gap:plugin name="cordova-plugin-googleplus" source="npm">
+        <param name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.567008101486-tle9u2u38ffh2u2of3bj1287ahsor2vr" />
+    </gap:plugin>
+    <plugin name="phonegap-plugin-push" spec="~1.10.5">
+        <variable name="SENDER_ID" value="567008101486" />
+    </plugin>
+
 </widget>

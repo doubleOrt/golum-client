@@ -66,8 +66,8 @@ window.location.href = "index.html";
 // user has logged in
 else {
 BASE_USER_ID_HOLDER.attr("data-user-id", data_arr[0]);
-// the websocket connection must be opened only after we have the user's id, since our onopen code relies on the base user's id.
-open_web_socket_connection();
+
+open_web_socket_connection(data_arr[0]);
 
 if(data_arr[1] == 1) {
 $("#set_password_for_first_time_modal").modal("open");
@@ -92,7 +92,11 @@ openModalCustom("set_password_for_first_time_modal");
 <script src="js/generic_functions.js"></script> 
 <script src="js/scroll_things.js"></script> 
 <script src="js/log_out.js"></script> 
-<script src="js/cordova_things.js"></script> 
+<script src="js/cordova_initializations.js"></script>
+<script src="js/back_button_functionality.js"></script><!-- adds back button functionality to the app -->
+<script src="js/android_keyboard_overlaps.js"></script><!-- handles Android keyboard overlapping inputs when they're focused -->
+<script src="js/external_login.js"></script><!-- handles external logins, such as Google login --> 
+<script src="js/push_notifications.js"></script><!-- this file will take care of receiving push notifications -->
 <script src="js/modals.js"></script> 
 <script src="js/chat_portals.js"></script> 
 <script src="js/chats.js"></script> 

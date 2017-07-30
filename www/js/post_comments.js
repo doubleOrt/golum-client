@@ -206,17 +206,10 @@ set_post_comments_number_string(commentSinglePostElement, parseFloat(commentSing
 }
 
 
+function get_post_comments(post_id, pin_comment_to_top) {
 
-
-$(document).ready(function() {
-
-COMMENTS_CONTAINER_ELEMENT = $("#post_comments_container");
-
-// user wants to see post comments
-$(document).on("click",".showPostComments",function() {
-
-$("#postCommentButton").attr("data-actual-post-id",$(this).attr("data-actual-post-id"));
-COMMENTS_CONTAINER_ELEMENT.attr("data-actual-post-id",$(this).attr("data-actual-post-id"));
+$("#postCommentButton").attr("data-actual-post-id", post_id);
+COMMENTS_CONTAINER_ELEMENT.attr("data-actual-post-id", post_id);
 COMMENTS_CONTAINER_ELEMENT.attr("data-end-of-results", "false");
 
 // empty the COMMENTS_CONTAINER_ELEMENT of the previously viewed post comments 
@@ -228,21 +221,30 @@ showLoading(COMMENTS_CONTAINER_ELEMENT, "50%");
 commentsPreventMultipleCalls = false;
 abort_request_to_get_comments();
 
-if(typeof $(this).attr("data-pin-comment-to-top") == "undefined") {
-getComments($(this).attr("data-actual-post-id"),0, 0, function(data) {
+if(typeof pin_comment_to_top == "undefined") {
+getComments(post_id,0, 0, function(data) {
 get_comments_callback(data, function(){
 removeLoading(COMMENTS_CONTAINER_ELEMENT);	
 });
 });
 }
 else {
-getComments($(this).attr("data-actual-post-id"), 0, $(this).attr("data-pin-comment-to-top"), function(data){
+getComments(post_id, 0, pin_comment_to_top, function(data){
 get_comments_callback(data, function(){
 removeLoading(COMMENTS_CONTAINER_ELEMENT);	
 });
 });	
 }
+	
+}
 
+$(document).ready(function() {
+
+COMMENTS_CONTAINER_ELEMENT = $("#post_comments_container");
+
+// user wants to see post comments
+$(document).on("click",".showPostComments",function() {
+get_post_comments($(this).attr("data-actual-post-id"), $(this).attr("data-pin-comment-to-top"));
 });
 // user is infinite scrolling the comments
 COMMENTS_CONTAINER_ELEMENT.scroll(function(){	

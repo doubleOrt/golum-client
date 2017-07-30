@@ -5,8 +5,11 @@ var marks_stack = [];
 var z_index_stack = 1001;
 var longpollingVar; 
 
-function openModalCustom(modalId, callback) {
 
+/* if you want to find out more about the "open_new_even_if_already_on_top" parameter, see bugs.txt #8 */
+function openModalCustom(modalId, open_new_even_if_already_on_top, callback) {
+
+if(open_new_even_if_already_on_top === false) {
 /* if modal is currently on top and it is open, then just return false. Useful in cases like 
 when the user presses a tag in the tagPostsModal which refers to itself (for example i press the gollum tag when 
 i am in the tagPostsModal modal for all posts with the gollum tag, without these conditional, the modal would be 
@@ -16,6 +19,7 @@ if(typeof callback == "function") {
 callback();	
 }
 return false;	
+}
 }
 
 
@@ -200,7 +204,7 @@ setTimeout(function(){thisModalTrigger.css("pointer-events","auto");},500);
 // grab the modal's id
 var modalId = ( typeof $(this).attr("data-target") != "undefined" ? $(this).attr("data-target") : $(this).attr("href").substr(1,this.length));
 
-openModalCustom(modalId);
+openModalCustom(modalId, false);
 });
 
 

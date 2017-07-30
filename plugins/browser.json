@@ -66,6 +66,10 @@
         },
         "cordova-plugin-googleplus": {
             "PACKAGE_NAME": "com.phonegap.golum"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "85075801930",
+            "PACKAGE_NAME": "com.golum.app"
         }
     },
     "dependent_plugins": {}

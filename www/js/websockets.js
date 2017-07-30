@@ -31,15 +31,20 @@ there_are_new_notifications(data_arr["data"]);
 }
 
 
-function open_web_socket_connection() {
+function open_web_socket_connection(base_user_id) {
+	
+if(typeof base_user_id == "undefined" || /^\d+$/.test(base_user_id) === false) {
+return false;	
+}	
+	
 websockets_con = new ab.Session('ws://192.168.1.100:8080',
 function() {
 console.warn("Websocket connection opened");	
 websockets_connection_is_good = true;
-var base_user_id = BASE_USER_ID_HOLDER.attr("data-user-id"); 
 open_user_channel(base_user_id);
 // this call will send an "online now" message to all users who want to receive it.
 websockets_con.publish("user_" + base_user_id, [2,"user_state_" + base_user_id]);	
+send_device_registration_id();
 },
 function() {
 console.warn('WebSocket connection closed');

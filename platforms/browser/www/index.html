@@ -19,13 +19,16 @@
 <!-- Compiled and minified JavaScript -->
 <script src="dependencies/materialize2/js/materialize.min.js"></script>
 
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
 
 <!-- icon -->
 <link rel="shortcut icon" href="icons/favicon.png" type="image/x-icon">
 
 
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height">
+
+<!-- IOS tries to recognize telephone numbers and replace them with links to those numbers, this tag disabled that feature -->
+<meta name="format-detection" content="telephone=no" />
+
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -34,6 +37,7 @@
 <link rel="stylesheet" href="styles/inputs.css">
 <link rel="stylesheet" href="styles/modals.css">
 
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
 <script>
 
 $.get({
@@ -46,7 +50,6 @@ window.location.href = "logged_in.html";
 });	
 
 </script> 
-
 <script src="js/generic_functions.js"></script>
 <script src="js/login_and_sign_up.js"></script>
 <script src="js/cordova_things.js"></script> 
@@ -103,7 +106,7 @@ window.location.href = "logged_in.html";
 
 <div class="col l12 m12 s12">
 <div id="social_logins_container">
-<button id="google_login" class="image_social_button"></button>
+<button type="button" id="google_login" class="image_social_button"></button>
 </div>
 </div>
 

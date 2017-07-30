@@ -188,6 +188,37 @@ callback();
 }
 
 
+function get_comment_replies(comment_id, pin_comment_to_top) {
+
+// empty the REPLIES_CONTAINER_ELEMENT of the previously viewed post comments 
+REPLIES_CONTAINER_ELEMENT.html("");		
+
+showLoading(REPLIES_CONTAINER_ELEMENT, "50%");
+
+// for details concerning these 2 lines, see the first bug in the bugs.txt file.
+repliesPreventMultipleCalls = false;
+abort_request_to_get_replies();
+
+$("#replyToCommentButton").attr("data-comment-id", comment_id);
+REPLIES_CONTAINER_ELEMENT.attr("data-comment-id", comment_id);
+REPLIES_CONTAINER_ELEMENT.attr("data-end-of-results", "false");
+
+if(typeof pin_comment_to_top == "undefined") {
+getReplies(comment_id,0, 0, function(data){
+get_replies_callback(data, function(){
+removeLoading(REPLIES_CONTAINER_ELEMENT);	
+});
+});
+}
+else {
+getReplies(comment_id, 0, pin_comment_to_top, function(data){
+get_replies_callback(data, function(){
+removeLoading(REPLIES_CONTAINER_ELEMENT);	
+});
+});	
+}	
+		
+}
 
 
 
@@ -201,35 +232,7 @@ REPLIES_CONTAINER_ELEMENT = $("#commentRepliesContainer");
 // user wants to see comment replies
 
 $(document).on("click",".addReplyToComment",function(){
-	
-// empty the REPLIES_CONTAINER_ELEMENT of the previously viewed post comments 
-REPLIES_CONTAINER_ELEMENT.html("");		
-
-showLoading(REPLIES_CONTAINER_ELEMENT, "50%");
-
-// for details concerning these 2 lines, see the first bug in the bugs.txt file.
-repliesPreventMultipleCalls = false;
-abort_request_to_get_replies();
-
-$("#replyToCommentButton").attr("data-comment-id",$(this).attr("data-comment-id"));
-REPLIES_CONTAINER_ELEMENT.attr("data-comment-id",$(this).attr("data-comment-id"));
-REPLIES_CONTAINER_ELEMENT.attr("data-end-of-results", "false");
-
-if(typeof $(this).attr("data-pin-comment-to-top") == "undefined") {
-getReplies($(this).attr("data-comment-id"),0, 0, function(data){
-get_replies_callback(data, function(){
-removeLoading(REPLIES_CONTAINER_ELEMENT);	
-});
-});
-}
-else {
-getReplies($(this).attr("data-comment-id"),0,$(this).attr("data-pin-comment-to-top"), function(data){
-get_replies_callback(data, function(){
-removeLoading(REPLIES_CONTAINER_ELEMENT);	
-});
-});	
-}	
-	
+get_comment_replies($(this).attr("data-comment-id"), $(this).attr("data-pin-comment-to-top"));	
 });
 // infinite scrolling the replies
 REPLIES_CONTAINER_ELEMENT.scroll(function(){

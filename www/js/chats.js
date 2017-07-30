@@ -462,6 +462,29 @@ getChatPortalActivities(updateChatPortalActivities);
 
 
 
+function open_chat(chat_id, recipient_id, unhide_chat_if_hidden) {
+
+CHAT_CONTENT_CONTAINER_ELEMENT.html("");
+unsubscribe_from_last_chat();
+
+get_chat(chat_id, recipient_id, unhide_chat_if_hidden, 0, function(data){
+	
+get_chat_callback(false, data);
+// we want to update the badge on the user's profile that displays the number of their unread messages each time they view some of those unread messages.
+get_new_messages_num(function(num) {
+if(parseFloat(num) > 0) {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).css("display", "inline-block");	
+}
+else {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).hide();	
+}
+});
+
+subscribe_to_chat(data[1]["recipient_id"])
+});	
+
+}
+
 
 $(document).ready(function(){
 
@@ -496,27 +519,7 @@ if(typeof $(this).attr("data-user-id") != "undefined") {
 recipient_id = $(this).attr("data-user-id");
 }
 
-CHAT_CONTENT_CONTAINER_ELEMENT.html("");
-unsubscribe_from_last_chat();
-
-get_chat(chat_id, recipient_id, unhide_chat_if_hidden, 0, function(data){
-	
-get_chat_callback(false, data);
-// we want to update the badge on the user's profile that displays the number of their unread messages each time they view some of those unread messages.
-get_new_messages_num(function(num) {
-if(parseFloat(num) > 0) {
-USER_PROFILE_NEW_MESSAGES_NUM.html(num).css("display", "inline-block");	
-}
-else {
-USER_PROFILE_NEW_MESSAGES_NUM.html(num).hide();	
-}
-});
-
-
-subscribe_to_chat(data[1]["recipient_id"])
-
-
-});
+open_chat(chat_id, recipient_id, unhide_chat_if_hidden);
 });
 
 

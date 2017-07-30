@@ -279,3 +279,38 @@ function check_if_main_screen_is_open(main_screen_id) {
 return $("#" + main_screen_id).hasClass("main_screen_active");
 }
 
+function open_main_screen(main_screen) {
+$(".main_screen").removeClass("main_screen_active");
+main_screen.addClass("main_screen_active");	
+}
+
+function open_single_post(post_id) {
+	
+$("#singlePostModal").modal("open", {
+inDuration: 300, // Transition in duration
+outDuration: 150, // Transition out duration	
+startingTop: "100%",
+endingTop: "50%",	
+ready:function(){
+var this_modal = $(this);	
+setTimeout(function(){z_index_stack = parseFloat(this_modal.css("z-index"));},300);
+}
+});
+
+// empty #singlePostsContainer
+$("#singlePostsContainer").html("");
+showLoading($("#singlePostsContainer"), "50%");
+
+if(check_if_modal_is_currently_being_viewed("singlePostModal") === true && $("#singlePostModal .singlePost").attr("data-actual-post-id") != post_id) {
+openModalCustom("singlePostModal", true);	
+}	
+else {
+openModalCustom("singlePostModal", false);
+}
+
+getPosts("http://192.168.1.100/golum/components/get_single_post.php",{"post_id": post_id},function(data_arr){
+markUpProcessor(data_arr,$("#singlePostsContainer"), "We don't know why the post didn't appear either :(", function(){
+removeLoading($("#singlePostsContainer"));	
+});		
+});			
+}

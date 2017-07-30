@@ -82,7 +82,7 @@ function get_notification_markup(notification_arr) {
 var notification_sender_full_name = notification_arr["notification_sender_info"]["first_name"] + " " + notification_arr["notification_sender_info"]["last_name"];
 var random_num = Math.floor(Math.random() * 1000000);
 
-// user reacting to your post (voting and like/disliking)
+// user reacting to your post (voting)
 if(notification_arr["notification_type"] == 1) {
 return `
 <div class='singleNotification scaleHorizontallyCenteredItem lightgrey_background_on_active openSinglePost modal-trigger' data-read-yet='`+ (notification_arr[`read_yet`] != `` ? `true` : `false`) +`' data-target='singlePostModal' data-notification-id='`+ notification_arr["notification_id"] +`' data-actual-post-id='`+ notification_arr["notification_extra"] +`' data-notification-extra='` + notification_arr["notification_extra"] + `' data-notification-extra2='` + notification_arr["notification_extra2"] + `' data-notification-extra3='` + notification_arr["notification_extra3"] + `'>
@@ -101,7 +101,7 @@ return `
 
 <div class='notificationTextContainer'>
 <div class='notificationText'>
-<a href='#modal1' class='commonLink notificationFromFullName showUserModal modal-trigger' data-target='user_modal' data-user-id='` + notification_arr["notification_sender_info"]["id"] + `'>`+ notification_sender_full_name +`</a>  `+ (notification_arr["notification_and_others"] > 0 ?  `And ` + notification_arr["notification_and_others"] + ` Other` + (notification_arr["notification_and_others"] == 1 ? `` : `s`) : ``) +` Reacted To Your Post.
+<a href='#modal1' class='commonLink notificationFromFullName showUserModal modal-trigger' data-target='user_modal' data-user-id='` + notification_arr["notification_sender_info"]["id"] + `'>`+ notification_sender_full_name +`</a>  `+ (notification_arr["notification_and_others"] > 0 ?  `And ` + notification_arr["notification_and_others"] + ` Other` + (notification_arr["notification_and_others"] == 1 ? `` : `s`) : ``) +` Voted on Your Post.
 </div>
 <div class='notificationTime'>` + notification_arr["notification_time_string"] + `</div>
 </div>
@@ -184,7 +184,7 @@ return `
 
 <div class='notificationTextContainer'>
 <div class='notificationText'>
-<a href='#modal1' class='commonLink notificationFromFullName showUserModal modal-trigger' data-target='user_modal' data-user-id='` + notification_arr["notification_sender_info"]["id"] + `'>`+ notification_sender_full_name +`</a> Wants To Share a Post With You.
+<a href='#modal1' class='commonLink notificationFromFullName showUserModal modal-trigger' data-target='user_modal' data-user-id='` + notification_arr["notification_sender_info"]["id"] + `'>`+ notification_sender_full_name +`</a> Wants You To See This Post.
 </div>
 <div class='notificationTime'>` + notification_arr["notification_time_string"] + `</div>
 </div>
@@ -373,7 +373,7 @@ return `
 
 <div class='notificationTextContainer'>
 <div class='notificationText'>
-<a href='#modal1' class='commonLink notificationFromFullName showUserModal modal-trigger' data-target='user_modal' data-user-id='` + notification_arr["notification_sender_info"]["id"] + `'>`+ notification_sender_full_name +`</a> Reacted To The Post Sent By You.
+<a href='#modal1' class='commonLink notificationFromFullName showUserModal modal-trigger' data-target='user_modal' data-user-id='` + notification_arr["notification_sender_info"]["id"] + `'>`+ notification_sender_full_name +`</a> Reacted To The Post You Sent Him.
 </div>
 <div class='notificationTime'>` + notification_arr["notification_time_string"] + `</div>
 </div>
