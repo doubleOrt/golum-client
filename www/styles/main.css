@@ -90,8 +90,13 @@ color:#f95462;
 }
 
 .waves-effect.wavesCustom .waves-ripple {
-background:rgba(0,0,0,.2) !important;	
+background:rgba(0,0,0,.2);	
 }
+
+.commonButton.wavesCustom .waves-ripple {
+background:rgba(0,0,0,.3);	
+}
+
 
 .myBackground {
 background:-webkit-linear-gradient(36deg, yellow 10%, green 70%);

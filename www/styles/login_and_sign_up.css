@@ -16,42 +16,63 @@ padding-left:0 !important;
 
 #megaContainer .container {
 height:100%;	
+width:100%;
 }
 
 #loginAndSignUpContainerParent {
 width:100%;	
 height:100%;	
 margin:0;
+padding:20px 0 0 0;
+position:relative;
 }
 
 #loginAndSignUpContainer {
-width:100%;
-margin:0;
+width:95%;
+height:75%;
+min-height:520px;
 overflow:hidden;
-position:relative;
-display:inline-block;	
+margin:0;
+padding:0;
 position:absolute;
 top:50%;
-left:50% !important;
-transform:translate(-50%,-50%);	
+left:50%;
+transform:translate(-50%, -50%);
 }
 
 #mascot_container {
-margin:0 0 20px 0;
 width: 100%;
+position:absolute;
+top:0;
 }
 
 #mascot_container img {
-width:150px;
-height:150px;
+width:160px;
+height:160px;
 position:relative;
 left:50%;
 transform: translate(-50%,0);	
+-webkit-animation:mascot_animation .4s ease-out 0s 1 normal forwards; 
 }
+
+@keyframes mascot_animation {
+
+0% {
+transform: translate(-50%,0) scale(.7);	
+}
+
+100% {
+transform: translate(-50%,0) scale(1);	
+}
+	
+}
+
  
 .forms {
+height:calc(100% - 161px);	
 margin:0;
 padding-bottom:5% !important;
+margin-top:181px; /* compensate for the height of #mascot_container + 20px (additional margin because it looks better this way) */
 } 
 
 .smallDivider {
