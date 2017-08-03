@@ -433,8 +433,7 @@ function there_are_new_messages(data) {
 saw the new message therefore we don't need to tell them that they have new messages 
 by adding those badges to the components. Instead, we just append the new message */
 if(CHAT_ID_HOLDER.attr("data-chat-id") == data["chat_id"]) {	
-/* this conditional prevents the message from being duplicate-added to the original sender's chat modal, since the sender has already appended the message onto their chatModal directly after they pressed the "send" button, there is no need to append another one that is broadcasted by our websocket architecture. Another way would be to not send the websocket message to the sender in the back-end, but we went with this solution. */
-if($(".messageContainer[data-message-id='" + data["message_id"] + "']").length < 1) {	
+
 CHAT_CONTENT_CONTAINER_ELEMENT.find(".emptyNowPlaceholder").remove();	
 CHAT_CONTENT_CONTAINER_ELEMENT.append(get_message_markup(data));	
 CHAT_CONTENT_CONTAINER_ELEMENT.scrollTop(CHAT_CONTENT_CONTAINER_ELEMENT[0].scrollHeight);		
@@ -443,7 +442,6 @@ if(check_if_modal_is_currently_being_viewed("chatModal") === true) {
 set_message_read_yet_to_true(data["message_id"]);
 }
 
-}
 }	
 
 	

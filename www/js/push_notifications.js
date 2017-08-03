@@ -8,7 +8,8 @@ var SENDER_ID = 567008101486;
 var push = PushNotification.init({
 "android": {
 "senderID": SENDER_ID,
-"clearNotifications": false
+"clearNotifications": false,
+"forceShow": true
 }, 
 ios: {}
 });
