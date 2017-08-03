@@ -363,6 +363,7 @@ $(document).on("dom_and_device_ready", function() {
 
 
 set_user_profile_constants();
+$("#user_modal").data("on_visible", set_user_profile_constants);
 
 // this one MUST NOT be in the constant initialization function else it will become pointless.
 USER_PROFILE_SELECTS_CONTAINER_HTML = USER_PROFILE_SELECTS_CONTAINER.html();

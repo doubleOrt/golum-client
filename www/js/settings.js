@@ -78,12 +78,16 @@ callback(data_arr);
 
 
 
+function set_settings_modal_constants() {
+SETTINGS_CONFIRM_EMAIL_SECTION_CONTAINER = $("#settings_email_confirmation_section");	
+}
 
 
 $(document).on("dom_and_device_ready", function() {
 
+set_settings_modal_constants();
 
-SETTINGS_CONFIRM_EMAIL_SECTION_CONTAINER = $("#settings_email_confirmation_section");
+$("#settingsModal").data("on_visible", set_settings_modal_constants);
 
 
 // if the user has requested to link their account with an email address, then show them the confirmation code modal on logging in.

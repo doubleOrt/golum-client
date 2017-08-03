@@ -105,13 +105,17 @@ return `<div class='sendToFriendSingleRow row'>
 }
 
 
-$(document).on("dom_and_device_ready", function() {
-	
-	
+function set_send_to_friend_modal_constants() {
 SEND_TO_FRIEND_ROWS_CONTAINER = $(".sendToFriendContainerCol");	
 SEND_TO_FRIEND_POST_ID_HOLDER = $(".sendToFriendContainerCol");	
-SEND_TO_FRIEND_INPUT_ELEMENT = $("#sendToFriendInput");	
+SEND_TO_FRIEND_INPUT_ELEMENT = $("#sendToFriendInput");		
+}
+
+
+$(document).on("dom_and_device_ready", function() {
 	
+set_send_to_friend_modal_constants();
+$("#sendToFriendModal").data("on_visible", set_send_to_friend_modal_constants);	
 	
 
 $(document).on("click",".sendPostToFriend",function(){

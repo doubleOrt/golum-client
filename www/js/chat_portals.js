@@ -2,7 +2,7 @@
 
 // will be set on document-ready 
 var CHAT_PORTALS_CONTAINER_ELEMENT;
-var CHAT_PORTALS_EMPTY_NOW_MESSAGE = "No chats started :(";
+var CHAT_PORTALS_EMPTY_NOW_MESSAGE;
 
 
 
@@ -192,12 +192,18 @@ callback(data_arr[0]);
 }
 
 
+function set_chat_portals_constants() {
+CHAT_PORTALS_CONTAINER_ELEMENT = $("#chat_portals_modal .modal-content");
+CHAT_PORTALS_EMPTY_NOW_MESSAGE = "No chats started :(";	
+}
 
 
 
 $(document).on("dom_and_device_ready", function() {
 
-CHAT_PORTALS_CONTAINER_ELEMENT = $("#chat_portals_modal .modal-content");
+set_chat_portals_constants();
+$("#chat_portals_modal").data("on_visible", set_chat_portals_constants);
+
 
 // when the user wants to go to their messages section (chat portals)
 $(document).on("click",".get_chat_portals",function(){	

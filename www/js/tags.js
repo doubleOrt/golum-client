@@ -117,10 +117,17 @@ return `<div class='row tag_row list_row getTagPosts modal-trigger dont_change_p
 }
 
 
+function set_tags_constants() {
+USER_TAGS_CONTAINER = $("#user_tags_modal_content_child");	
+}
+
+
 
 $(document).on("dom_and_device_ready", function() {
 	
-USER_TAGS_CONTAINER = $("#user_tags_modal_content_child");
+set_tags_constants();
+	
+$("user_tags_modal").data("on_visible", set_tags_constants);
 	
 	
 /* when users want to see the tags that another user or they are following */	

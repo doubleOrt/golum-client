@@ -234,11 +234,18 @@ removeLoading(SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT);
 }
 
 
-$(document).on("dom_and_device_ready", function() {
-	
+function set_user_follow_related_constants() {
 SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT = $("#followers_modal_content_child");
 SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT = $("#followings_modal_content_child");
-		
+}
+
+
+$(document).on("dom_and_device_ready", function() {
+	
+set_user_follow_related_constants();	
+	
+$("#followingMeModal, #contactsModal").data("on_visible", set_user_follow_related_constants);	
+
 	
 // users clicked a button that is supposed to retrieve the number of followers for the user specified by the id in the element's data-user-id attribute.
 $(document).on("click",".get_followers",function(){

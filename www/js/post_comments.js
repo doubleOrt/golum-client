@@ -6,7 +6,7 @@ bug 1 in bugs.txt explains a bug that occured in this page and the steps that we
 // will be set on document load.
 var COMMENTS_CONTAINER_ELEMENT;
 // a comment cannot be longer than 800 characters.
-var MAXIMUM_COMMENT_LENGTH = 800;
+var MAXIMUM_COMMENT_LENGTH;
 
 
 // we use this variable to prevent multiple calls to "get_post_comments.php", otherwise there would be duplicate comments, be sure to set this variable to true whenever you call "getComments()", and set it to false after a successful return in the function.
@@ -238,9 +238,19 @@ removeLoading(COMMENTS_CONTAINER_ELEMENT);
 	
 }
 
+function set_comments_modal_constants() {
+COMMENTS_CONTAINER_ELEMENT = $("#post_comments_container");	
+MAXIMUM_COMMENT_LENGTH = 800;
+}
+
+
+
+
 $(document).on("dom_and_device_ready", function() {
 
-COMMENTS_CONTAINER_ELEMENT = $("#post_comments_container");
+set_comments_modal_constants();
+
+$("#commentsModal").data("on_visible", set_comments_modal_constants);
 
 // user wants to see post comments
 $(document).on("click",".showPostComments",function() {

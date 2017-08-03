@@ -387,7 +387,8 @@ $("#recipient_current_status").html(data["current_state"]);
 if(typeof chat_id != "undefined" && /^\d+$/.test(chat_id) === true) {
 set_all_chat_messages_read_yet_to_true(chat_id);	
 }
-load_chat_constants();
+
+set_chat_constants();
 
 CHAT_CONTENT_CONTAINER_ELEMENT.fadeIn("fast");
 $("#recipient_name").fadeIn("fast");
@@ -418,7 +419,7 @@ USER_PROFILE_NEW_MESSAGES_NUM.html(num).hide();
 
 }
 
-function load_chat_constants() {
+function set_chat_constants() {
 CHAT_ID_HOLDER = $("#chat_content_container");
 CHAT_CONTENT_CONTAINER_ELEMENT = $("#chat_content_container");	
 }
@@ -486,7 +487,7 @@ subscribe_to_chat(data[1]["recipient_id"])
 
 $(document).on("dom_and_device_ready", function() {
 
-load_chat_constants();
+set_chat_constants();
 
 $("#chatModal").data("on_visible", chat_modal_visible);
 

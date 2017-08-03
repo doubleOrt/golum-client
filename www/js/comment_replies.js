@@ -220,11 +220,15 @@ removeLoading(REPLIES_CONTAINER_ELEMENT);
 }
 
 
+function set_comment_replies_modal_constants() {
+REPLIES_CONTAINER_ELEMENT = $("#commentRepliesContainer");	
+}
+
 
 $(document).on("dom_and_device_ready", function() {
 
-
-REPLIES_CONTAINER_ELEMENT = $("#commentRepliesContainer");
+set_comment_replies_modal_constants();
+$("#commentRepliesModal").data("on_visible", set_comment_replies_modal_constants);
 
 
 

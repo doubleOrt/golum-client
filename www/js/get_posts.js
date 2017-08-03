@@ -275,15 +275,16 @@ post_element.find(".post_comments_number").html(get_post_comments_number_string(
 }
 
 
+function set_get_posts_constants() {
+MAIN_SCREEN_POSTS_CONTAINER = $("#allPostsContainer");
+MAIN_SCREEN_POSTS_SCROLLER = $("#main_screen_main_posts_container");	
+}
 
 
 
 $(document).on("dom_and_device_ready", function() {
-	
-	
-MAIN_SCREEN_POSTS_CONTAINER = $("#allPostsContainer");
-MAIN_SCREEN_POSTS_SCROLLER = $("#main_screen_main_posts_container");
-	
+
+set_get_posts_constants();	
 	
 	
 // add the disappear-when-scrolling-down-appear-when-scrolling-up effect:
