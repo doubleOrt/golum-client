@@ -633,7 +633,6 @@ cache: false,
 contentType: false,
 processData: false,
 success: function(data){
-console.log(data);
 /* if the data_arr's first index (path to the new background) is not empty, then the background has been successfully uploaded, otherwise the operation has been a failure 
 and a custom error message is included in the second index. */
 var data_arr = JSON.parse(data);	

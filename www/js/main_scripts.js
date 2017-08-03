@@ -5,10 +5,6 @@ $(document).on("dom_and_device_ready", function() {
 		
 BASE_USER_ID_HOLDER = $("#megaContainer");	
 
-//hide the loading bar and show the document body
-removeLoading($("#main_screen_main_posts_container"));
-$("#showOnBodyLoad").show();
-
 // we got 284 emojis in our emojis file, we need to append them all to our emojisContainerChild element.
 for(var i = 0;i<285;i++) {
 $("#emojisContainerChild").append("<img class='emoji' src='icons/emojis/" + i + ".svg' alt='Emoji' style='width:55px;height:55px;'/>");

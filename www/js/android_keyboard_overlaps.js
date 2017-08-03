@@ -6,6 +6,8 @@
 /* (make-sure-android-keyboard-is-not-overlapping-focused-input)-related */
 
 function handle_keyboard_overlaps_if_android() {
+	
+try {	
 /* make sure the device is actually an Android device before attaching the 
 make-sure-android-keyboard-is-not-overlapping-focused-input events, since the 
 keyboard-overlapping issue seems to be Android-specific. */
@@ -24,6 +26,10 @@ show_input_if_out_of_view($(this), last_opened_keyboard_height);
 }
 }	
 });
+}
+}
+catch(error) {
+console.warn("Something went wrong - Probably related to the loading of the Cordova Keyboard plugin.");	
 }
 
 }

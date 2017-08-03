@@ -34,24 +34,34 @@
 
 <link rel="stylesheet" href="styles/main.css">
 <link rel="stylesheet" href="styles/login_and_sign_up.css">
-<link rel="stylesheet" href="styles/inputs.css">
-<link rel="stylesheet" href="styles/modals.css">
 
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
 <script>
 
-$(document).on("dom_and_device_ready", function(){
+var CURRENT_PAGE = "LOGIN";
+
+var user_authenticated = false;
+function authenticate_user() {
 
 $.get({
 url:"http://192.168.1.100/golum/components/logout_to_login.php",
 success:function(data) {
+
 if(data == "1") {
 window.location.href = "logged_in.html";
+}
+else {
+//hide the loading bar and show the document body
+$("#page_loading").hide();
+$("#showOnBodyLoad").show();
+
+user_authenticated = true;
 }
 }
 });	
 
-});
+}
+
 
 </script> 
 <script src="js/custom_event.js"></script>
@@ -65,13 +75,32 @@ window.location.href = "logged_in.html";
 <script src="js/modals.js"></script>
 <script src="js/forgot_password.js"></script>
 
-
-
 </head>
 <body>
 
+<script>
+$(document).ready(function(){
+$("#my").append("#toast-container {bottom:250px !important;}");
+});
+</script>
 
 
+
+<div id="page_loading" class="big_loading">
+<div class='preloader-wrapper_container page_loading' style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;'>
+<div class='preloader-wrapper active'>
+<div class='spinner-layer'>
+<div class='circle-clipper left'>
+<div class='circle'></div>
+</div><div class='gap-patch'>
+<div class='circle'></div>
+</div><div class='circle-clipper right'>
+<div class='circle'></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 

@@ -94,7 +94,6 @@ cache: false,
 contentType: false,
 processData: false,
 success:function(data){
-console.log(data);
 //if the post was successfully posted, then open the singlePostModal and populate its innerHTML with the new post's markup.
 if(!isNaN(data)) {
 Materialize.toast("Post Successful!",2000,"green");

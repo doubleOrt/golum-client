@@ -73,6 +73,7 @@ width:100%;
 height:100%;	
 margin:0;
 padding:0;
+overflow:hidden;
 }
 
 
@@ -685,4 +686,24 @@ background-color:yellowgreen;
 border:1px solid white;
 border-radius:50%;
 box-shadow: 1px 1px 0 rgba(0,0,0,.1);
+}
+
+
+
+
+
+
+
+
+
+.big_loading {
+position:relative;		
+width:100%;
+height:100%;
+margin:0;
+background-color:white;
+position:fixed;
+top:0;
+left:0;
+z-index:99;
 }

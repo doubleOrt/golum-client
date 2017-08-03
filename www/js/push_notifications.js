@@ -1,9 +1,12 @@
+
 /* this function will be called after a websocket connection has been 
 established, it will handle push notifications. */
 function handle_push_notifications() {
 	
 // SENDER_ID is required for Android.
 var SENDER_ID = 567008101486;
+	
+try {
 	
 var push = PushNotification.init({
 "android": {
@@ -20,6 +23,8 @@ send_device_registration_id();
 });
 
 push.on('notification', function(data) {
+
+try {
 
 if(data["additionalData"]["push_notification_category"] == 0) {
 /* these take care of opening the proper modals and such for a push 
@@ -116,13 +121,22 @@ openModalCustom("chatModal");
 open_chat(data["additionalData"]["data_arr"]["chat_id"], undefined, false);	
 }
 
+}
+catch(error) {
+console.warn("Something went wrong while parsing the data from a push notification! \nProbably caused by the absence of some fields we are looking for in the payload data from the push notification.");
+}
 
 });
 
 push.on('error', function(e) {
-alert(e.message);
 // e.message
 });	
+
+}
+catch(error) {
+console.warn("Something went wrong - Probably related to the loading of the phonegap-plugin-push plugin.");	
+} 
+
 }
 
 

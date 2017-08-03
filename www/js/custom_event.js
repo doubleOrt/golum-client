@@ -1,7 +1,6 @@
 
 $(document).ready(function(){
-	
-	
+		
 document.addEventListener("deviceready", function(){	
 
 $.event.trigger({
@@ -20,6 +19,7 @@ if(!window.isphone ) {
 $.event.trigger({
 type: "dom_and_device_ready"
 });
+authenticate_user();
 }
 
 

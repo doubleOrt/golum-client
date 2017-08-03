@@ -37,7 +37,7 @@ ajax_call_to_get_replies = $.get({
 url:"http://192.168.1.100/golum/components/get_comment_replies.php",
 data:dataObj,
 success:function(data) {	
-console.log(data);
+
 var data_arr = JSON.parse(data);
 
 callback(data_arr)	
@@ -85,7 +85,6 @@ $.post({
 url:"http://192.168.1.100/golum/components/add_reply_to_comment.php",
 data:dataArr,
 success: function(data) {
-console.log(data);
 if(data != "") {	
 var data_arr = JSON.parse(data);
 callback(data_arr);
@@ -329,7 +328,7 @@ $.post({
 url:"http://192.168.1.100/golum/components/delete_reply.php",
 data:{"reply_id":replyId},
 success:function(data) {
-console.log(data);	
+
 if(data == "1") {
 if(typeof callback != "undefined") {
 callback();	

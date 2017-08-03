@@ -20,6 +20,7 @@ if(confirm("Do you want to exit ?") == true) {
 navigator.app.exitApp();	
 }
 }	
+
 }
 
 

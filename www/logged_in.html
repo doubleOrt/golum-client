@@ -46,12 +46,10 @@
 
 <script>
 
-$(document).on("dom_and_device_ready", function(){
+var CURRENT_PAGE = "LOGGED_IN";
 
-$.get({
-url:"http://192.168.1.100/golum/components/common_requires.php"
-});
-
+var user_authenticated = false;
+function authenticate_user() {
 
 $.get({
 url:"http://192.168.1.100/golum/components/login_to_logout.php",
@@ -65,6 +63,11 @@ window.location.href = "index.html";
 }
 // user has logged in
 else {
+
+//hide the loading bar and show the document body
+$("#page_loading").hide();
+$("#showOnBodyLoad").show();
+
 BASE_USER_ID_HOLDER.attr("data-user-id", data_arr[0]);
 
 open_web_socket_connection(data_arr[0]);
@@ -74,10 +77,19 @@ $("#set_password_for_first_time_modal").modal("open");
 openModalCustom("set_password_for_first_time_modal");
 } 
 
+user_authenticated = true;
 }
 
 }
 });	
+
+}
+
+$(document).on("dom_and_device_ready", function(){
+
+$.get({
+url:"http://192.168.1.100/golum/components/common_requires.php"
+});
 
 });
 
@@ -121,10 +133,25 @@ openModalCustom("set_password_for_first_time_modal");
 <script src="js/main_scripts.js"></script> 
 <script src="js/websockets.js"></script> 
 
-
 </head>		
 
 <body>
+
+<div id="page_loading" class="big_loading">
+<div class='preloader-wrapper_container page_loading' style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;'>
+<div class='preloader-wrapper active'>
+<div class='spinner-layer'>
+<div class='circle-clipper left'>
+<div class='circle'></div>
+</div><div class='gap-patch'>
+<div class='circle'></div>
+</div><div class='circle-clipper right'>
+<div class='circle'></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 <div id="showOnBodyLoad">

@@ -373,7 +373,6 @@ MAIN_SCREEN_POSTS_CONTAINER.attr("data-end-of-results", "false");
 emptyAllPostsContainer();
 showLoading(MAIN_SCREEN_POSTS_CONTAINER, "60%");
 getPosts("http://192.168.1.100/golum/components/get_discover_posts.php",{"row_offset":0},function(data_arr){
-console.log(data_arr);	
 markUpProcessor(data_arr,MAIN_SCREEN_POSTS_CONTAINER, "Nothing here, sorry :(" , function(){
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","favoritePosts");
 MAIN_SCREEN_POSTS_CONTAINER.scrollTop(0);

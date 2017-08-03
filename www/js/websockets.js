@@ -44,7 +44,11 @@ websockets_connection_is_good = true;
 open_user_channel(base_user_id);
 // this call will send an "online now" message to all users who want to receive it.
 websockets_con.publish("user_" + base_user_id, [2,"user_state_" + base_user_id]);	
-send_device_registration_id();
+/* registers to push notifications and uses our newly 
+established websocket connection to send the registration 
+id to the server-side so that the user can be sent push 
+notifications. */
+handle_push_notifications();
 },
 function() {
 console.warn('WebSocket connection closed');

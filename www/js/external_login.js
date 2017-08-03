@@ -3,6 +3,8 @@
 
 function google_login() {
 	
+try {	
+	
 trySilentLogin();
 logout();
 
@@ -32,6 +34,11 @@ function (msg) {
 console.log("error: " + msg);
 }
 );		
+
+}
+catch(error) {
+console.warn("Something went wrong - Probably related to the loading of the cordova-plugin-googleplus plugin.");		
+}
 	
 }
 
