@@ -75,15 +75,19 @@ user_authenticated = true;
 <script src="js/modals.js"></script>
 <script src="js/forgot_password.js"></script>
 
+<!-- we will use this element to modify the "position" property of 
+#toast-container whenever the keyboard is shown on Android, because otherwise 
+the keyboard would overlap the toasts and therefore they would not 
+be visible in cases where they had to be.  Why don't we just use a 
+regular .css() ? because this element does not exist initially and 
+may even be removed after a toast is dismissed, it is just not under 
+my control, so i just declare global style rules so that my control 
+is assured. -->
+<style id='handle_toast_container_position_when_keyboard_is_focused'>
+</style>
+
 </head>
 <body>
-
-<script>
-$(document).ready(function(){
-$("#my").append("#toast-container {bottom:250px !important;}");
-});
-</script>
-
 
 
 <div id="page_loading" class="big_loading">

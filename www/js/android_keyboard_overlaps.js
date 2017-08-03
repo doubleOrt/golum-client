@@ -38,6 +38,7 @@ var last_opened_keyboard_height;
 function keyboard_show_handler(e){
 show_input_if_out_of_view($(document.activeElement), e.keyboardHeight);
 last_opened_keyboard_height = e.keyboardHeight;	
+$("#handle_toast_container_position_when_keyboard_is_focused").append("#toast-container {bottom: " + last_opened_keyboard_height + "px;}");
 }
 
 function keyboard_hide_handler() {
@@ -49,6 +50,7 @@ this.style.setProperty("transform", last_translate_target.data("old_translate_va
 });
 last_translate_target.removeData("old_translate_value");
 }	
+$("#handle_toast_container_position_when_keyboard_is_focused").html("");
 }
 
 /* ensures that any input that is focused in is visible to the user and not out of view (overlapped by the keyboard). */
