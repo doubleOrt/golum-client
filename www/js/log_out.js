@@ -19,7 +19,7 @@ window.location.href = "index.html";
 	
 }
 
-$(document).ready(function() {
+$(document).on("dom_and_device_ready", function() {
 	 
 // call the logOut() function whenever the user clicks something with the .log_out class.
 $(document).on("click",".log_out",function(){

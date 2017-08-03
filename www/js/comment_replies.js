@@ -222,7 +222,7 @@ removeLoading(REPLIES_CONTAINER_ELEMENT);
 
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 
 
 REPLIES_CONTAINER_ELEMENT = $("#commentRepliesContainer");

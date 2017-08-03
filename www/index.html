@@ -40,6 +40,8 @@
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
 <script>
 
+$(document).on("dom_and_device_ready", function(){
+
 $.get({
 url:"http://192.168.1.100/golum/components/logout_to_login.php",
 success:function(data) {
@@ -49,7 +51,10 @@ window.location.href = "logged_in.html";
 }
 });	
 
+});
+
 </script> 
+<script src="js/custom_event.js"></script>
 <script src="js/generic_functions.js"></script>
 <script src="js/login_and_sign_up.js"></script>
 <script src="js/cordova_initializations.js"></script>

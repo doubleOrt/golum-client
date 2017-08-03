@@ -359,7 +359,7 @@ PROFILE_CONTAINER_ELEMENT.find("#user_profile_container_child").show();
 }
 
 
-$(document).ready(function(){	
+$(document).on("dom_and_device_ready", function() {
 
 
 set_user_profile_constants();

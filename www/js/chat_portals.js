@@ -195,7 +195,7 @@ callback(data_arr[0]);
 
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 
 CHAT_PORTALS_CONTAINER_ELEMENT = $("#chat_portals_modal .modal-content");
 

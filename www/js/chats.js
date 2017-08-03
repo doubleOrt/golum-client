@@ -484,7 +484,7 @@ subscribe_to_chat(data[1]["recipient_id"])
 }
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 
 load_chat_constants();
 

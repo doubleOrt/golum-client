@@ -238,7 +238,7 @@ removeLoading(COMMENTS_CONTAINER_ELEMENT);
 	
 }
 
-$(document).ready(function() {
+$(document).on("dom_and_device_ready", function() {
 
 COMMENTS_CONTAINER_ELEMENT = $("#post_comments_container");
 

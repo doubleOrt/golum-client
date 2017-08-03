@@ -119,7 +119,7 @@ return `<div class='row tag_row list_row getTagPosts modal-trigger dont_change_p
 
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 	
 USER_TAGS_CONTAINER = $("#user_tags_modal_content_child");
 	

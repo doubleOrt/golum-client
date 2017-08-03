@@ -25,7 +25,7 @@ return true;
 
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 
 var new_password = new ValidateItem(document.getElementById("new_password_input"), /^(?=.*[A-Za-z])(?=.*\d)(?=.*([$@$!%*#?& ]*))[A-Za-z\d($@$!%*#?& )*]{8,50}$/i, "Password Must Contain At Least 1 Digit And Must Be Between 8-50 Characters, Special Characters And Spaces Are Optional");
 

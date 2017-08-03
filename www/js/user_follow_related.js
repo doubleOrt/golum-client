@@ -235,7 +235,7 @@ removeLoading(SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT);
 }
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 	
 SHOW_USER_FOLLOWERS_CONTAINER_ELEMENT = $("#followers_modal_content_child");
 SHOW_USER_FOLLOWINGS_CONTAINER_ELEMENT = $("#followings_modal_content_child");

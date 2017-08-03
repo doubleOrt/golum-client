@@ -1,4 +1,7 @@
-$(document).ready(function() {
+
+
+
+$(document).on("dom_and_device_ready", function() {
 		
 	
 function ValidateItem(ref,regEx,onWrong) {

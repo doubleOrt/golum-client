@@ -62,7 +62,7 @@ removeLoading(SEARCH_TAGS_RESULTS_CONTAINER);
 
 
 
-$(document).ready(function() {
+$(document).on("dom_and_device_ready", function() {
 	
 SEARCH_USERS_RESULTS_CONTAINER = $("#search_users_results_column");	
 SEARCH_TAGS_RESULTS_CONTAINER = $("#search_tags_results_column");	

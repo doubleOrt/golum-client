@@ -561,7 +561,7 @@ data: {
 
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 	
 FIRST_TAB_NOTIFICATIONS_CONTAINER = $("#first_tab_notifications_container");
 SECOND_TAB_NOTIFICATIONS_CONTAINER = $("#second_tab_notifications_container");

@@ -107,7 +107,7 @@ return `<div class='sendToFriendSingleRow row'>
 }
 
 
-$(document).ready(function() {
+$(document).on("dom_and_device_ready", function() {
 	
 	
 SEND_TO_FRIEND_ROWS_CONTAINER = $(".sendToFriendContainerCol");	

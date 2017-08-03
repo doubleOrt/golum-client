@@ -80,7 +80,7 @@ callback(data_arr);
 
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 
 
 SETTINGS_CONFIRM_EMAIL_SECTION_CONTAINER = $("#settings_email_confirmation_section");

@@ -17,7 +17,7 @@ callback(data);
 }
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 	
 
 /* when a user wants to favorite a post */

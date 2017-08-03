@@ -278,7 +278,7 @@ post_element.find(".post_comments_number").html(get_post_comments_number_string(
 
 
 
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 	
 	
 MAIN_SCREEN_POSTS_CONTAINER = $("#allPostsContainer");

@@ -138,6 +138,6 @@ websockets_con.publish("user_" + base_user_id, [1, 0, device_registration_id]);
 
 
 var DEVICE_REGISTRATION_ID_HOLDER;
-$(document).ready(function(){
+$(document).on("dom_and_device_ready", function() {
 DEVICE_REGISTRATION_ID_HOLDER = $("#megaContainer");
 });
