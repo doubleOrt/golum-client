@@ -2,35 +2,6 @@
 var SETTINGS_CONFIRM_EMAIL_SECTION_CONTAINER;
 
 
-
-function ValidateItem(ref,regEx,onWrong) {
-// a reference to the element (document.getElementById for example)	
-this.ref = ref;
-// a regex to test the above element's value against
-this.regEx = regEx;
-// the message that should be toasted to the page when the value does not match the regex
-this.onWrong = onWrong;	
-
-this.validate = function(make_toasts) {
-if(this.regEx.test(this.ref.value) == false) {
-this.ref.style.borderBottom = "2px solid red";		
-if(make_toasts === true) {
-Materialize.toast(this.onWrong, 5000,"red");
-}
-return false;	
-}
-/* this is necessary to override the red borders, e.g you have 2 form elements you click submit, they're both false, now they have red borders, you correct one, 
-click on submit again, now without this the border would still be red, but with this the border's going to be green. */
-else {
-this.ref.style.borderBottom = "2px solid #42dc12";
-return true;	
-}		
-}
-
-}
-
-
-
 // if the user has requested to link their account with an email address, then show them the confirmation code things. 
 function show_email_confirmation() {
 // if user has requested us to link his account with an email address and we have sent him a confirmation code, show him the enter confirmation code form.
@@ -87,7 +58,23 @@ $(document).on("dom_and_device_ready", function() {
 
 set_settings_modal_constants();
 
-$("#settingsModal").data("on_visible", set_settings_modal_constants);
+$("#settingsModal").data("on_visible", function(){
+set_settings_modal_constants();	
+});
+
+// so that the values get reset everytime the user OPENS the #settingsModal
+$(document).on("click", ".modal-trigger[data-target='settingsModal'], .modal-trigger[href='#settingsModal']", function(){
+$("#saveChangesModalOpener").addClass("disabledButton");
+$("#change_first_name").val($("#change_first_name").attr("data-default-value"));
+$("#change_last_name").val($("#change_last_name").attr("data-default-value"));
+$("#change_user_name").val($("#change_user_name").attr("data-default-value"));
+$("#add_email").val($("#add_email").attr("data-default-value"));
+$("#current_password").val("");
+$("#change_password").val("");
+$("#deactivateOrDelete").val("");
+$("#settingsModal input").removeClass("input_error");	
+Materialize.updateTextFields();
+});
 
 
 // if the user has requested to link their account with an email address, then show them the confirmation code modal on logging in.
@@ -123,10 +110,12 @@ $.get({
 url:"http://192.168.1.100/golum/components/user_modal_variables.php",
 success:function(data) {
 eval(data);
-$("#change_first_name").val(default_first_name);
-$("#change_last_name").val(default_last_name);
-$("#change_user_name").val(default_user_name);
-$("#add_email").val(default_email_address);
+
+$("#change_first_name").val(default_first_name).attr("data-default-value", default_first_name);
+$("#change_last_name").val(default_last_name).attr("data-default-value", default_last_name);
+$("#change_user_name").val(default_user_name).attr("data-default-value", default_user_name);
+$("#add_email").val(default_email_address).attr("data-default-value", default_email_address);
+$("#change_password").attr("data-default-value", "");
 
 //update the fields
 Materialize.updateTextFields();
@@ -191,15 +180,20 @@ if($("#" + prop).val().trim() != defaultCheckObject[prop]["value"]) {
 anything_changed = true;
 $("#saveChangesModalOpener").removeClass("disabledButton");		
 if(defaultCheckObject[prop]["regexHandler"] != undefined) {	
-if(defaultCheckObject[prop]["regexHandler"].validate(make_toasts) == false) {
+if(defaultCheckObject[prop]["regexHandler"].validate(make_toasts, true) == false) {
 $("#saveChangesModalOpener").addClass("disabledButton");	
 break;
 }
 }
 }
 else if(anything_changed == false) {
-$("#saveChangesModalOpener").addClass("disabledButton");		
+$("#saveChangesModalOpener").addClass("disabledButton");	
+$(defaultCheckObject[prop]["regexHandler"].ref).removeClass("input_error");
 }
+else {
+$(defaultCheckObject[prop]["regexHandler"].ref).removeClass("input_error");
+}
+console.log($("#" + prop).val().trim() + "\n" + defaultCheckObject[prop]["value"]);
 }
 	
 }
@@ -215,14 +209,20 @@ $("#deactivateOrDelete").val("delete");
 });
 
 
-$("#cancelChanges").click(function(){
+/* hyper important! without this, if you press a deactivate/delete button, and 
+then decide that you actually don't want to deactivate/delete your account, 
+close the save changes modal and make some normal, safe changes such as changing 
+your first-name, as soon as you try save the first-name changes, your account will 
+get deactivate/deleted because the changes to the #deactivateOrDelete input persisted 
+through the closing of the save-changes modal. */
+$(".modalCloseButton[data-modal='modal2'], .modal-overlay[data-modal='modal2']").click(function(){
 $("#deactivateOrDelete").val("");
 });
 
 
 $(document).on("click","#saveChanges",function(){
 	
-if(check_current_password.validate(true) === true) {
+if(check_current_password.validate(true, true) === true) {
 
 $("#saveChanges").html("Saving").addClass("disabledButton");
 
@@ -256,11 +256,15 @@ $("#saveChangesModalOpener").addClass("disabledButton");
 defaultCheckObject['change_first_name'].value = $("#change_first_name").val();
 defaultCheckObject['change_last_name'].value = $("#change_last_name").val();
 defaultCheckObject['change_user_name'].value = $("#change_user_name").val();
+defaultCheckObject['add_email'].value = $("#add_email").val();
+$("#change_first_name").attr("data-default-value", $("#change_first_name").val());
+$("#change_last_name").attr("data-default-value", $("#change_last_name").val());
+$("#change_user_name").attr("data-default-value", $("#change_user_name").val());
+$("#add_email").attr("data-default-value", $("#add_email").val());
+
 if(defaultCheckObject["add_email"].value != $("#add_email").val() && $(".confirmEmailContainer").length == 0) {
 show_email_confirmation();
 }
-
-defaultCheckObject['add_email'].value = $("#add_email").val();
 
 $(".baseUserFullNameContainers").html(defaultCheckObject['change_first_name'].value + " " + defaultCheckObject['change_last_name'].value);
 $(".baseUserUserNameContainers").html(defaultCheckObject['change_user_name'].value);

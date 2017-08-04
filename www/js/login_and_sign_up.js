@@ -3,32 +3,6 @@
 
 $(document).on("dom_and_device_ready", function() {
 		
-	
-function ValidateItem(ref,regEx,onWrong) {
-// a reference to the element (document.getElementById for example)	
-this.ref = ref;
-// a regex to test the above element's value against
-this.regEx = regEx;
-// the message that should be toasted to the page when the value does not match the regex
-this.onWrong = onWrong;	
-
-this.validate = function() {
-if(this.regEx.test(this.ref.value) == false) {
-this.ref.style.borderBottom = "1px solid red";		
-Materialize.toast(this.onWrong, 5000,"red")
-return false;	
-}
-/* this is necessary to override the red borders, e.g you have 2 form elements you click submit, they're both false, now they have red borders, you correct one, 
-click on submit again, now without this the border would still be red, but with this the border's going to be green. */
-else {
-this.ref.style.borderBottom = "1px solid #42dc12";
-return true;	
-}		
-}
-
-}
-
-
 var firstName = new ValidateItem(document.getElementById("first_name"), /^[a-zA-Z\s]{3,18}$/i,"First Name Must Only Contain Letters And Spaces And Must Be Longer Than 3 And Shorter Than 18 Characters");
 var lastName = new ValidateItem(document.getElementById("last_name"), /^[a-zA-Z\s]{3,18}$/i,"Last Name Must Only Contain Letters And Spaces And Must Be Longer Than 3 And Shorter Than 18 Characters");
 //note that even if you change the username regex to allow more than 36 characters, it won't work because the sql username column's length is set to 36.
@@ -43,10 +17,10 @@ event.preventDefault();
 //if an element does not match our criteria, this variable is set to false. at the end we check if this variable is equal to true, if it is, we manually click the submit button.
 var everythingMatches = true;	
 	
-var checkFirstName = firstName.validate();
-var checkLastName = lastName.validate();
-var checkUserName = userName.validate();
-var checkPassword = password.validate();
+var checkFirstName = firstName.validate(true, true);
+var checkLastName = lastName.validate(true, true);
+var checkUserName = userName.validate(true, true);
+var checkPassword = password.validate(true, true);
 	
 if(checkFirstName == false || checkLastName == false || checkUserName == false || checkPassword == false) {
 everythingMatches = false;
@@ -104,14 +78,9 @@ document.getElementsByName("login")[0].parentElement.addEventListener("click",fu
 function loginValidate(event) {
 event.preventDefault();
 
-var checkLoginUserName = loginUsername.validate();
-var checkLoginEmail = loginEmail.validate();
-var checkLoginPassword = loginPassword.validate();
-
-//without this, if the user provided us with a correct full name, the fullname_or_email field's border-bottom-color would be set to red because then the loginEmail.validate() function which we call after the loginFullName.validate() would override the loginFullName.validate()'s effects.
-if(checkLoginUserName == true || checkLoginEmail == true) {
-document.getElementById("login_user_name_or_email").style.borderBottom = "1px solid #42dc12";
-}
+var checkLoginUserName = loginUsername.validate(true, false);
+var checkLoginEmail = loginEmail.validate(true, false);
+var checkLoginPassword = loginPassword.validate(true, false);
 
 if ((checkLoginUserName == false && checkLoginEmail == false) || checkLoginPassword == false) {
 Materialize.toast("Wrong Login Info",5000,'red')

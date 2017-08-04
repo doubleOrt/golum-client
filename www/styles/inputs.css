@@ -13,7 +13,7 @@ color:grey;
 box-shadow:none;
 }
 
-.input-field input[type=text]:not(.independent_styles):focus, .input-field input[type=password]:not(.independent_styles):focus, .input-field input[type=email]:not(.independent_styles):focus {
+.input-field input[type=text]:not(.independent_styles):not(.input_error):focus, .input-field input[type=password]:not(.independent_styles):not(.input_error):focus, .input-field input[type=email]:not(.independent_styles):not(.input_error):focus {
 border-image: -webkit-linear-gradient(36deg, yellow, green) 10 !important;
 border-style: solid;
 border-top: none;
@@ -30,7 +30,7 @@ color: grey;
 }
 
 
-.input-field input[type=text]:not(.independent_styles):focus + label, .input-field input[type=email]:not(.independent_styles):focus + label, .input-field input[type=password]:focus + label {
+.input-field input[type=text]:not(.independent_styles):not(.input_error):focus + label, .input-field input[type=email]:not(.independent_styles):not(.input_error):focus + label, .input-field input[type=password]:not(.input_error):focus + label {
 color: yellowgreen !important;
 }
 
@@ -38,6 +38,24 @@ color: yellowgreen !important;
 .input-field input {
 text-indent:2%;
 }
+
+.input_error {
+border:none !important;	
+border-bottom:2px solid red !important;
+color:black;
+box-shadow:none !important;
+}
+
+.input_error:not(.independent_styles):focus, .input_error:not(.independent_styles):focus, .input_error:not(.independent_styles):focus {
+border:none !important;	
+border-bottom:2px solid red !important;
+}
+
+.input_error:not(.independent_styles):focus + label, .input_error[type=email]:not(.independent_styles):focus + label, .input_error[type=password]:focus + label {
+color: red !important;
+}
+
+
 
 
 input[type="submit"] {
