@@ -119,7 +119,10 @@ $("#sendToFriendModal").data("on_visible", set_send_to_friend_modal_constants);
 	
 
 $(document).on("click",".sendPostToFriend",function(){
-$(".sendToFriendContainerCol").attr("data-actual-post-id",$(this).attr("data-actual-post-id"));	
+SEND_TO_FRIEND_ROWS_CONTAINER.html("");	
+SEND_TO_FRIEND_ROWS_CONTAINER.html("<div class='emptyNowPlaceholder'><i class='material-icons'>info</i><br>Friends will appear here :)</div>");	
+SEND_TO_FRIEND_POST_ID_HOLDER.attr("data-actual-post-id",$(this).attr("data-actual-post-id"));	
+SEND_TO_FRIEND_INPUT_ELEMENT.val("");
 });
 
 
@@ -129,11 +132,11 @@ SEND_TO_FRIEND_INPUT_ELEMENT.on("keyup",function(){
 
 // if the value of the sendPostToFriend input is empty
 if($(this).val().trim() == "") {
-$(".sendToFriendContainerCol").html("<div class='emptyNowPlaceholder'><i class='material-icons'>info</i><br>Friends will appear here :)</div>");	
+SEND_TO_FRIEND_ROWS_CONTAINER.html("<div class='emptyNowPlaceholder'><i class='material-icons'>info</i><br>Friends will appear here :)</div>");	
 return false;
 }	
 
-if(typeof $(".sendToFriendContainerCol").attr("data-actual-post-id") == "undefined") {
+if(typeof SEND_TO_FRIEND_POST_ID_HOLDER.attr("data-actual-post-id") == "undefined") {
 return false;	
 }
 
