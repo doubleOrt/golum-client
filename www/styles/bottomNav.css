@@ -66,15 +66,15 @@ position:absolute;
 z-index:-1;
 top:50%;
 left:50%;
--webkit-transform:translate(-50%,-50%) scale(0);
--ms-transform:translate(-50%,-50%) scale(0);
-transform:translate(-50%,-50%) scale(0);
+-webkit-transform:translate(-50%,-50%) scale(.8);
+-ms-transform:translate(-50%,-50%) scale(.8);
+transform:translate(-50%,-50%) scale(.8);
 width:40px;
 height:40px;
 border-radius:100%;
 background-color:#ebeaea;
--webkit-transition:all .3s ease-out;
-transition:all .3s ease-out;
+-webkit-transition:all .1s ease-out;
+transition:all .1s ease-out;
 }
 
 .bottomTabsItemActiveColor i:after {
@@ -85,5 +85,5 @@ transform:translate(-50%,-50%) scale(1);
 }
 
 .bottomTabsItem.active i {
-color:#494949;	
+color:black;	
 }

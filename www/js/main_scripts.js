@@ -191,8 +191,7 @@ $(document).on("touchstart",".bottomTabsItem",function(){
 $(this).addClass("bottomTabsItemActiveColor");
 });
 $(document).on("touchend",".bottomTabsItem",function(){
-var thisItem = $(this);	
-setTimeout(function(){thisItem.removeClass("bottomTabsItemActiveColor");},30);
+$(this).removeClass("bottomTabsItemActiveColor");
 });
 
 

@@ -325,7 +325,8 @@ $("#favorite_posts_modal_back_to_top").addClass("scale-out");
 
 // the back-to-top buttons:
 $(document).on("click", "[data-back-to-top-target]", function(){
-$($(this).attr("data-back-to-top-target")).animate({"scrollTop": 0}, 400);	
+$($(this).attr("data-back-to-top-target")).stop();	
+$($(this).attr("data-back-to-top-target")).animate({"scrollTop": 0}, 700, "linear");	
 });
 
 

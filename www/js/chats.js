@@ -170,6 +170,7 @@ cache: false,
 contentType: false,
 processData: false,
 success: function(data){
+console.log(data);	
 var data_arr = JSON.parse(data);	
 if(typeof callback == "function") {
 callback(data_arr);	

@@ -4,7 +4,7 @@
     <description>Golum Golum Golum</description>
     <author email="fantasybl8@gmail.com">PhoneGap Team</author>
     <content src="index.html" />
-    <preference name="android-minSdkVersion" value="15" />
+    <preference name="android-minSdkVersion" value="21" />
     <preference name="orientation" value="portrait" />
     <preference name="fullscreen" value="false" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
