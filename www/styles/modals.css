@@ -6,6 +6,8 @@ width:90%;
 height:45%;
 max-height:80%;
 top:50% !important;
+-webkit-transform:translate(0%,-50%) !important;
+-ms-transform:translate(0%,-50%) !important;
 transform:translate(0%,-50%) !important;
 }
 
@@ -23,6 +25,7 @@ overflow:hidden !important;
 overflow-y:auto !important;	
 position:relative;
 background-color:#f4f4f4;
+height:-webkit-calc(100% - 60px);
 height:calc(100% - 60px);
 margin-top:60px;
 }
@@ -64,7 +67,11 @@ padding-bottom:0;
 height:60px;
 width:100%;
 padding:0 5px 0 0;
+-webkit-box-shadow:0 1px 2px rgba(0,0,0,.1);
 box-shadow:0 1px 2px rgba(0,0,0,.1);
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
 user-select:none;
 }
 
@@ -79,8 +86,11 @@ text-transform:capitalize;
 line-height:22px;
 position:absolute;
 top:50%;
+-webkit-transform:translate(0,-50%);
+-ms-transform:translate(0,-50%);
 transform:translate(0,-50%);
 margin-left:8px;
+width: -webkit-calc(100% - 200px);
 width: calc(100% - 200px);
 text-overflow:ellipsis;
 white-space:nowrap;
@@ -100,6 +110,7 @@ line-height:15px;
 
 .transparentModalHeader {
 background:transparent;		
+-webkit-box-shadow:none;		
 box-shadow:none;
 position:absolute;
 top:0;
@@ -163,6 +174,7 @@ bottom:0;
 
 .hasHeader .modal-content {
 margin-top:60px !important;	
+height:-webkit-calc(100% - 60px) !important;	
 height:calc(100% - 60px) !important;
 }	
 		
@@ -181,6 +193,8 @@ line-height:0;
 .navRightItemsMobile .btn {
 position:relative;
 top:50%;
+-webkit-transform:translate(0,-50%);
+-ms-transform:translate(0,-50%);
 transform:translate(0,-50%);	
 margin:0 10px;
 }
@@ -207,6 +221,7 @@ bottom:0;
 
 .hasFooterAndHeader .modal-content {
 margin-top:60px;	
+height:-webkit-calc(100% - 120px) !important;	
 height:calc(100% - 120px) !important;	
 }
 

@@ -1,23 +1,31 @@
 /* related to our waves library */
 .animate {
 	-webkit-animation:ripple 0.65s linear;
-   -moz-animation:ripple 0.65s linear;
     -ms-animation:ripple 0.65s linear;
-     -o-animation:ripple 0.65s linear;
         animation:ripple 0.65s linear;
 }
 
 @-webkit-keyframes ripple {
     100% {opacity: 0; -webkit-transform: scale(2.5);}
 }
-@-moz-keyframes ripple {
-    100% {opacity: 0; -moz-transform: scale(2.5);}
-}
-@-o-keyframes ripple {
-    100% {opacity: 0; -o-transform: scale(2.5);}
-}
 @keyframes ripple {
-    100% {opacity: 0; transform: scale(2.5);}
+    100% {opacity: 0; -webkit-transform: scale(2.5); transform: scale(2.5);}
+}
+
+
+
+@-webkit-keyframes tab_indicator_animation {
+
+0% {
+-webkit-transform: scale(0) skewX(90deg);
+transform: scale(0) skewX(90deg);	
+}
+
+100% {
+-webkit-transform: scale(1) skewX(0);
+transform: scale(1) skewX(0);
+}
+
 }
 
 
@@ -25,10 +33,12 @@
 @keyframes tab_indicator_animation {
 
 0% {
+-webkit-transform: scale(0) skewX(90deg);
 transform: scale(0) skewX(90deg);	
 }
 
 100% {
+-webkit-transform: scale(1) skewX(0);
 transform: scale(1) skewX(0);
 }
 
@@ -36,6 +46,8 @@ transform: scale(1) skewX(0);
 
 .skewScaleVerticallyCenteredItem {
 -webkit-animation:skewScaleVerticallyCenteredItem .3s ease-out 0s 1 normal forwards !important; 
+-webkit-transform:skew(30deg,30deg) scale(0) translate(0,-50%); 
+-ms-transform:skew(30deg,30deg) scale(0) translate(0,-50%); 
 transform:skew(30deg,30deg) scale(0) translate(0,-50%);
 }
 
@@ -43,9 +55,18 @@ transform:skew(30deg,30deg) scale(0) translate(0,-50%);
 /* 
 this one we use to create a skew-scale animation effect for the .votesContainer, it basically animates the elements skew and scale properties, and make sure that the element has no transforms before using this.
 */
+@-webkit-keyframes skewScaleVerticallyCenteredItem {
+
+100% {
+-webkit-transform:skew(0deg,0deg) scale(1) translate(0,-50%);
+transform:skew(0deg,0deg) scale(1) translate(0,-50%);
+}
+
+}
 @keyframes skewScaleVerticallyCenteredItem {
 
 100% {
+-webkit-transform:skew(0deg,0deg) scale(1) translate(0,-50%);
 transform:skew(0deg,0deg) scale(1) translate(0,-50%);
 }
 
@@ -59,6 +80,8 @@ transform:skew(0deg,0deg) scale(1) translate(0,-50%);
 .scaleItem {
 -webkit-animation:scaleItem .3s ease-out .2s 1 normal forwards !important; 		
 -webkit-transform:scale(0) !important;
+-webkit-transform-origin:center;
+-ms-transform-origin:center;
 transform-origin:center;
 }
 
@@ -68,6 +91,13 @@ you need to give these two to anything you want and they will be animated:
 -webkit-animation:scaleItem .2s ease-out 2s 1 normal forwards; 		
 -webkit-transform:scale(0);
 */
+@-webkit-keyframes scaleItem {
+
+100% {
+-webkit-transform:scale(1);	
+}
+
+}
 @keyframes scaleItem {
 
 100% {
@@ -79,6 +109,14 @@ you need to give these two to anything you want and they will be animated:
 .scaleOutItem {
 -webkit-animation:scaleOutItem .3s ease-out .2s 1 normal forwards !important; 		
 -webkit-transform:scale(1) !important;
+}
+
+@-webkit-keyframes scaleOutItem {
+
+100% {
+-webkit-transform:scale(0);	
+}
+
 }
 
 @keyframes scaleOutItem {
@@ -93,13 +131,27 @@ you need to give these two to anything you want and they will be animated:
 
 .scaleVerticallyCenteredItem {
 -webkit-animation:scaleVerticallyCenteredItem .3s ease-out .2s 1 normal forwards !important; 		
+-webkit-transform:scale(0) translate(0,-50%) !important; 		
+-ms-transform:scale(0) translate(0,-50%) !important; 		
 transform:scale(0) translate(0,-50%) !important;
+-webkit-transform-origin:center;
+-ms-transform-origin:center;
 transform-origin:center;
+}
+
+@-webkit-keyframes scaleVerticallyCenteredItem {
+
+100% {
+-webkit-transform:scale(1) translate(0,-50%);
+transform:scale(1) translate(0,-50%);	
+}
+
 }
 
 @keyframes scaleVerticallyCenteredItem {
 
 100% {
+-webkit-transform:scale(1) translate(0,-50%);
 transform:scale(1) translate(0,-50%);	
 }
 
@@ -107,13 +159,27 @@ transform:scale(1) translate(0,-50%);
 
 .scaleHorizontallyCenteredItem {
 -webkit-animation:scaleHorizontallyCenteredItem .2s ease-out .2s 1 normal forwards !important; 		
+-webkit-transform:scale(0) translate(-50%,0) !important; 		
+-ms-transform:scale(0) translate(-50%,0) !important; 		
 transform:scale(0) translate(-50%,0) !important;
+-webkit-transform-origin:center;
+-ms-transform-origin:center;
 transform-origin:center;
+}
+
+@-webkit-keyframes scaleHorizontallyCenteredItem {
+
+100% {
+-webkit-transform:scale(1) translate(-50%,0);
+transform:scale(1) translate(-50%,0);	
+}
+
 }
 
 @keyframes scaleHorizontallyCenteredItem {
 
 100% {
+-webkit-transform:scale(1) translate(-50%,0);
 transform:scale(1) translate(-50%,0);	
 }
 
@@ -122,6 +188,14 @@ transform:scale(1) translate(-50%,0);
 .scaleCenteredItem {
 -webkit-animation:scaleCenteredItem .2s ease-out .2s 1 normal forwards !important; 		
 -webkit-transform:scale(0) translate(-50%,-50%) !important;
+}
+
+@-webkit-keyframes scaleCenteredItem {
+
+100% {
+-webkit-transform:scale(1) translate(-50%,-50%);	
+}
+
 }
 
 @keyframes scaleCenteredItem {
@@ -145,6 +219,16 @@ opacity:0;
 }
 
 
+@-webkit-keyframes fadeIn {
+
+
+100% {
+opacity:1;
+}
+
+}
+
+
 @keyframes fadeIn {
 
 
@@ -158,8 +242,21 @@ opacity:1;
 
 
 .fade_in_fast {
+-webkit-animation:fade_in_fast .3s ease-out 1 normal forwards !important;
 animation:fade_in_fast .3s ease-out 1 normal forwards !important; 		
 -webkit-transform: translateZ(0);
+}
+
+@-webkit-keyframes fade_in_fast {
+
+0% {
+opacity:0;	
+}
+
+100% {
+opacity:1;
+}
+
 }
 
 @keyframes fade_in_fast {
@@ -180,7 +277,11 @@ opacity:1;
 
 .skewScaleItem {
 -webkit-animation:skewScaleItem .3s ease-out .2s 1 normal forwards !important; 
+-webkit-transform:skew(30deg,30deg) scale(0) !important; 
+-ms-transform:skew(30deg,30deg) scale(0) !important; 
 transform:skew(30deg,30deg) scale(0) !important;	
+-webkit-transform-origin:center;	
+-ms-transform-origin:center;	
 transform-origin:center;
 }
 
@@ -188,9 +289,18 @@ transform-origin:center;
 /* 
 this one we use to create a skew-scale animation effect for the .votesContainer, it basically animates the elements skew and scale properties, and make sure that the element has no transforms before using this.
 */
+@-webkit-keyframes skewScaleItem {
+
+100% {
+-webkit-transform:skew(0deg,0deg) scale(1);
+transform:skew(0deg,0deg) scale(1);
+}
+
+}
 @keyframes skewScaleItem {
 
 100% {
+-webkit-transform:skew(0deg,0deg) scale(1);
 transform:skew(0deg,0deg) scale(1);
 }
 

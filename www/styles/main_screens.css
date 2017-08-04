@@ -3,6 +3,7 @@
 
 .main_screen {
 width:100%;
+height:-webkit-calc(100% - 50px);
 height:calc(100% - 50px);
 position:relative;
 margin:0;
@@ -26,6 +27,7 @@ display:block;
 
 #main_screen_main_posts_container {
 margin-top:48px;
+height:-webkit-calc(100% - 48px);
 height:calc(100% - 48px);
 padding-bottom:60px;
 }

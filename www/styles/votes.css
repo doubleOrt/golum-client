@@ -2,21 +2,29 @@
 .votesContainer {
 display:none;	
 width:100%;
+height:-webkit-calc(100% - 35px);
 height:calc(100% - 35px); /* have to compensate for the bottom overlay */
 padding:10px 0;
 position:relative;
 z-index:1;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
 user-select:none;
 }
 
 .votesContainerChild {
 position:relative;
 top:40%;
+-webkit-transform:translate(0,-50%);
+-ms-transform:translate(0,-50%);
 transform:translate(0,-50%);	
 }
 
 .singlePost[data-post-type="3"] .votesContainerChild, .singlePost[data-post-type="4"] .votesContainerChild {
 top:15%;
+-webkit-transform:translate(0,0);
+-ms-transform:translate(0,0);
 transform:translate(0,0);
 }
 
@@ -43,10 +51,13 @@ font-size:20px;
 display:inline-block;	
 position:relative;
 left:50%;
+-webkit-transform:translate(-50%,0%);
+-ms-transform:translate(-50%,0%);
 transform:translate(-50%,0%);	
 padding:10px;
 border:2px solid white;
 border-radius:1000px;
+-webkit-box-shadow:1px 2px 0 rgba(0,0,0,1);
 box-shadow:1px 2px 0 rgba(0,0,0,1);
 }
 
@@ -59,10 +70,12 @@ background:-webkit-linear-gradient(36deg, crimson, lightsalmon) !important;
 }
 
 .singlePost[data-post-type="1"] .votesIcon[data-user-vote=true], .singlePost[data-post-type="2"] .votesIcon[data-user-vote=true] {
+-webkit-box-shadow:1px 2px 0 rgba(0,0,0,1), 0 0 0 3px rgba(0,0,0,1) inset;
 box-shadow:1px 2px 0 rgba(0,0,0,1), 0 0 0 3px rgba(0,0,0,1) inset
 }
 
 .singlePost[data-post-type="3"] .votesIcon[data-user-vote=true], .singlePost[data-post-type="4"] .votesIcon[data-user-vote=true] {
+-webkit-box-shadow:1px 2px 0 rgba(0,0,0,1), 0 0 0 2px rgba(0,0,0,1) inset;
 box-shadow:1px 2px 0 rgba(0,0,0,1), 0 0 0 2px rgba(0,0,0,1) inset
 }
 

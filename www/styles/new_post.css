@@ -1,6 +1,7 @@
 #shareNewModal .modal-content {
 padding:0;	
 width:100%;
+height:-webkit-calc(100% - 60px);
 height:calc(100% - 60px); /* compensate for the modal-header */
 margin-top:60px;
 background-color:white;
@@ -22,6 +23,7 @@ position:relative;
 background-color:#f4f4f4;	
 padding:0;
 overflow:hidden;
+-webkit-transition:all .1s ease-out;
 transition:all .1s ease-out;	
 }
 
@@ -34,9 +36,13 @@ display:block;
 position:relative;
 top:50%;
 left:50%;
+-webkit-transform:translate(-50%,-50%);
+-ms-transform:translate(-50%,-50%);
 transform:translate(-50%,-50%);
 width:200px;
 height:200px;
+-webkit-transform-origin:center;
+-ms-transform-origin:center;
 transform-origin:center;
 }
 
@@ -44,6 +50,7 @@ transform-origin:center;
 #postInputsContainer {
 display:inline-block;
 width:100%;
+height:-webkit-calc(100% - 300px);
 height:calc(100% - 300px); /* compensate for the #shareNewImagesContainer */
 margin:0;
 }
@@ -59,6 +66,7 @@ margin-bottom:0;
 
 #post_title:focus {
 border-bottom:1px solid #f4f4f4;
+-webkit-box-shadow:none;
 box-shadow:none;	
 }
 
@@ -73,16 +81,19 @@ opacity:0;
 
 #postInputsContainerChild {
 width:100%;
+height:-webkit-calc(100% - 53px);
 height:calc(100% - 53px); /* compensate for the #post_title */
 margin:0;
 padding:0;
-position;relative;
+position:relative;
 z-index:1;
 }
 
 #options_num_container {
 position:relative;
 top:50%;
+-webkit-transform:translate(0,-50%);
+-ms-transform:translate(0,-50%);
 transform:translate(0,-50%);
 }
 

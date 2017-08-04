@@ -7,6 +7,7 @@ max-height:100% !important;
 
 .chatModalContent  {
 width:100%;
+height:-webkit-calc(100% - 60px);
 height:calc(100% - 60px);
 margin-top:60px;
 position:relative;
@@ -18,6 +19,7 @@ overflow-y:auto;
 
 .chatModalContentChild {
 width:100%;
+height:-webkit-calc(100% - 80px);
 height:calc(100% - 80px);
 padding:0;
 margin:0;
@@ -103,6 +105,8 @@ color:#aaaaaa;
 display:inline-block;	
 padding:5px 12px 5px 12px;
 border-radius:12px;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
 box-sizing:border-box;	
 font-size:120%;
 max-width:75%;
@@ -125,6 +129,8 @@ content:'';
 width:200px;
 height:150px;
 -webkit-transform:scale(0.1);
+-webkit-transform-origin:left top;
+-ms-transform-origin:left top;
 transform-origin:left top;
 background:url(../icons/messageArrow.png);
 position:absolute;
@@ -162,7 +168,12 @@ width:150px;
 height:100px;
 border-radius:10px;
 background-color:lightsteelblue;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
 user-select:none;
+-webkit-perspective:1px;
+-ms-perspective:1px;
 perspective:1px;
 }
 
@@ -200,6 +211,8 @@ max-height:none;
 position:relative;
 top:50%;
 left:50%;
+-webkit-transform:translate(-50%,-50%);
+-ms-transform:translate(-50%,-50%);
 transform:translate(-50%,-50%);
 z-index:1;
 background-color:#303030;
@@ -216,6 +229,8 @@ width:33px;
 height:33px;
 border-radius:10px 12px 10px 10px;	
 overflow:hidden;
+-webkit-perspective: 1px;
+-ms-perspective: 1px;
 perspective: 1px; /* webkits can't handle grand-child radiuses, another workaround would be to give the border radius directly to the image's parent, but i don't know if this 
 second workaround would fuck with our code or not. */
 z-index:99;
@@ -248,11 +263,14 @@ resize:none;
 border:none !important;
 padding-left:15px !important;
 padding-top:10px;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
 box-sizing:border-box;
 margin:0 !important;
 }
 
 .messageTextarea:focus {
+-webkit-box-shadow:none !important;
 box-shadow:none !important;	
 outline:none;
 }
@@ -279,6 +297,8 @@ float:right;
 position:absolute;
 top:50%;
 right:10px;
+-webkit-transform:translate(0,-50%);
+-ms-transform:translate(0,-50%);
 transform:translate(0,-50%);
 width:50px;
 height:50px;
@@ -331,10 +351,12 @@ text-align:center;
 
 #emojisContainer img {
 margin:5px;	
--webkit-transition:transform .2s ease-out;
+-webkit-transition:-webkit-transform .2s ease-out;
 }
 
 #emojisContainer img:active {
 opacity:.4;	
+-webkit-transform:scale(.6);	
+-ms-transform:scale(.6);	
 transform:scale(.6);
 }

@@ -1,6 +1,8 @@
 #tagPostsModal .modal-content {
 padding:0;
-height:calc(100% - 110px)
+height:-webkit-calc(100% - 110px);
+margin-top:110px;
+height:calc(100% - 110px);
 margin-top:110px; /* this inconsistency is intentional */
 }
 

@@ -6,6 +6,8 @@ display:none;
 position:absolute;
 right:0;
 top:0;
+-webkit-transform:translate(20%,-40%);
+-ms-transform:translate(20%,-40%);
 transform:translate(20%,-40%);
 }
 
@@ -14,8 +16,11 @@ overflow:hidden;
 }
 
 .notifications_container_child {
+height:-webkit-calc(100% - 50px);
 height:calc(100% - 50px);
 padding-top:40px;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
 box-sizing:border-box;
 background-color:white;		
 overflow:hidden;
@@ -29,6 +34,8 @@ min-height:75px;
 margin:0;
 padding:0 0 0 20px;
 overflow:hidden;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
 box-sizing:border-box;
 background-color:white;
 position:relative;
@@ -57,6 +64,8 @@ margin-left:5px;
 .singleNotification .avatarContainer {
 position:relative;
 left:50%;
+-webkit-transform:translate(-50%,0%);
+-ms-transform:translate(-50%,0%);
 transform:translate(-50%,0%);
 width:45px;
 height:45px;	
@@ -65,6 +74,7 @@ height:45px;
 .notificationTextContainer {
 display:table-cell;
 vertical-align:middle;	
+width:-webkit-calc(100% - 45px);	
 width:calc(100% - 45px);
 padding:0 20px;
 margin-bottom:5px;

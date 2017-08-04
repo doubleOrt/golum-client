@@ -10,10 +10,12 @@ font-weight:500;
 .input-field input[type=text]:not(.independent_styles), .input-field input[type=password]:not(.independent_styles), .input-field input[type=email]:not(.independent_styles) {
 border-bottom: 2px solid lightgrey;
 color:grey;
+-webkit-box-shadow:none;
 box-shadow:none;
 }
 
 .input-field input[type=text]:not(.independent_styles):not(.input_error):focus, .input-field input[type=password]:not(.independent_styles):not(.input_error):focus, .input-field input[type=email]:not(.independent_styles):not(.input_error):focus {
+-webkit-border-image: -webkit-linear-gradient(36deg, yellow, green) 10 !important;
 border-image: -webkit-linear-gradient(36deg, yellow, green) 10 !important;
 border-style: solid;
 border-top: none;
@@ -21,6 +23,7 @@ border-left: none;
 border-right: none;
 border-bottom-width: 2px !important;
 color:black;
+-webkit-box-shadow:none !important;
 box-shadow:none !important;
 }
 
@@ -43,6 +46,7 @@ text-indent:2%;
 border:none !important;	
 border-bottom:2px solid red !important;
 color:black;
+-webkit-box-shadow:none !important;
 box-shadow:none !important;
 }
 

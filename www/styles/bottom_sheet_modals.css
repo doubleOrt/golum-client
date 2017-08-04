@@ -26,6 +26,7 @@ overflow:hidden;
 border-bottom:1px solid #ebeaea !important;	
 font-size:16px;
 font-weight:500;
+-webkit-box-shadow:none !important;
 box-shadow:none !important;
 padding:6px !important;
 padding-left:15px;
@@ -38,6 +39,7 @@ opacity:0;
 
 .bottomSheetModalResultsContainer {
 width:100%;	
+height:-webkit-calc(100% - 70px);	
 height:calc(100% - 70px);	
 }
 
