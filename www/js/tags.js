@@ -93,8 +93,9 @@ function generate_tag_row_mark_up(tag, total_posts, total_followers, sample_imag
 
 return `<div class='row tag_row list_row getTagPosts modal-trigger dont_change_parent_background_when_clicked_parent' data-tag='` + tag + `' data-target='tagPostsModal'>
 
-<div class='col l1 m1 s3 tag_sample_image_container opacityChangeOnActive stopPropagationOnClick'>
-<div class='tag_sample_image row_list_left_child fadeIn dont_change_parent_background_when_clicked' style='background:url(\"` + sample_image_path + `\"); background-size:cover; background-position:center;'>
+<div class='col l1 m1 s3 tag_sample_image_grandparent opacityChangeOnActive stopPropagationOnClick'>
+<div class='tag_sample_image_container row_list_left_child fadeIn dont_change_parent_background_when_clicked' style='background-color:#494949'>
+<div class='tag_sample_image' style='background:url(\"` + sample_image_path + `\"); background-size:cover; background-position:center;'></div>
 </div>
 </div>
 

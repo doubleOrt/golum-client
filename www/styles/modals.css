@@ -223,6 +223,7 @@ bottom:0;
 margin-top:60px;	
 height:-webkit-calc(100% - 120px) !important;	
 height:calc(100% - 120px) !important;	
+overflow:hidden !important;
 }
 
 }	
