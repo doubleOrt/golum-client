@@ -224,7 +224,7 @@ return `<div class='singlePost loadPostComponents col l12 m12 s12' data-actual-p
 </div><!-- end .avatarContainer -->
 
 <div class='posterInfoChild'>
-<a href='#modal1' class='commonLink showUserModal modal-trigger' data-target='user_modal' data-user-id='` + data["post_owner_info"]["id"] + `'>` + poster_full_name + `</a>
+<a href='#modal1' class='showUserModal modal-trigger poster_full_name opacityChangeOnActive' data-target='user_modal' data-user-id='` + data["post_owner_info"]["id"] + `'>` + poster_full_name + `</a>
 <div class='post_views'><span class='views_number_container'>` + data["post_views"] + `</span> Views</div>
 </div><!-- end .posterInfoChild -->
 

@@ -13,6 +13,7 @@ transform:translate(20%,-40%);
 
 #notifications_container {
 overflow:hidden;	
+background-color:white;
 }
 
 .notifications_container_child {
@@ -41,6 +42,7 @@ background-color:white;
 position:relative;
 left:50%;
 border-bottom:1px solid #f4f4f4;	
+transform:translate(-50%, 0);
 }
 
 .singleNotification .focusStealer {

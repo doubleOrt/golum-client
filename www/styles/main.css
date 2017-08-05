@@ -204,14 +204,10 @@ font-weight:bold;
 /* common link stylings */
 
 .commonLink {
-color:#2d8ace;
+color:#494949;
 }
 
-.commonLinkMainColor {
-color:#f95462;	
-}
-
-.commonLink:active, .commonLinkMainColor:active, .commonLinkBlue:active {
+.commonLink:active {
 opacity:.4;
 -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";	
 }

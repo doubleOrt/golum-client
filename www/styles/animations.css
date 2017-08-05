@@ -162,9 +162,9 @@ transform:scale(1) translate(0,-50%);
 -webkit-transform:scale(0) translate(-50%,0) !important; 		
 -ms-transform:scale(0) translate(-50%,0) !important; 		
 transform:scale(0) translate(-50%,0) !important;
--webkit-transform-origin:center;
--ms-transform-origin:center;
-transform-origin:center;
+-webkit-transform-origin:left top;
+-ms-transform-origin:left top;
+transform-origin:left top;
 }
 
 @-webkit-keyframes scaleHorizontallyCenteredItem {
