@@ -207,7 +207,7 @@ font-weight:bold;
 color:#494949;
 }
 
-.commonLink:active {
+.commonLink:active, .commonLinkMainColor {
 opacity:.4;
 -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";	
 }
