@@ -52,7 +52,6 @@ $("#recipient_name").fadeIn("fast");
 $("#recipient_current_status").fadeIn("fast");		
 		
 if(data.length > 1) {	
-$("#emojisContainer").appendTo(".chatModalContentChild");	
 $("#recipient_name").html(data[1]["recipient_first_name"]);	
 $("#recipient_name").attr("data-recipient-id", data[1]["recipient_id"]);	
 get_user_state(data[1]["recipient_id"], function(data){
@@ -493,6 +492,13 @@ set_chat_constants();
 $("#chatModal").data("on_visible", chat_modal_visible);
 
 
+// we got 284 emojis in our emojis file, we load them all using this loop.
+for(var i = 0;i<285;i++) {
+$("#emojisContainerChild").append("<img class='emoji' src='icons/emojis/" + i + ".svg' alt='Emoji'/>");
+}
+ 
+ 
+
 
 // when a user clicks on the start chat button or the chat icon in the usermodals
 $(document).on("click",".startChat",function(e){
@@ -541,13 +547,15 @@ unsubscribe_from_last_chat();
 // on double tapping, toggle .emojisContainer's display.
 $(document).on("doubletap","#" + CHAT_CONTENT_CONTAINER_ELEMENT.attr("id"),function(e){	
 setTimeout(function(){
-$("#emojisContainer").show();	
+$("#emojisContainer").animate({ height: 'show', opacity: 'show' }, 400);
+$("#emojisContainerChild").scrollTop(0);	
 },50);
 });
 // hide the .emojisContainer when its sides are clicked.	
-$(document).on("click", "#emojisContainer", function(event){
-if(event.target.tagName != "IMG") {	
-$(this).hide();	
+$(document).on("click", "#chatModal *", function(event){
+console.log(event.target.className);
+if(($(event.target) != $("#emojisContainer") && $(event.target).parents("#emojisContainer").length < 1) || ($(event.target) == $("#emojisContainer .close_emojis_container") || $(event.target).parents("#emojisContainer .close_emojis_container").length > 0)) {	
+$("#emojisContainer").animate({ height: 'hide'}, 200);
 }
 });
 

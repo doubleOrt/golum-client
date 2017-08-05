@@ -5,14 +5,7 @@ $(document).on("dom_and_device_ready", function() {
 		
 BASE_USER_ID_HOLDER = $("#megaContainer");	
 
-// we got 284 emojis in our emojis file, we need to append them all to our emojisContainerChild element.
-for(var i = 0;i<285;i++) {
-$("#emojisContainerChild").append("<img class='emoji' src='icons/emojis/" + i + ".svg' alt='Emoji' style='width:55px;height:55px;'/>");
-}
  
- 
- 
-
 // we want all images on our app to be not draggable.
 $("img").on("dragstart",function(e){
 e.preventDefault();
