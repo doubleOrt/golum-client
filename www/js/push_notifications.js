@@ -12,7 +12,8 @@ var push = PushNotification.init({
 "android": {
 "senderID": SENDER_ID,
 "clearNotifications": false,
-"forceShow": true
+"vibrate": false,
+"sound": false
 }, 
 ios: {}
 });
@@ -23,6 +24,8 @@ send_device_registration_id();
 });
 
 push.on('notification', function(data) {
+	
+if(data["additionalData"]["foreground"] != true) {
 
 try {
 
@@ -124,6 +127,8 @@ open_chat(data["additionalData"]["data_arr"]["chat_id"], undefined, false);
 }
 catch(error) {
 console.warn("Something went wrong while parsing the data from a push notification! \nProbably caused by the absence of some fields we are looking for in the payload data from the push notification.");
+}
+
 }
 
 });
