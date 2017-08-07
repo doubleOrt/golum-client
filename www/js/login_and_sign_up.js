@@ -43,7 +43,6 @@ password:$("#password").val()
 type:"post",
 success:function(data){
 
-console.log(data);
 	if(data == "success") {
 	window.location.href = "logged_in.html";	
 	}

@@ -193,7 +193,6 @@ $(defaultCheckObject[prop]["regexHandler"].ref).removeClass("input_error");
 else {
 $(defaultCheckObject[prop]["regexHandler"].ref).removeClass("input_error");
 }
-console.log($("#" + prop).val().trim() + "\n" + defaultCheckObject[prop]["value"]);
 }
 	
 }

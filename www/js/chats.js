@@ -169,7 +169,6 @@ cache: false,
 contentType: false,
 processData: false,
 success: function(data){
-console.log(data);	
 var data_arr = JSON.parse(data);	
 if(typeof callback == "function") {
 callback(data_arr);	
@@ -551,9 +550,8 @@ $("#emojisContainer").animate({ height: 'show', opacity: 'show' }, 400);
 $("#emojisContainerChild").scrollTop(0);	
 },50);
 });
-// hide the .emojisContainer when its sides are clicked.	
+// hide the .emojisContainer when anything in the #chatModal except itself is clicked.	
 $(document).on("click", "#chatModal *", function(event){
-console.log(event.target.className);
 if(($(event.target) != $("#emojisContainer") && $(event.target).parents("#emojisContainer").length < 1) || ($(event.target) == $("#emojisContainer .close_emojis_container") || $(event.target).parents("#emojisContainer .close_emojis_container").length > 0)) {	
 $("#emojisContainer").animate({ height: 'hide'}, 200);
 }

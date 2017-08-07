@@ -34,7 +34,7 @@ function getVotedPostsVotesMarkup() {
 $(".loadPostComponents").each(function(){	
 if($(this).find(".selectedOptionContainer").length == 0 && $(this).find(".votesContainer").length == 0) {	
 var this_post_element = $(this); 
-getVotesMarkup(this_post_element.attr("data-actual-post-id"), this_post_element.attr("data-post-type"), function(data){
+get_votes_data(this_post_element.attr("data-actual-post-id"), this_post_element.attr("data-post-type"), function(data){
 get_post_votes_callback(this_post_element, data, true);	
 });	
 }
@@ -42,14 +42,14 @@ get_post_votes_callback(this_post_element, data, true);
 }
 
 
-function getVotesMarkup(post_id, post_type, callback) {	
+function get_votes_data(post_id, post_type, callback) {	
 
 if(typeof post_id == "undefined" || typeof post_type == "undefined") {
 return false;	
 }
 
 $.get({
-url:"http://192.168.1.100/golum/components/get_votes_markup.php",
+url:"http://192.168.1.100/golum/components/get_votes_data.php",
 data:{
 "post_id": post_id,
 "post_type": post_type

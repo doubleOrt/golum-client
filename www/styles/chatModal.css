@@ -364,6 +364,7 @@ user-select: none;
 -webkit-transform-origin:left top;
 -ms-transform-origin:left top;
 transform-origin:left top;
+perspective:1px;
 }
 
 #emojisContainer .close_emojis_container i {
