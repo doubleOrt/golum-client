@@ -43,6 +43,7 @@ password:$("#password").val()
 type:"post",
 success:function(data){
 
+console.log(data);
 	if(data == "success") {
 	window.location.href = "logged_in.html";	
 	}
@@ -113,7 +114,7 @@ $("#login").val("Login");
 
 },
 error: function(jqXHR, textStatus, errorThrown) {
-alert(textStatus, errorThrown);
+console.log(textStatus, errorThrown);
 }
 }); 
 }

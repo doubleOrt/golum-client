@@ -6,7 +6,7 @@ var websockets_connection_is_good = false;
 var websocket_request_id = 0;
 var handle_user_channel_message_callbacks = [];
 function handle_user_channel_message(topic, data) {
-	
+				
 var data_arr = JSON.parse(data);	
 	
 if(typeof data_arr["type"] == "undefined") {

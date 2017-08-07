@@ -24,6 +24,7 @@ data: {
 "id": user_info["idToken"]
 },
 success:function(data){
+	
 var data_arr = JSON.parse(data);
 if(data_arr[0] === 1) {
 window.location.href = "logged_in.html";

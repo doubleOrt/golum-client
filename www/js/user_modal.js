@@ -41,6 +41,8 @@ url:"http://192.168.1.100/golum/components/userModalGet.php",
 data:{"user_id":userId},
 success:function(data){					  
 
+console.log(data);
+
 var dataArr = JSON.parse(data);
 
 // gives us an object called "info" that is populated with info about this user.
