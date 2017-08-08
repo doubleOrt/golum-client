@@ -15,7 +15,7 @@ function getNotifications(row_offset, type, callback) {
 notificationsPreventMultipleCalls = true;	
 
 $.get({
-url:"http://192.168.1.100/golum/components/notifications.php",
+url:PATH_TO_SERVER_PHP_FILES + "notifications.php",
 data:{
 "row_offset":row_offset,
 "type": type
@@ -42,7 +42,7 @@ return false;
 }	
 	
 $.get({
-url: "http://192.168.1.100/golum/components/get_new_notifications_num.php",
+url: PATH_TO_SERVER_PHP_FILES + "get_new_notifications_num.php",
 success:function(data) {
 var data_arr = JSON.parse(data);
 callback(data_arr[0]);
@@ -551,7 +551,7 @@ return false;
 }	
 
 $.post({
-url: "http://192.168.1.100/golum/components/set_notifications_read_yet_to_true.php",
+url: PATH_TO_SERVER_PHP_FILES + "set_notifications_read_yet_to_true.php",
 data: {
 "notification_id": notification_id
 }

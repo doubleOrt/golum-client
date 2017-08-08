@@ -8,7 +8,7 @@ var prevent_multiple_calls_to_get_send_to_friend_friends = false;
 function sendPost(postId, recipientId, callback) {	
 	
 $.post({
-url:"http://192.168.1.100/golum/components/send_post_to_friend.php",
+url:PATH_TO_SERVER_PHP_FILES + "send_post_to_friend.php",
 data:{
 "post_id": postId,
 "friend_id": recipientId
@@ -36,7 +36,7 @@ if(prevent_multiple_calls_to_get_send_to_friend_friends == false) {
 prevent_multiple_calls_to_get_send_to_friend_friends = true;	
 
 $.get({
-url:"http://192.168.1.100/golum/components/get_send_to_friend_friends.php",
+url:PATH_TO_SERVER_PHP_FILES + "get_send_to_friend_friends.php",
 data:{
 "search_term": search_term.trim(),
 "post_id": post_id,

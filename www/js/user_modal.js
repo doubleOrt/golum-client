@@ -37,7 +37,7 @@ if(userModalShouldServerSide == true) {
 userModalShouldServerSide = false;
 
 $.get({
-url:"http://192.168.1.100/golum/components/userModalGet.php",
+url:PATH_TO_SERVER_PHP_FILES + "userModalGet.php",
 data:{"user_id":userId},
 success:function(data){					  
 
@@ -488,7 +488,7 @@ $(document).on("click","#editProfileButton",function(){
 if(editModeActive == true) {
 
 $.post({
-url:"http://192.168.1.100/golum/components/change_infos.php",
+url:PATH_TO_SERVER_PHP_FILES + "change_infos.php",
 data:changeInfosGetObj,
 success:function(data){
 

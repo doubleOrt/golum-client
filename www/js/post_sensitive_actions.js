@@ -7,7 +7,7 @@ return false;
 }
 
 $.post({
-url:"http://192.168.1.100/golum/components/delete_post.php",
+url:PATH_TO_SERVER_PHP_FILES + "delete_post.php",
 data:{"post_id":postId},
 success:function(data) {
 if(data == "1") {
@@ -29,7 +29,7 @@ return false;
 }
 	
 $.post({
-url:"http://192.168.1.100/golum/components/report_post.php",
+url:PATH_TO_SERVER_PHP_FILES + "report_post.php",
 data:{"post_id":postId},
 success:function(data) {
 eval(data);

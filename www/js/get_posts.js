@@ -82,7 +82,7 @@ postIdsArr.push($(this).attr("data-actual-post-id"));
 });
 
 $.get({
-url:"http://192.168.1.100/golum/components/post_activities.php",
+url:PATH_TO_SERVER_PHP_FILES + "post_activities.php",
 data:{"post_ids":postIdsArr},
 success:function(data) {
 var dataArr = JSON.parse(data);
@@ -340,7 +340,7 @@ $(document).on("click",".getPosts",function(){
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-end-of-results", "false");	
 emptyAllPostsContainer();
 showLoading(MAIN_SCREEN_POSTS_CONTAINER, "60%");
-getPosts("http://192.168.1.100/golum/components/get_posts.php",{"row_offset":0},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_posts.php",{"row_offset":0},function(data_arr){
 markUpProcessor(data_arr,MAIN_SCREEN_POSTS_CONTAINER, "Your feed is so empty :(", function(){
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","posts");
 MAIN_SCREEN_POSTS_CONTAINER.scrollTop(0);
@@ -350,7 +350,7 @@ removeLoading(MAIN_SCREEN_POSTS_CONTAINER);
 });
 
 // making a call to this function on page load since the user is presented with their feed as soon as they login.
-getPosts("http://192.168.1.100/golum/components/get_posts.php",{"row_offset":0},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_posts.php",{"row_offset":0},function(data_arr){
 markUpProcessor(data_arr,MAIN_SCREEN_POSTS_CONTAINER, "Nothing here :(", function(){MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","posts");MAIN_SCREEN_POSTS_CONTAINER.scrollTop(0);});	
 });		
 
@@ -360,7 +360,7 @@ $(document).on("click",".getFeaturedPosts",function(){
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-end-of-results", "false");		
 emptyAllPostsContainer();
 showLoading(MAIN_SCREEN_POSTS_CONTAINER, "60%");
-getPosts("http://192.168.1.100/golum/components/get_featured_posts.php",{"row_offset":0},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_featured_posts.php",{"row_offset":0},function(data_arr){
 markUpProcessor(data_arr,MAIN_SCREEN_POSTS_CONTAINER, "We don't know why there is nothing here either :(", function(){
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","featuredPosts");
 MAIN_SCREEN_POSTS_CONTAINER.scrollTop(0);
@@ -374,7 +374,7 @@ $(document).on("click",".getDiscoverPosts",function(){
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-end-of-results", "false");	
 emptyAllPostsContainer();
 showLoading(MAIN_SCREEN_POSTS_CONTAINER, "60%");
-getPosts("http://192.168.1.100/golum/components/get_discover_posts.php",{"row_offset":0},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_discover_posts.php",{"row_offset":0},function(data_arr){
 markUpProcessor(data_arr,MAIN_SCREEN_POSTS_CONTAINER, "Nothing here, sorry :(" , function(){
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","favoritePosts");
 MAIN_SCREEN_POSTS_CONTAINER.scrollTop(0);
@@ -396,7 +396,7 @@ var allPostsContainerContainsWhichPosts = MAIN_SCREEN_POSTS_CONTAINER.attr("data
 
 if(allPostsContainerContainsWhichPosts == "posts") {
 add_secondary_loading(MAIN_SCREEN_POSTS_CONTAINER);	
-getPosts("http://192.168.1.100/golum/components/get_posts.php",{"row_offset":$("#allPostsContainer .singlePost").length},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_posts.php",{"row_offset":$("#allPostsContainer .singlePost").length},function(data_arr){
 markUpProcessor(data_arr,MAIN_SCREEN_POSTS_CONTAINER, "Your feed is so empty :(", function(){
 remove_secondary_loading(MAIN_SCREEN_POSTS_CONTAINER);	
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","posts");
@@ -405,7 +405,7 @@ MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","posts");
 }	
 else if(allPostsContainerContainsWhichPosts == "featuredPosts") {
 add_secondary_loading(MAIN_SCREEN_POSTS_CONTAINER);		
-getPosts("http://192.168.1.100/golum/components/get_featured_posts.php",{"row_offset":$("#allPostsContainer .singlePost").length},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_featured_posts.php",{"row_offset":$("#allPostsContainer .singlePost").length},function(data_arr){
 markUpProcessor(data_arr,MAIN_SCREEN_POSTS_CONTAINER, "We don't know why there is nothing here either :(" ,function(){
 remove_secondary_loading(MAIN_SCREEN_POSTS_CONTAINER);	
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","featuredPosts");
@@ -414,7 +414,7 @@ MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","featuredPosts");
 }	
 else if(allPostsContainerContainsWhichPosts == "favoritePosts") {
 add_secondary_loading(MAIN_SCREEN_POSTS_CONTAINER);			
-getPosts("http://192.168.1.100/golum/components/get_discover_posts.php",{"row_offset":$("#allPostsContainer .singlePost").length},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_discover_posts.php",{"row_offset":$("#allPostsContainer .singlePost").length},function(data_arr){
 markUpProcessor(data_arr,MAIN_SCREEN_POSTS_CONTAINER, "Nothing here, sorry :(" ,function(){
 remove_secondary_loading(MAIN_SCREEN_POSTS_CONTAINER);		
 MAIN_SCREEN_POSTS_CONTAINER.attr("data-contains-which-posts","favoritePosts");
@@ -438,7 +438,7 @@ return false;
 // empty #singlePostsContainer
 $("#singlePostsContainer").html("");
 showLoading($("#singlePostsContainer"), "50%");
-getPosts("http://192.168.1.100/golum/components/get_single_post.php",{"post_id":$(this).attr("data-actual-post-id")},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_single_post.php",{"post_id":$(this).attr("data-actual-post-id")},function(data_arr){
 markUpProcessor(data_arr,$("#singlePostsContainer"), "This post may have been deleted by its original author", function(){
 removeLoading($("#singlePostsContainer"));	
 });	
@@ -481,7 +481,7 @@ else {
 $("#userPostsModal .navRightItemsMobile .follow_user").show();	
 }
 
-getPosts("http://192.168.1.100/golum/components/get_user_posts.php",{"user_id": $(this).attr("data-user-id"), "row_offset": 0},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_user_posts.php",{"user_id": $(this).attr("data-user-id"), "row_offset": 0},function(data_arr){
 markUpProcessor(data_arr[0], $("#userPostsContainer"), "This user does not have a single post, such a loser.", function(){
 removeLoading($("#userPostsContainer"));	
 });		
@@ -496,7 +496,7 @@ if($(this).scrollTop() > ($(this)[0].scrollHeight - 650) && $(this).find(".singl
 	
 add_secondary_loading($("#userPostsContainer"));	
 	
-getPosts("http://192.168.1.100/golum/components/get_user_posts.php",{"user_id": $(this).attr("data-user-id"), "row_offset": $(this).find(".singlePost").length},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_user_posts.php",{"user_id": $(this).attr("data-user-id"), "row_offset": $(this).find(".singlePost").length},function(data_arr){
 markUpProcessor(data_arr[0], $("#userPostsContainer"), "This user does not have a single post, such a loser.", function(){
 remove_secondary_loading($("#userPostsContainer"));	
 });		
@@ -538,7 +538,7 @@ else {
 $("#favorite_posts_modal .navRightItemsMobile .follow_user").show();	
 }
 
-getPosts("http://192.168.1.100/golum/components/get_favorite_posts.php",{"user_id": $(this).attr("data-user-id"), "row_offset": 0},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_favorite_posts.php",{"user_id": $(this).attr("data-user-id"), "row_offset": 0},function(data_arr){
 markUpProcessor(data_arr[0], $("#favorite_posts_container"), "This user has not faved a single post, such a loser.", function(){
 removeLoading($("#favorite_posts_container"));	
 });		
@@ -552,7 +552,7 @@ if($(this).attr("data-end-of-results") === "false") {
 if($(this).scrollTop() > ($(this)[0].scrollHeight - 650) && $(this).find(".singlePost").length > 0) {
 	
 add_secondary_loading($("#favorite_posts_container"));	
-getPosts("http://192.168.1.100/golum/components/get_favorite_posts.php",{"user_id": $(this).attr("data-user-id"), "row_offset": $(this).find(".singlePost").length},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_favorite_posts.php",{"user_id": $(this).attr("data-user-id"), "row_offset": $(this).find(".singlePost").length},function(data_arr){
 markUpProcessor(data_arr[0], $("#favorite_posts_container"), "This user has not faved a single post, such a loser.", function(){
 remove_secondary_loading($("#favorite_posts_container"));	
 });		
@@ -594,7 +594,7 @@ showLoading($("#tagPostsContainer"), "55%");
 
 // if the user is switching between the tabs
 if($(this).parents(".tabs").length > 0) {
-getPosts("http://192.168.1.100/golum/components/get_tag_posts.php",{"row_offset":0,"tag": tag,"sort_posts_by":$("#tagPostsModal").attr("data-hot-or-new")},function(data_arr){	
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_tag_posts.php",{"row_offset":0,"tag": tag,"sort_posts_by":$("#tagPostsModal").attr("data-hot-or-new")},function(data_arr){	
 markUpProcessor(data_arr[0],$("#tagPostsContainer"), "Nothing here :(", function(){
 removeLoading($("#tagPostsContainer"));	
 });	
@@ -606,7 +606,7 @@ $("#tagPostsModal").attr("data-tag", tag);
 $("#tagPostsModal .modal-header .modalHeaderFullName").html(tag);	
 $("#tagPostsModal .navRightItemsMobile").find(".addTagFromTagPostsModal").attr("data-tag", tag);
 
-getPosts("http://192.168.1.100/golum/components/get_tag_posts.php",{"row_offset":0,"tag": tag,"sort_posts_by":$("#tagPostsModal").attr("data-hot-or-new")},function(data_arr){	
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_tag_posts.php",{"row_offset":0,"tag": tag,"sort_posts_by":$("#tagPostsModal").attr("data-hot-or-new")},function(data_arr){	
 markUpProcessor(data_arr[0],$("#tagPostsContainer"), "Nothing here :(", function(){
 removeLoading($("#tagPostsContainer"));	
 });	
@@ -624,7 +624,7 @@ if($(this).attr("data-end-of-results") === "false") {
 if(($(this)[0].scrollHeight - ($(this).scrollTop() + $(this).outerHeight()) < 650) && $(this).find(".singlePost").length > 0) {
 
 add_secondary_loading($("#tagPostsContainer"));
-getPosts("http://192.168.1.100/golum/components/get_tag_posts.php",{"row_offset":$("#tagPostsModal .singlePost").length,"tag":$("#tagPostsModal").attr("data-tag"),"sort_posts_by":$("#tagPostsModal").attr("data-hot-or-new")},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_tag_posts.php",{"row_offset":$("#tagPostsModal .singlePost").length,"tag":$("#tagPostsModal").attr("data-tag"),"sort_posts_by":$("#tagPostsModal").attr("data-hot-or-new")},function(data_arr){
 markUpProcessor(data_arr[0], $("#tagPostsContainer"), "Nothing here :(", function(){
 remove_secondary_loading($("#tagPostsContainer"));	
 });	

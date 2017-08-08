@@ -14,7 +14,7 @@ if(get_user_tags_prevent_multiple_calls == false) {
 get_user_tags_prevent_multiple_calls = true;
 
 $.get({
-url:"http://192.168.1.100/golum/components/get_user_tags.php",
+url:PATH_TO_SERVER_PHP_FILES + "get_user_tags.php",
 data: {
 "user_id": user_id,
 "row_offset": row_offset	
@@ -68,7 +68,7 @@ function addTagsToUserById(tag,callback) {
 
 $.post({
 data:{"tag":tag},	
-url:"http://192.168.1.100/golum/components/add_tags.php",
+url:PATH_TO_SERVER_PHP_FILES + "add_tags.php",
 success:function(data) {
 callback(data);
 }
@@ -80,7 +80,7 @@ function removeTagsFromUserById(tag,callback) {
 
 $.post({
 data:{"tag":tag},	
-url:"http://192.168.1.100/golum/components/remove_tags.php",
+url:PATH_TO_SERVER_PHP_FILES + "remove_tags.php",
 success:function(data) {
 callback(data);
 }

@@ -5,7 +5,7 @@ return false;
 }
 
 $.post({
-url:"http://192.168.1.100/golum/components/favorite_post.php",
+url:PATH_TO_SERVER_PHP_FILES + "favorite_post.php",
 data:{"post_id":postId},
 success:function(data) {
 if(typeof callback != "undefined") {	

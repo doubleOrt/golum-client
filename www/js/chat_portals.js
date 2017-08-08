@@ -19,7 +19,7 @@ if(chat_portals_prevent_multiple_calls === false) {
 chat_portals_prevent_multiple_calls = true;	
 	
 $.get({
-url:"http://192.168.1.100/golum/components/chat_portal.php",
+url:PATH_TO_SERVER_PHP_FILES + "chat_portal.php",
 data: {
 "row_offset": row_offset	
 },
@@ -132,7 +132,7 @@ elem.find(".latestMessageContainer").html(chatPortalActivities[i]["latestMessage
 function getChatPortalActivities(callback) {
 
 $.get({
-url:"http://192.168.1.100/golum/components/chat_portal_activities.php",
+url:PATH_TO_SERVER_PHP_FILES + "chat_portal_activities.php",
 success:function(data) {
 	
 if(data != "") {
@@ -161,7 +161,7 @@ callback(chatPortalActivities);
 function hideChat(chatId,callback) {
 	
 $.post({
-url:"http://192.168.1.100/golum/components/hide_chat.php",
+url:PATH_TO_SERVER_PHP_FILES + "hide_chat.php",
 data:{"chat_id":chatId},
 success:function(data) {
 
@@ -182,7 +182,7 @@ return false;
 }	
 	
 $.get({
-url: "http://192.168.1.100/golum/components/get_new_messages_num.php",
+url: PATH_TO_SERVER_PHP_FILES + "get_new_messages_num.php",
 success:function(data) {
 var data_arr = JSON.parse(data);
 callback(data_arr[0]);

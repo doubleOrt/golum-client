@@ -6,7 +6,7 @@ var SETTINGS_CONFIRM_EMAIL_SECTION_CONTAINER;
 function show_email_confirmation() {
 // if user has requested us to link his account with an email address and we have sent him a confirmation code, show him the enter confirmation code form.
 $.get({
-url:"http://192.168.1.100/golum/components/show_confirmation_code_form.php",
+url:PATH_TO_SERVER_PHP_FILES + "show_confirmation_code_form.php",
 success:function(data) {	
 
 var data_arr = JSON.parse(data);
@@ -38,7 +38,7 @@ return false;
 
 function resend_confirmation_code(callback) {
 $.post({
-url: "http://192.168.1.100/golum/components/resend_confirmation_code.php",
+url: PATH_TO_SERVER_PHP_FILES + "resend_confirmation_code.php",
 success: function(data) {
 var data_arr = JSON.parse(data);
 callback(data_arr);	
@@ -107,7 +107,7 @@ var default_email_address;
 var defaultCheckObject;
 
 $.get({
-url:"http://192.168.1.100/golum/components/user_modal_variables.php",
+url:PATH_TO_SERVER_PHP_FILES + "user_modal_variables.php",
 success:function(data) {
 eval(data);
 
@@ -304,7 +304,7 @@ return;
 else {
 
 $.post({
-url:"http://192.168.1.100/golum/components/confirm_email.php",
+url:PATH_TO_SERVER_PHP_FILES + "confirm_email.php",
 data:{
 "confirmation_code":confirmation_code
 },
@@ -337,7 +337,7 @@ var set_password_password = $("#set_password_for_first_time_modal_password").val
 if(password_regex.test(set_password_password) === true) {
 	
 $.post({
-url: "http://192.168.1.100/golum/components/set_password_for_first_time.php",	
+url: PATH_TO_SERVER_PHP_FILES + "set_password_for_first_time.php",	
 data: {
 "password": set_password_password	
 },

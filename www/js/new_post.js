@@ -88,12 +88,15 @@ data.append("type",$("#options_num").val());
 $(this).html("Posting...").addClass("disabledButton");
 
 $.post({
-url:"http://192.168.1.100/golum/components/new_post.php",
+url:PATH_TO_SERVER_PHP_FILES + "new_post.php",
 data:data,
 cache: false,
 contentType: false,
 processData: false,
 success:function(data){
+	
+console.log(data);
+	
 //if the post was successfully posted, then open the singlePostModal and populate its innerHTML with the new post's markup.
 if(!isNaN(data)) {
 Materialize.toast("Post Successful!",2000,"green");

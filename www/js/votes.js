@@ -12,7 +12,7 @@ var posterId = postObject.attr("data-poster-id");
 var voterHasAlreadyVoted = postObject.attr("data-already-voted");
 
 $.post({
-url:"http://192.168.1.100/golum/components/vote.php",
+url:PATH_TO_SERVER_PHP_FILES + "vote.php",
 data:{
 "post_id": postId,
 "poster_id": posterId,
@@ -49,7 +49,7 @@ return false;
 }
 
 $.get({
-url:"http://192.168.1.100/golum/components/get_votes_data.php",
+url:PATH_TO_SERVER_PHP_FILES + "get_votes_data.php",
 data:{
 "post_id": post_id,
 "post_type": post_type

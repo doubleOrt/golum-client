@@ -16,7 +16,7 @@ return false;
 get_user_followers_or_followings_prevent_multiple_calls = true;
 
 $.get({
-url:"http://192.168.1.100/golum/components/get_user_followers_or_followings.php",
+url:PATH_TO_SERVER_PHP_FILES + "get_user_followers_or_followings.php",
 data: {
 "user_id": user_id,
 "row_offset": row_offset,
@@ -46,7 +46,7 @@ return false;
 }
 
 $.post({
-url:"http://192.168.1.100/golum/components/add_remove_contacts.php",
+url:PATH_TO_SERVER_PHP_FILES + "add_remove_contacts.php",
 data:{user_id:userId},
 success: function(data) {
 if(data != "") {
@@ -68,7 +68,7 @@ a callback function with at least one parameter as arguments.  will return 0 if 
 and 1 if they are now unblocked. */
 function blockOrUnblockUser(userId, callback) {
 $.post({
-url:"http://192.168.1.100/golum/components/block_user.php",
+url:PATH_TO_SERVER_PHP_FILES + "block_user.php",
 data:{"user_id":userId},
 success:function(data) {
 if(data != "") {

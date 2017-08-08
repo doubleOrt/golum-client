@@ -34,7 +34,7 @@ dataObj["pin_comment_to_top"] = pinReplyToTop;
 
 
 ajax_call_to_get_replies = $.get({
-url:"http://192.168.1.100/golum/components/get_comment_replies.php",
+url:PATH_TO_SERVER_PHP_FILES + "get_comment_replies.php",
 data:dataObj,
 success:function(data) {	
 
@@ -82,7 +82,7 @@ dataArr["is_reply_to"] = isReplyTo;
 }
 
 $.post({
-url:"http://192.168.1.100/golum/components/add_reply_to_comment.php",
+url:PATH_TO_SERVER_PHP_FILES + "add_reply_to_comment.php",
 data:dataArr,
 success: function(data) {
 if(data != "") {	
@@ -271,7 +271,7 @@ var thisUpvotesNumberObject = $(this).parent().find(".commentUpvotes");
 var thisDownvotesNumberObject = $(this).parent().find(".commentDownvotes");
 
 $.post({
-url:"http://192.168.1.100/golum/components/upvote_downvote_reply.php",
+url:PATH_TO_SERVER_PHP_FILES + "upvote_downvote_reply.php",
 data:{
 "reply_id":$(this).parents(".postCommentActions").attr("data-comment-id"),
 "type":$(this).attr("data-upvote-or-downvote")
@@ -329,7 +329,7 @@ setNewNumber(reply_single_comment_element, "data-total-number", false, true,"");
 function deleteReply(replyId, callback) {
 
 $.post({
-url:"http://192.168.1.100/golum/components/delete_reply.php",
+url:PATH_TO_SERVER_PHP_FILES + "delete_reply.php",
 data:{"reply_id":replyId},
 success:function(data) {
 

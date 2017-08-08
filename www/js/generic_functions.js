@@ -1,4 +1,8 @@
 
+// this variable is the BACKBONE of this app, because without if it is incorrect, all our AJAX calls will result in a "404: Not Found" error.
+var PATH_TO_SERVER_PHP_FILES = "http://192.168.1.100/golum/components/";
+
+
 
 function fitToParent(ref) {
 
@@ -308,7 +312,7 @@ else {
 openModalCustom("singlePostModal", false);
 }
 
-getPosts("http://192.168.1.100/golum/components/get_single_post.php",{"post_id": post_id},function(data_arr){
+getPosts(PATH_TO_SERVER_PHP_FILES + "get_single_post.php",{"post_id": post_id},function(data_arr){
 markUpProcessor(data_arr,$("#singlePostsContainer"), "We don't know why the post didn't appear either :(", function(){
 removeLoading($("#singlePostsContainer"));	
 });		

@@ -32,7 +32,7 @@ dataObj["user_id"] = user_id;
 chat_prevent_multiple_calls = true;	
 
 $.get({
-url:"http://192.168.1.100/golum/components/get_chat.php",
+url:PATH_TO_SERVER_PHP_FILES + "get_chat.php",
 data:dataObj,
 type:"get",
 success: function(data) {	
@@ -346,7 +346,7 @@ return false;
 }	
 
 $.post({
-url: "http://192.168.1.100/golum/components/set_messages_read_yet_to_true.php",
+url: PATH_TO_SERVER_PHP_FILES + "set_messages_read_yet_to_true.php",
 data: {
 "message_id": message_id
 }
@@ -362,7 +362,7 @@ return false;
 }
 
 $.post({
-url: "http://192.168.1.100/golum/components/set_messages_read_yet_to_true.php",
+url: PATH_TO_SERVER_PHP_FILES + "set_messages_read_yet_to_true.php",
 data: {
 "chat_id": chat_id
 }	

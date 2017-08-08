@@ -12,7 +12,7 @@ websockets_con.publish("user_" + base_user_id, [1, 1, device_registration_id]);
 
 // when user presses the logout button 
 $.get({
-url:"http://192.168.1.100/golum/components/logout.php",
+url:PATH_TO_SERVER_PHP_FILES + "logout.php",
 success:function(data) {
 window.location.href = "index.html";
 }	

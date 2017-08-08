@@ -33,7 +33,7 @@ if(everythingMatches == true) {
 $("#sign_up").parent().css({"opacity":".4","pointer-events":"none"});
 
 $.ajax({
-url:"http://192.168.1.100/golum/components/sign_up.php",
+url:PATH_TO_SERVER_PHP_FILES + "sign_up.php",
 data:{
 first_name:$("#first_name").val(),
 last_name:$("#last_name").val(),
@@ -92,7 +92,7 @@ $("#login").parent().addClass("disabledButton");
 $("#login").val("Logging in...");
 
 $.post({
-url:"http://192.168.1.100/golum/components/login.php",
+url:PATH_TO_SERVER_PHP_FILES + "login.php",
 data:{
 login_user_name_or_email:$("#login_user_name_or_email").val(),
 login_password: $("#login_password").val()

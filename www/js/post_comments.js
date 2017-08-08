@@ -34,7 +34,7 @@ dataObj["row_offset"] = row_offset;
 dataObj["pin_comment_to_top"] = pinCommentToTop;	
 
 ajax_call_to_get_comments = $.get({
-url:"http://192.168.1.100/golum/components/get_post_comments.php",
+url:PATH_TO_SERVER_PHP_FILES + "get_post_comments.php",
 data:dataObj,
 success:function(data) {
 
@@ -83,7 +83,7 @@ return false;
 }
 
 $.post({
-url:"http://192.168.1.100/golum/components/add_comment_to_post.php",
+url:PATH_TO_SERVER_PHP_FILES + "add_comment_to_post.php",
 data:{
 "post_id": postId,
 "comment": comment
@@ -100,7 +100,7 @@ callback(data_arr);
 function deleteComment(commentId, callback) {
 
 $.post({
-url:"http://192.168.1.100/golum/components/delete_comment.php",
+url:PATH_TO_SERVER_PHP_FILES + "delete_comment.php",
 data:{"comment_id":commentId},
 success:function(data) {
 if(data == 1) {
@@ -327,7 +327,7 @@ var thisDownvotesNumberObject = $(this).parent().find(".commentDownvotes");
 
 
 $.post({
-url:"http://192.168.1.100/golum/components/upvote_downvote_comment.php",
+url:PATH_TO_SERVER_PHP_FILES + "upvote_downvote_comment.php",
 data:{
 "comment_id":$(this).parents(".postCommentActions").attr("data-comment-id"),
 "type":$(this).attr("data-upvote-or-downvote")

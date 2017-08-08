@@ -30,7 +30,7 @@ return false;
 $(this).addClass("disabledButton");
 	
 $.post({
-url:"http://192.168.1.100/golum/components/forgot_password.php",
+url:PATH_TO_SERVER_PHP_FILES + "forgot_password.php",
 data: data_object,
 success:function(data) {
 				
