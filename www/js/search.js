@@ -249,7 +249,7 @@ data: {
 "row_offset": offset
 },
 success: function(data){
-
+console.log(data);
 var data_arr = JSON.parse(data);
 
 if(typeof callback == "function") {

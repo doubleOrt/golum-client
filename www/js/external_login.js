@@ -14,6 +14,8 @@ window.plugins.googleplus.login(
 },
 function (user_info) {
 				
+alert(JSON.stringify(user_info));
+				
 //show the loading bar and hide the document body
 $("#page_loading").show();
 $("#showOnBodyLoad").hide();
@@ -24,6 +26,8 @@ data: {
 "id": user_info["idToken"]
 },
 success:function(data){
+		
+alert(data);	
 		
 var data_arr = JSON.parse(data);
 if(data_arr[0] === 1) {

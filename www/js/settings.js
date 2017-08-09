@@ -151,7 +151,7 @@ defaultCheckObject = {
 
 var check_change_first_name = new ValidateItem(document.getElementById("change_first_name"),/^[a-zA-Z\s]{3,18}$/i,"First Name Must Only Contain Letters And Spaces And Must Be Longer Than 3 And Shorter Than 18 Characters");
 var check_change_last_name = new ValidateItem(document.getElementById("change_last_name"),/^[a-zA-Z\s]{3,18}$/i,"Last Name Must Only Contain Letters And Spaces And Must Be Longer Than 3 And Shorter Than 18 Characters");
-var check_change_user_name = new ValidateItem(document.getElementById("change_user_name"),/^([a-zA-Z]+[0-9 ]*){6,36}$/i,"Username Must Be A Combination Of Letters, Numbers And Spaces And Muse Be Between 6-36 Characters In Length");
+var check_change_user_name = new ValidateItem(document.getElementById("change_user_name"),/^([a-zA-Z0-9_]+){6,36}$/i,"Username May Include Letters, Numbers, And Underscores, And Must Be Between 6-36 Characters In Length");
 var check_change_password = new ValidateItem(document.getElementById("change_password"),/^(?=.*[A-Za-z])(?=.*\d)(?=.*([$@$!%*#?& ]*))[A-Za-z\d($@$!%*#?& )*]{8,50}$/i,"Password Must Contain At Least 1 Digit And Must Be Between 8-50 Characters, Special Characters And Spaces Are Optional");
 var check_add_email = new ValidateItem(document.getElementById("add_email"),/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,"Your Email Address Is Invalid");
 var check_current_password = new ValidateItem(document.getElementById("current_password"),/^(?=.*[A-Za-z])(?=.*\d)(?=.*([$@$!%*#?& ]*))[A-Za-z\d($@$!%*#?& )*]{8,50}$/i,"Wrong Password");
@@ -252,6 +252,12 @@ eval(dataArr[0]);
 
 $("#saveChangesModalOpener").addClass("disabledButton");
 
+/* this has to be above the snippet where we change the email values to the recent ones, 
+and it is right now, just wanted to warn you in case you modify anything. */
+if(defaultCheckObject["add_email"].value != $("#add_email").val() && $(".confirmEmailContainer").length == 0) {
+show_email_confirmation();
+}
+
 defaultCheckObject['change_first_name'].value = $("#change_first_name").val();
 defaultCheckObject['change_last_name'].value = $("#change_last_name").val();
 defaultCheckObject['change_user_name'].value = $("#change_user_name").val();
@@ -261,14 +267,13 @@ $("#change_last_name").attr("data-default-value", $("#change_last_name").val());
 $("#change_user_name").attr("data-default-value", $("#change_user_name").val());
 $("#add_email").attr("data-default-value", $("#add_email").val());
 
-if(defaultCheckObject["add_email"].value != $("#add_email").val() && $(".confirmEmailContainer").length == 0) {
-show_email_confirmation();
-}
-
 $(".baseUserFullNameContainers").html(defaultCheckObject['change_first_name'].value + " " + defaultCheckObject['change_last_name'].value);
 $(".baseUserUserNameContainers").html(defaultCheckObject['change_user_name'].value);
 $("#current_password").val("");
 $("#change_password").val("");
+
+
+Materialize.updateTextFields();
 
 }
 });

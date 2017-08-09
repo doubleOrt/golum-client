@@ -6,7 +6,7 @@ $(document).on("dom_and_device_ready", function() {
 var firstName = new ValidateItem(document.getElementById("first_name"), /^[a-zA-Z\s]{3,18}$/i,"First Name Must Only Contain Letters And Spaces And Must Be Longer Than 3 And Shorter Than 18 Characters");
 var lastName = new ValidateItem(document.getElementById("last_name"), /^[a-zA-Z\s]{3,18}$/i,"Last Name Must Only Contain Letters And Spaces And Must Be Longer Than 3 And Shorter Than 18 Characters");
 //note that even if you change the username regex to allow more than 36 characters, it won't work because the sql username column's length is set to 36.
-var userName = new ValidateItem(document.getElementById("user_name"), /^([a-zA-Z]+[0-9 ]*){6,36}$/i,"Username Must Be A Combination Of Letters, Numbers And Spaces And Must Be Between 6-36 Characters In Length");
+var userName = new ValidateItem(document.getElementById("user_name"), /^([a-zA-Z0-9_]+){6,36}$/i,"Username May Include Letters, Numbers, And Underscores, And Must Be Between 6-36 Characters In Length");
 var password = new ValidateItem(document.getElementById("password"), /^(?=.*[A-Za-z])(?=.*\d)(?=.*([$@$!%*#?& ]*))[A-Za-z\d($@$!%*#?& )*]{8,50}$/i, "Password Must Contain At Least 1 Digit And Must Be Between 8-50 Characters, Special Characters And Spaces Are Optional");
 
 
@@ -68,7 +68,7 @@ success:function(data){
 
 
 //note that even if you change the username regex to allow more than 36 characters, it won't work because the sql username column's length is set to 36.
-var loginUsername = new ValidateItem(document.getElementById("login_user_name_or_email"),/^([a-zA-Z]+[0-9 ]*){6,36}$/i,"");
+var loginUsername = new ValidateItem(document.getElementById("login_user_name_or_email"), /^([a-zA-Z0-9_]+){6,36}$/i,"");
 var loginEmail = new ValidateItem(document.getElementById("login_user_name_or_email"),	/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i,"");
 var loginPassword = new ValidateItem(document.getElementById("login_password"),/^(?=.*[A-Za-z])(?=.*\d)(?=.*([$@$!%*#?& ]*))[A-Za-z\d($@$!%*#?& )*]{8,50}$/i,"");
 
@@ -83,7 +83,7 @@ var checkLoginEmail = loginEmail.validate(true, false);
 var checkLoginPassword = loginPassword.validate(true, false);
 
 if ((checkLoginUserName == false && checkLoginEmail == false) || checkLoginPassword == false) {
-Materialize.toast("Wrong Login Info",5000,'red')
+Materialize.toast("Wrong Info",5000,'red')
 }	
 //if everything is ok, submit the form.
 else {	
