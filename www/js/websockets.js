@@ -14,6 +14,7 @@ return false;
 }
 
 if(data_arr["type"] == "0") {
+alert(JSON.stringify(data));	
 for(var i = 0; i < handle_user_channel_message_callbacks.length; i++) {
 if(handle_user_channel_message_callbacks[i]["request_id"] == data_arr["data"]["request_id"]) {
 handle_user_channel_message_callbacks[i]["callback"](data_arr["data"]);	
@@ -39,6 +40,7 @@ return false;
 	
 websockets_con = new ab.Session('ws://192.168.1.100:8080',
 function() {
+alert("Websocket connection opened!");	
 console.warn("Websocket connection opened");	
 websockets_connection_is_good = true;
 open_user_channel(base_user_id);
@@ -51,6 +53,7 @@ notifications. */
 handle_push_notifications();
 },
 function() {
+alert("Websocket connection closed!");	
 console.warn('WebSocket connection closed');
 websockets_connection_is_good = false;
 },

@@ -15,6 +15,7 @@ box-shadow:none;
 }
 
 .input-field input[type=text]:not(.independent_styles):not(.input_error):focus, .input-field input[type=password]:not(.independent_styles):not(.input_error):focus, .input-field input[type=email]:not(.independent_styles):not(.input_error):focus {
+border-bottom: 2px solid lightgrey; /* this fixes a little bug where on focusing out, the border-color would change to the default Materialize color for inputs before ultimately switching back to our lightgrey. */	
 -webkit-border-image: -webkit-linear-gradient(36deg, yellow, green) 10 !important;
 border-image: -webkit-linear-gradient(36deg, yellow, green) 10 !important;
 border-style: solid;

@@ -459,6 +459,48 @@ getChatPortalActivities(updateChatPortalActivities);
 
 
 
+// this function is clicked whenever the user clicks a "new message from x" push notification, the first parameter is the message-data.
+function new_message_push_notification_received(data) {
+	
+var chat_modal_is_currently_being_viewed = check_if_modal_is_currently_being_viewed("chatModal");
+		
+/* Do note that we don't have a conditional for a "the chat-modal for the chat this message 
+belongs to is already opened" case because that one will be dealt with by our websockets 
+connection which calls "there_are_new_messages()". For more information on this, go to 
+bugs.txt #9.
+*/
+		
+		
+if(chat_modal_is_currently_being_viewed === true) {	
+/* chat-modal is open but not current chat (e.g user has opened a chat but the app 
+is currently in the background, they receive a push-notification from our app and 
+click it, this conditional will evaluate to true). */
+if(CHAT_ID_HOLDER.attr("data-chat-id") != data["chat_id"]) {
+open_chat(data["chat_id"], undefined, false);
+}
+}
+/* if the chat-modal is not currently being viewed (e.g the user has closed our app, 
+but is logged in, they receive a new message and click on it, the app will be opened 
+and this conditional will evaluate to true) */
+else {
+$("#chatModal").modal("open", {
+inDuration: 300, // Transition in duration
+outDuration: 150, // Transition out duration	
+startingTop: "100%",
+endingTop: "50%",	
+ready:function(){
+var this_modal = $(this);	
+setTimeout(function(){z_index_stack = parseFloat(this_modal.css("z-index"));},300);
+}
+});	
+openModalCustom("chatModal");
+open_chat(data["chat_id"], undefined, false);		
+}
+
+}
+
+
+
 
 function open_chat(chat_id, recipient_id, unhide_chat_if_hidden) {
 

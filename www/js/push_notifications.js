@@ -29,6 +29,7 @@ if(data["additionalData"]["foreground"] != true) {
 
 try {
 
+// push_notification_category == 0 is a push notification for a normal notification (not a message)
 if(data["additionalData"]["push_notification_category"] == 0) {
 /* these take care of opening the proper modals and such for a push 
 notification after the user taps it. Do note that the open_single_post 
@@ -107,21 +108,9 @@ open_single_post(data["additionalData"]["data_arr"]["notification_extra"]);
 }
 
 }
+// push_notification_category == 1 is a push notification for a new message 
 else if(data["additionalData"]["push_notification_category"] == 1) {
-if(check_if_modal_is_currently_being_viewed("chatModal") !== true) {
-$("#chatModal").modal("open", {
-inDuration: 300, // Transition in duration
-outDuration: 150, // Transition out duration	
-startingTop: "100%",
-endingTop: "50%",	
-ready:function(){
-var this_modal = $(this);	
-setTimeout(function(){z_index_stack = parseFloat(this_modal.css("z-index"));},300);
-}
-});	
-openModalCustom("chatModal");
-}	
-open_chat(data["additionalData"]["data_arr"]["chat_id"], undefined, false);	
+new_message_push_notification_received(data["additionalData"]["data_arr"]);
 }
 
 }

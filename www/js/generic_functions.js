@@ -290,17 +290,6 @@ main_screen.addClass("main_screen_active");
 
 function open_single_post(post_id) {
 	
-$("#singlePostModal").modal("open", {
-inDuration: 300, // Transition in duration
-outDuration: 150, // Transition out duration	
-startingTop: "100%",
-endingTop: "50%",	
-ready:function(){
-var this_modal = $(this);	
-setTimeout(function(){z_index_stack = parseFloat(this_modal.css("z-index"));},300);
-}
-});
-
 // empty #singlePostsContainer
 $("#singlePostsContainer").html("");
 showLoading($("#singlePostsContainer"), "50%");
