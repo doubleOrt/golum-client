@@ -13,9 +13,7 @@ window.plugins.googleplus.login(
 "webClientId": "567008101486-pq9v5tecvnvk1fehkk2g9hmqh4pti30q.apps.googleusercontent.com"
 },
 function (user_info) {
-				
-alert(JSON.stringify(user_info));
-				
+								
 //show the loading bar and hide the document body
 $("#page_loading").show();
 $("#showOnBodyLoad").hide();
@@ -26,9 +24,7 @@ data: {
 "id": user_info["idToken"]
 },
 success:function(data){
-		
-alert(data);	
-		
+				
 var data_arr = JSON.parse(data);
 if(data_arr[0] === 1) {
 window.location.href = "logged_in.html";

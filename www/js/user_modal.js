@@ -435,13 +435,13 @@ changeInfosGetObj["avatar_positions"] = [0,0];
 var repositionDirection = $(this).attr("data-direction");
 var userAvatarCoordinates = $("#userAvatarImage")[0].getBoundingClientRect();
 if(repositionDirection == "up") {
-if(parseFloat($("#userAvatarImage").parent().parent().css("margin-top").replace("px","")) > (document.getElementById("userAvatarImage").getBoundingClientRect().height - 120) * -1) {
+if(parseFloat($("#userAvatarImage").parent().parent().css("margin-top").replace("px","")) > (document.getElementById("userAvatarImage").getBoundingClientRect().height - 100) * -1) {
 $("#userAvatarImage").parent().parent().animate({"margin-top":"-=10px"},100);
 }
 else {
-$("#userAvatarImage").parent().parent().animate({"margin-top":"-=" + document.getElementById("userAvatarImage").getBoundingClientRect().width - 110 + "px"},100);
+$("#userAvatarImage").parent().parent().animate({"margin-top":"-=" + document.getElementById("userAvatarImage").getBoundingClientRect().width - 90 + "px"},100);
 }
-changeInfosGetObj["avatar_positions"][0] = Math.round((parseFloat($("#userAvatarImage").parent().parent().css("margin-top").replace("px",""))/110)*100);
+changeInfosGetObj["avatar_positions"][0] = Math.round((parseFloat($("#userAvatarImage").parent().parent().css("margin-top").replace("px",""))/90)*100);
 }
 if(repositionDirection == "down") {
 if(parseFloat($("#userAvatarImage").parent().parent().css("margin-top").replace("px","")) < -10) {
@@ -450,16 +450,16 @@ $("#userAvatarImage").parent().parent().animate({"margin-top":"+=10px"},100);
 else {
 $("#userAvatarImage").parent().parent().animate({"margin-top":"0px"},100);	
 }
-changeInfosGetObj["avatar_positions"][0] = Math.round((parseFloat($("#userAvatarImage").parent().parent().css("margin-top").replace("px",""))/110)*100);
+changeInfosGetObj["avatar_positions"][0] = Math.round((parseFloat($("#userAvatarImage").parent().parent().css("margin-top").replace("px",""))/90)*100);
 }
 if(repositionDirection == "left") {
-if(parseFloat($("#userAvatarImage").parent().parent().css("margin-left").replace("px","")) > (document.getElementById("userAvatarImage").getBoundingClientRect().width - 120) * -1) {
+if(parseFloat($("#userAvatarImage").parent().parent().css("margin-left").replace("px","")) > (document.getElementById("userAvatarImage").getBoundingClientRect().width - 100) * -1) {
 $("#userAvatarImage").parent().parent().animate({"margin-left":"-=10px"},100);
 }
 else {
-$("#userAvatarImage").parent().parent().animate({"margin-left":"-=" + document.getElementById("userAvatarImage").getBoundingClientRect().width - 110 + "px"},100);	
+$("#userAvatarImage").parent().parent().animate({"margin-left":"-=" + document.getElementById("userAvatarImage").getBoundingClientRect().width - 90 + "px"},100);	
 }
-changeInfosGetObj["avatar_positions"][1] = Math.round((parseFloat($("#userAvatarImage").parent().parent().css("margin-left").replace("px",""))/110)*100);
+changeInfosGetObj["avatar_positions"][1] = Math.round((parseFloat($("#userAvatarImage").parent().parent().css("margin-left").replace("px",""))/90)*100);
 }
 if(repositionDirection == "right") {
 if(parseFloat($("#userAvatarImage").parent().parent().css("margin-left").replace("px","")) < -10) {
@@ -468,7 +468,7 @@ $("#userAvatarImage").parent().parent().animate({"margin-left":"+=10px"},100);
 else {
 $("#userAvatarImage").parent().parent().animate({"margin-left":"0px"},100);					
 }
-changeInfosGetObj["avatar_positions"][1] = Math.round((parseFloat($("#userAvatarImage").parent().parent().css("margin-left").replace("px",""))/110)*100);
+changeInfosGetObj["avatar_positions"][1] = Math.round((parseFloat($("#userAvatarImage").parent().parent().css("margin-left").replace("px",""))/90)*100);
 }
 });
 

@@ -108,7 +108,7 @@ text-transform:capitalize;
 }
 
 .contactsFullName::first-letter {
-color:#f95462;
+font-weight:500;
 }
 
 /* we don't directly add these styles to the above rule because in the above rule, the display mode must be set to block in order for the ellipsis to work, so we are adding the styles
@@ -204,7 +204,7 @@ vertical-align:middle;
 }
 
 .contactsModalSingleElementMainText {
-color:#f95462;
+color:black;
 letter-spacing:2px;
 font-size:20px;	
 font-weight:bold;	

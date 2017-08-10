@@ -427,13 +427,13 @@ background:white;
 
 /* when something is empty, we use these messages to tell the user it is empty */
 .emptyNowPlaceholder {
-color:#aaaaaa;
+color:grey;
 position:absolute;
 top:50%;
 left:50%;
 -webkit-transform:translate(-50%,-50%);
-        -ms-transform:translate(-50%,-50%);
-        transform:translate(-50%,-50%);
+-ms-transform:translate(-50%,-50%);
+transform:translate(-50%,-50%);
 text-align:center;
 width:75%;
 font-size:16px;

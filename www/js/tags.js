@@ -20,6 +20,7 @@ data: {
 "row_offset": row_offset	
 },
 success: function(data) {
+console.log(data);	
 var data_arr = JSON.parse(data);
 if(typeof callback == "function") {
 callback(data_arr);	

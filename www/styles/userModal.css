@@ -314,7 +314,7 @@ position:relative;
 /* when user views another users profile picture, the male, birthdate and country infos.*/	  
 
 #userModalKnownInfoContainer {
-margin-bottom:30px;	
+padding-bottom:60px;	
 padding-top:80px;
 }	 
 

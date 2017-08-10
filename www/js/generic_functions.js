@@ -301,8 +301,6 @@ setTimeout(function(){z_index_stack = parseFloat(this_modal.css("z-index"));},30
 }
 });
 
-alert($("#singlePostsContainer").length);
-
 // empty #singlePostsContainer
 $("#singlePostsContainer").html("");
 showLoading($("#singlePostsContainer"), "50%");
