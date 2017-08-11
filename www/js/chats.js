@@ -54,9 +54,6 @@ $("#recipient_current_status").fadeIn("fast");
 if(data.length > 1) {	
 $("#recipient_name").html(data[1]["recipient_first_name"]);	
 $("#recipient_name").attr("data-recipient-id", data[1]["recipient_id"]);	
-get_user_state(data[1]["recipient_id"], function(data){
-$("#recipient_current_status").html(data["current_state"]);		
-});
 $("#sendMessage").attr("data-chat-id", data[1]["chat_id"]);
 CHAT_ID_HOLDER.attr("data-chat-id", data[1]["chat_id"]);
 currently_opened_chat_recipient_id = data[1]["recipient_id"];
@@ -93,6 +90,31 @@ getChatPortalActivities(updateChatPortalActivities);
 }
 
 
+/* call this function to get all unread messages for a chat
+newer_than should be the id of a message (usually the latest message).
+*/
+function get_messages_newer_than(chat_id, newer_than, callback) {
+
+if(typeof chat_id == "undefined" || typeof newer_than == "undefined" || typeof callback != "function") {
+return false;
+}
+
+$.get({
+url:PATH_TO_SERVER_PHP_FILES + "get_messages_newer_than.php",
+data: {
+"chat_id": chat_id, 
+"newer_than": newer_than
+},
+type:"get",
+success: function(data) {
+var data_arr = JSON.parse(data);
+callback(data_arr);
+}
+});
+	
+}
+
+
 
 
 function switchChatModalSendButton(switchButtonTo) {
@@ -116,7 +138,7 @@ $("#sendMessage").attr("data-file-or-send","1");
 function sendMessage(chatId, message, messageType, callback) {
 
 $.post({
-url: 'http://192.168.1.100/golum/components/send_message.php',
+url: PATH_TO_SERVER_PHP_FILES + 'send_message.php',
 data: {
 "chat_id": chatId,
 "message": message,
@@ -163,7 +185,7 @@ data.append("the_file", $("#sendImage")[0].files[0]);
 data.append("chat_id",$("#sendMessage").attr("data-chat-id"));
 
 $.post({
-url: 'http://192.168.1.100/golum/components/sendFiles.php',
+url: PATH_TO_SERVER_PHP_FILES + 'sendFiles.php',
 data: data,
 cache: false,
 contentType: false,
@@ -294,46 +316,45 @@ return `<div class='messageContainer imageMessageContainer message`+ (data["mess
 
 
 var currently_opened_chat_recipient_id = 0;
-function unsubscribe_from_last_chat() {
-if(websockets_connection_is_good === true) {
-if(currently_opened_chat_recipient_id != 0) {	
-websockets_con.unsubscribe("user_state_" + currently_opened_chat_recipient_id);		
-// so that we don't get an error in case we unsubscribe twice (happens when you close a chat using the close button and then open a new chat).
-currently_opened_chat_recipient_id = 0;
-}
-}
-else {
-console.warn("Websocket connection has not been established!");	
-}
-}
 
-function subscribe_to_chat(recipient_id) {
-if(websockets_connection_is_good === true) {	
-websockets_con.subscribe("user_state_" + recipient_id, function(topic, data) {
-var data_arr = JSON.parse(data);
-$("#recipient_current_status").html(data_arr["current_state"]);
-});			
-}
-else {
+
+
+
+// use this function to get a string of the online/offline state of a user every user_status_interval_time seconds.
+var user_status_interval;
+var user_status_interval_time = 4000;
+function start_pinging_for_user_status(user_id, callback) {
+		
+if(websockets_connection_is_good !== true) {
 console.warn("Websocket connection has not been established!");		
+return false;
 }
+
+get_user_status(user_id, callback);	
+user_status_interval = setInterval(function(){
+get_user_status(user_id, callback);	
+}, user_status_interval_time);
+
 }
 
+function stop_pinging_for_user_status() {
+clearInterval(user_status_interval);	
+user_status_interval = undefined;	
+}
 
-
-// use this function to get a string of the online/offline state of a user.
-function get_user_state(user_id, callback) {
-if(websockets_connection_is_good === true) {
+// use this function to get a user's status (online/offline)
+function get_user_status(user_id, callback) {
+	
+if(websockets_connection_is_good !== true) {
+return false;	
+}
+	
 websockets_con.publish("user_" + BASE_USER_ID_HOLDER.attr("data-user-id"), [0,"user_" + user_id, websocket_request_id]);	
 handle_user_channel_message_callbacks.push({
 "request_id": websocket_request_id, 
 "callback": callback
-});
+});	
 websocket_request_id++;
-}
-else {
-console.warn("Websocket connection has not been established!");	
-}
 }
 
 
@@ -373,25 +394,35 @@ data: {
 
 function chat_modal_visible(from_back_button) {
 
-var chat_id = CHAT_ID_HOLDER.attr("data-chat-id");	
+set_chat_constants();
 
-if(typeof $("#recipient_name").attr("data-recipient-id") !== "undefined" && from_back_button == true) {
+if(typeof $("#recipient_name").attr("data-recipient-id") !== "undefined" && from_back_button === true) {
 currently_opened_chat_recipient_id = $("#recipient_name").attr("data-recipient-id");
-subscribe_to_chat(currently_opened_chat_recipient_id);
-get_user_state(currently_opened_chat_recipient_id, function(data){
+update_chat_with_new_messages();
+stop_pinging_for_user_status();
+start_pinging_for_user_status(currently_opened_chat_recipient_id, function(data){
 $("#recipient_current_status").html(data["current_state"]);		
 });
 }
 
-if(typeof chat_id != "undefined" && /^\d+$/.test(chat_id) === true) {
-set_all_chat_messages_read_yet_to_true(chat_id);	
-}
 
-set_chat_constants();
+/* if you remove this conditional, a bug will occur when 
+the user opens a chat from not the back-button: the 
+read_yets for all the messages for the previously opened 
+chat will be set to true instead of the messages for the 
+chat that is to be opened (that is because this function 
+is called before the data-chat-id attribute is updated). */
+if(from_back_button === true) {
+var chat_id = CHAT_ID_HOLDER.attr("data-chat-id");	
+if(typeof chat_id != "undefined" && /^\d+$/.test(chat_id) === true) {
+set_all_chat_messages_read_yet_to_true(chat_id);
+}
+}
 
 CHAT_CONTENT_CONTAINER_ELEMENT.fadeIn("fast");
 $("#recipient_name").fadeIn("fast");
-$("#recipient_current_status").fadeIn("fast");		
+$("#recipient_current_status").fadeIn("fast");	
+
 
 /* we have to do this because of the absence of an "on" handler for the scroll event, otherwise 
 whenever we opened a chat modal on top of another chat modal, after closing it we would lose 
@@ -444,19 +475,26 @@ set_message_read_yet_to_true(data["message_id"]);
 
 }	
 
-	
-if(check_if_modal_is_currently_being_viewed("chatModal") === false) {	
-// if the code executes as far as this point, then it means we have to update our new-messages badges and chat portals.	
-get_new_messages_num(function(num) {	
+/* i know that we should probably update the char portals and user modals even when 
+they are not currently being viewed, but see bugs.txt #10. */
+
+
+if(check_if_modal_is_currently_being_viewed("chat_portals_modal") === true) {
+getChatPortalActivities(updateChatPortalActivities);	
+}
+		
+if(check_if_main_screen_is_open("main_screen_user_profile") === true || check_if_modal_is_currently_being_viewed("user_modal") === true) {
+get_new_messages_num(function(num) {
 if(parseFloat(num) > 0) {
 USER_PROFILE_NEW_MESSAGES_NUM.html(num).css("display", "inline-block");	
 }
+else {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).hide();	
+}
 });
-
-getChatPortalActivities(updateChatPortalActivities);
-}
 }
 
+}
 
 
 // this function is clicked whenever the user clicks a "new message from x" push notification, the first parameter is the message-data.
@@ -505,11 +543,11 @@ open_chat(data["chat_id"], undefined, false);
 function open_chat(chat_id, recipient_id, unhide_chat_if_hidden) {
 
 CHAT_CONTENT_CONTAINER_ELEMENT.html("");
-unsubscribe_from_last_chat();
 
 get_chat(chat_id, recipient_id, unhide_chat_if_hidden, 0, function(data){
 	
 get_chat_callback(false, data);
+
 // we want to update the badge on the user's profile that displays the number of their unread messages each time they view some of those unread messages.
 get_new_messages_num(function(num) {
 if(parseFloat(num) > 0) {
@@ -520,10 +558,48 @@ USER_PROFILE_NEW_MESSAGES_NUM.html(num).hide();
 }
 });
 
-subscribe_to_chat(data[1]["recipient_id"])
+stop_pinging_for_user_status();
+start_pinging_for_user_status(recipient_id, function(data){	
+$("#recipient_current_status").html(data["current_state"]);
+});
+
 });	
 
 }
+
+
+// extracts the currently opened chat's id from the #chatModal, and then updates it with any unread messages, if any.
+function update_chat_with_new_messages() {
+var chat_id = CHAT_ID_HOLDER.attr("data-chat-id");
+var latest_message_id = CHAT_CONTENT_CONTAINER_ELEMENT.find(".messageContainer").last().attr("data-message-id");
+if(typeof chat_id != "undefined" && typeof latest_message_id != "undefined" && /^\d+$/.test(chat_id) === true && /^\d+$/.test(latest_message_id) === true) {
+get_messages_newer_than(chat_id, latest_message_id, function(data){
+for(var i = 0; i < data[0].length; i++) {
+CHAT_CONTENT_CONTAINER_ELEMENT.append(get_message_markup(data[0][i]));	
+}
+if(data[0].length > 0) {
+getChatPortalActivities(updateChatPortalActivities);	
+}
+// scroll to the bottom
+CHAT_CONTENT_CONTAINER_ELEMENT.scrollTop(CHAT_CONTENT_CONTAINER_ELEMENT[0].scrollHeight);
+});
+}
+}
+
+
+function chat_modal_closed() {
+/* bugs.txt #5 */
+chat_prevent_multiple_calls = true;
+setTimeout(function(){
+chat_prevent_multiple_calls = false;	
+}, 100);
+
+CHAT_CONTENT_CONTAINER_ELEMENT.hide();
+$("#recipient_name").hide();
+$("#recipient_current_status").hide();
+stop_pinging_for_user_status();
+}
+
 
 
 $(document).on("dom_and_device_ready", function() {
@@ -531,6 +607,7 @@ $(document).on("dom_and_device_ready", function() {
 set_chat_constants();
 
 $("#chatModal").data("on_visible", chat_modal_visible);
+$("#chatModal").data("on_close", chat_modal_closed);
 
 
 // we got 284 emojis in our emojis file, we load them all using this loop.
@@ -569,20 +646,6 @@ recipient_id = $(this).attr("data-user-id");
 open_chat(chat_id, recipient_id, unhide_chat_if_hidden);
 });
 
-
-
-$(document).on("click",".chatModalCloseButton",function() {
-/* bugs.txt #5 */
-chat_prevent_multiple_calls = true;
-setTimeout(function(){
-chat_prevent_multiple_calls = false;	
-}, 100);
-CHAT_CONTENT_CONTAINER_ELEMENT.hide();
-$("#recipient_name").hide();
-$("#recipient_current_status").hide();
-// we don't need to receive any updates from the last chat since the user just closed it.
-unsubscribe_from_last_chat();
-});
 
 
 // on double tapping, toggle .emojisContainer's display.

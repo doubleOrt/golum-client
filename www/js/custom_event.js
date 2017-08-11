@@ -15,11 +15,10 @@ window.isphone = false;
 if(document.URL.indexOf("http://") === -1 && document.URL.indexOf("https://") === -1) {
 window.isphone = true;
 }
-if(!window.isphone ) {
+if(!window.isphone) {
 $.event.trigger({
 type: "dom_and_device_ready"
 });
-authenticate_user();
 }
 
 

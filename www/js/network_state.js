@@ -2,7 +2,6 @@
 var handle_offline_is_initial_call = true;
 var user_was_offline = false;
 function handle_offline() {
-alert("User is now offline");	
 if(user_was_offline === false) {	
 $(".toast").remove();
 $("body").css("filter", "grayscale(100%)");
@@ -18,12 +17,18 @@ handle_offline_is_initial_call = false;
 }
 
 function handle_online() {
-alert("User is now online");	
+				
 if(user_was_offline === true) {	
 $("body").css("filter", "grayscale(0%)");	
 $("#offline_overlay, #offline_overlay_white_background").fadeOut("fast", function(){
 $(this).remove();	
 });
+
+// there could have been some new messages between the user going offline and coming back online.
+if(check_if_modal_is_currently_being_viewed("chatModal") === true) {	
+update_chat_with_new_messages();
+}
+
 user_was_offline = false;
 }
 

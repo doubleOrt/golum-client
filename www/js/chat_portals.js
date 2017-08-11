@@ -74,7 +74,7 @@ return `
 <a href='#' class='removeChat'><i class='material-icons'>close</i></a>
 <div class='singleChatPortalAvatarContainer modal-trigger showUserModal opacityChangeOnActive stopPropagationOnClick' data-target='user_modal' data-user-id='`+ data["recipient_info"]["id"] +`'>
 <div class='singleChatPortalRotateContainer rotateContainer' style='margin-top:`+ data["recipient_info"]["avatar_positions"][0] +`%;margin-left:`+ data["recipient_info"]["avatar_positions"][1] +`%;'>
-<div class='singleChatPortalRotateDiv'>
+<div class='singleChatPortalRotateDiv' style='transform:rotate(` + (data["recipient_info"]["avatar_rotate_degree"] != "" ? data["recipient_info"]["avatar_rotate_degree"] : 0) + `deg)'>
 <img class='avatarImages' id='chat_portal_avatar` + random_num + `' src='` + (data["recipient_info"]["avatar"] != "" ? data["recipient_info"]["avatar"] : LetterAvatar(data["recipient_info"]["first_name"] , 60) ) + `' alt='Avatar'/>
 </div>
 </div>
@@ -94,9 +94,8 @@ return `
 <script>
 
 	$('#chat_portal_avatar` + random_num + `').on('load',function(){
-		$(this).parent().css('transform','rotate(\"` + (data["recipient_info"]["rotate_degree"] != "" ? data["recipient_info"]["rotate_degree"] : 0) + ` + deg\")');
 		fitToParent($(this));
-		adaptRotateWithMargin($(this), ` + (data["recipient_info"]["rotate_degree"] != "" ? data["recipient_info"]["rotate_degree"] : 0) + `,false);
+		adaptRotateWithMargin($(this), ` + (data["recipient_info"]["avatar_rotate_degree"] != "" ? data["recipient_info"]["avatar_rotate_degree"] : 0) + `,false);
 	});
 	
 </script>`;
@@ -198,11 +197,18 @@ CHAT_PORTALS_EMPTY_NOW_MESSAGE = "No chats started :(";
 }
 
 
+function chat_portals_modal_visible(from_back_button) {
+set_chat_portals_constants();	
+if(from_back_button === true) {
+getChatPortalActivities(updateChatPortalActivities);
+}
+}
+
 
 $(document).on("dom_and_device_ready", function() {
 
 set_chat_portals_constants();
-$("#chat_portals_modal").data("on_visible", set_chat_portals_constants);
+$("#chat_portals_modal").data("on_visible", chat_portals_modal_visible);
 
 
 // when the user wants to go to their messages section (chat portals)

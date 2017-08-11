@@ -91,12 +91,18 @@ if(typeof $("#" + modalId).attr("data-handle-dismissible-false") != "undefined")
 $("#" + $("#" + modalId).attr("data-handle-dismissible-false")).remove();	
 }
 
+
 for(var i = openedModals.length - 1;i > -1; i--) {
 if(openedModals[i] == modalId) {
+// if a callback has been set for whenever this modal is closed, call it.
+if(typeof $("#" + openedModals[i]).data("on_close") == "function") {
+$("#" + openedModals[i]).data("on_close")();
+}	
 openedModals.splice(i,1);
 break;
 }	
 }
+
 
 if(openedModals.length > 0) {
 // if a callback has been set for whenever the modal is set to visible, call it.
@@ -116,12 +122,18 @@ $("#" + modalId).css("z-index", zindex);
 $("#" + modalId).show();		
 });		
 
-$("#" + modalId).html(marks_stack[marks_stack.length - 1]["state"]);	
-if(modalId == "user_modal") {	
+
+
+$("#" + modalId).html(marks_stack[marks_stack.length - 1]["state"]);
+	
+if(modalId == "user_modal") { 
 // see bug 3 in the bugs.txt file.
 my_hotfix_for_bug_3();
 }
+
 initialize_all_things_again();
+
+
 marks_stack.splice(i,1);
 if(typeof callback == "function") {	
 callback();
@@ -143,6 +155,10 @@ callback();
 
 function check_if_modal_is_currently_being_viewed(modal_id) {
 return openedModals[openedModals.length - 1] === modal_id;
+}
+
+function check_if_modal_is_opened(modal_id) {
+return checkIfValueIsInArray(modal_id, openedModals);	
 }
 
 
@@ -200,7 +216,7 @@ $(document).on("click",".modal-trigger",function(){
 $(this).css("pointer-events","none");
 var thisModalTrigger = $(this);	
 setTimeout(function(){thisModalTrigger.css("pointer-events","auto");},500);
-	
+
 // grab the modal's id
 var modalId = ( typeof $(this).attr("data-target") != "undefined" ? $(this).attr("data-target") : $(this).attr("href").substr(1,this.length));
 
@@ -215,11 +231,22 @@ return false;
 }	
 				
 closeModal($(this).attr("data-modal"), function(){
-if(CURRENT_PAGE == "LOGGED_IN") {		
-/* See bugs.txt: bug 2 */	
+if(CURRENT_PAGE == "LOGGED_IN") {
+/* See bugs.txt: bug 2 */
 if($(".modal.open").length < 1 && PROFILE_CONTAINER_ELEMENT.parents("#main_screen_user_profile").length < 1 && $("#bottom_nav_user_profile").hasClass("active")) {
-$("#bottomNav #bottom_nav_user_profile").click();	
+$("#bottom_nav_user_profile").click();	
 }
+else if($(".modal.open").length < 1 && $("#bottom_nav_user_profile").hasClass("active")) {
+get_new_messages_num(function(num) {
+if(parseFloat(num) > 0) {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).css("display", "inline-block");	
+}
+else {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).hide();	
+}
+});
+}
+
 }
 });	
 
@@ -229,6 +256,7 @@ $("#bottomNav #bottom_nav_user_profile").click();
 /* bugs.txt bug-4 */
 var click_on_touch_end;
 $(document).on("touchstart", ".modalCloseButton", function(){
+$(this).addClass("modalCloseButtonActive");
 click_on_touch_end = true;
 }).on("touchmove", ".modalCloseButton", function(event){
 var mouse_x_pos = event.originalEvent.touches[0].pageX;	
@@ -242,13 +270,27 @@ if(mouse_x_pos > (this_x_pos + this_width) || mouse_y_pos > (this_y_pos + this_h
 click_on_touch_end = false;	
 }
 }).on("touchend", ".modalCloseButton", function(){
+$(this).removeClass("modalCloseButtonActive");		
 if(click_on_touch_end == true) {	
+
 closeModal($(this).attr("data-modal"), function(){
-if(CURRENT_PAGE == "LOGGED_IN") {	
+if(CURRENT_PAGE == "LOGGED_IN") {
+			
 /* See bugs.txt: bug 2 */	
 if($(".modal.open").length < 1 && PROFILE_CONTAINER_ELEMENT.parents("#main_screen_user_profile").length < 1 && $("#bottom_nav_user_profile").hasClass("active")) {
-$("#bottomNav #bottom_nav_user_profile").click();	
+$("#bottom_nav_user_profile").click();	
+} 
+else if($(".modal.open").length < 1 && $("#bottom_nav_user_profile").hasClass("active")) {
+get_new_messages_num(function(num) {
+if(parseFloat(num) > 0) {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).css("display", "inline-block");	
 }
+else {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).hide();	
+}
+});
+}
+
 }
 });
 

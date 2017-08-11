@@ -214,8 +214,8 @@ close the save changes modal and make some normal, safe changes such as changing
 your first-name, as soon as you try save the first-name changes, your account will 
 get deactivate/deleted because the changes to the #deactivateOrDelete input persisted 
 through the closing of the save-changes modal. */
-$(".modalCloseButton[data-modal='modal2'], .modal-overlay[data-modal='modal2']").click(function(){
-$("#deactivateOrDelete").val("");
+$("#modal2").data("on_close", function(){
+$("#deactivateOrDelete").val("");	
 });
 
 

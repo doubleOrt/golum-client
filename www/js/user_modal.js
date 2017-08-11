@@ -79,14 +79,18 @@ $("#user_profile_tabs .tab[data-tab-index=1]").attr({"data-user-id": data["id"],
 $("#user_profile_tabs .tab[data-tab-index=2]").attr({"data-user-id": data["id"]});
 USER_PROFILE_POSTS_COUNTER.attr({"data-user-id": data["id"], "data-first-name": data["first_name"]});
 
+$(".defaultDisplayNone").hide();
 
 // showing and hiding things that should be only visible when the base-user or only when not-base-user profiles are being viewed. 
 if(PROFILE_CONTAINER_ELEMENT.attr("data-is-base-user") == "1") {
 PROFILE_CONTAINER_ELEMENT.find(".notBaseUserOnly").hide(); 		
 PROFILE_CONTAINER_ELEMENT.find(".baseUserOnly").show(); 	
-get_new_messages_num(function(num) {	
+get_new_messages_num(function(num) {
 if(parseFloat(num) > 0) {
 USER_PROFILE_NEW_MESSAGES_NUM.html(num).css("display", "inline-block");	
+}
+else {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).hide();	
 }
 });
 }
@@ -359,11 +363,23 @@ PROFILE_CONTAINER_ELEMENT.find("#user_profile_container_child").show();
 }
 
 
+function user_modal_visible(from_back_button) {
+set_user_profile_constants();
+if(from_back_button === true) {
+get_new_messages_num(function(num) {
+if(parseFloat(num) > 0) {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).css("display", "inline-block");
+}
+});	
+}	
+}
+
+
 $(document).on("dom_and_device_ready", function() {
 
 
 set_user_profile_constants();
-$("#user_modal").data("on_visible", set_user_profile_constants);
+$("#user_modal").data("on_visible", user_modal_visible);
 
 // this one MUST NOT be in the constant initialization function else it will become pointless.
 USER_PROFILE_SELECTS_CONTAINER_HTML = USER_PROFILE_SELECTS_CONTAINER.html();
