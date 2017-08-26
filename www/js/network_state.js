@@ -18,7 +18,8 @@ handle_offline_is_initial_call = false;
 
 function handle_online() {
 				
-if(user_was_offline === true) {	
+if(user_was_offline === true) {
+	
 $("body").css("filter", "grayscale(0%)");	
 $("#offline_overlay, #offline_overlay_white_background").fadeOut("fast", function(){
 $(this).remove();	
@@ -28,6 +29,30 @@ $(this).remove();
 if(check_if_modal_is_currently_being_viewed("chatModal") === true) {	
 update_chat_with_new_messages();
 }
+
+// update the messages badge in the user's profile, if they are viewing their profile.
+if(($(".modal.open").length < 1 && $("#bottom_nav_user_profile").hasClass("active")) || (check_if_modal_is_currently_being_viewed("user_modal") === true && PROFILE_CONTAINER_ELEMENT.attr("data-is-base-user") === "1")) {
+get_new_messages_num(function(num) {
+if(parseFloat(num) > 0) {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).css("display", "inline-block");	
+}
+else {
+USER_PROFILE_NEW_MESSAGES_NUM.html(num).hide();	
+}
+});
+}
+
+// if they are viewing their #chat_portals_modal, update the chat-portals just in case there has been new activity.
+if(check_if_modal_is_currently_being_viewed("chat_portals_modal") === true) {
+getChatPortalActivities(updateChatPortalActivities);	
+}
+
+// and lastly, without any conditions, update the badge number of the notifications icon, just in case there was a new notification during the offline period. 
+get_new_notifications_num(function(num) {	
+if(parseFloat(num) > 0) {
+NEW_NOTIFICATIONS_NUM_CONTAINER.html(num).show();	
+}
+});	
 
 user_was_offline = false;
 }
