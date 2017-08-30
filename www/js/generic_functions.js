@@ -294,6 +294,17 @@ function open_single_post(post_id) {
 $("#singlePostsContainer").html("");
 showLoading($("#singlePostsContainer"), "50%");
 
+$('#singlePostModal').modal("open", {
+inDuration: 300, // Transition in duration
+outDuration: 150, // Transition out duration	
+startingTop: "100%",
+endingTop: "50%",	
+ready:function(){
+var this_modal = $(this);	
+setTimeout(function(){z_index_stack = parseFloat(this_modal.css("z-index"));},300);
+}
+});
+
 if(check_if_modal_is_currently_being_viewed("singlePostModal") === true && $("#singlePostModal .singlePost").attr("data-actual-post-id") != post_id) {
 openModalCustom("singlePostModal", true);	
 }	
@@ -306,4 +317,5 @@ markUpProcessor(data_arr,$("#singlePostsContainer"), "We don't know why the post
 removeLoading($("#singlePostsContainer"));	
 });		
 });			
+
 }
