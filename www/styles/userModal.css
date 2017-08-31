@@ -151,6 +151,8 @@ border-radius:100%;
 width:90px;
 height:90px;
 overflow:hidden;
+position:relative;
+perspective:1px;
 } 
 
 

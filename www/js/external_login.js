@@ -7,7 +7,6 @@ try {
 	
 trySilentLogin(function(){
 logout(function(){
-
 window.plugins.googleplus.login(
 {
 "webClientId": "567008101486-pq9v5tecvnvk1fehkk2g9hmqh4pti30q.apps.googleusercontent.com"
@@ -24,7 +23,7 @@ data: {
 "id": user_info["idToken"]
 },
 success:function(data){
-				
+	
 var data_arr = JSON.parse(data);
 if(data_arr[0] === 1) {
 window.location.href = "logged_in.html";
@@ -35,13 +34,14 @@ Materialize.toast(data_arr[1], 6000, "red");
 $("#page_loading").hide();
 $("#showOnBodyLoad").show();
 }
+
 }
 });
 	
-},
+}
+// in my experience, this function is called even if the user simply cancels the login, in addition to being called whenever there is an error.
 function (msg) {
-console.error("Google sign-in error: " + msg);
-console.log("Google sign-in error: " + msg);
+console.warn("Google sign-in error: " + msg);
 }
 );		
 	

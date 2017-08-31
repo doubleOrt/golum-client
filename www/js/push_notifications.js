@@ -107,6 +107,18 @@ else if(data["additionalData"]["data_arr"]["notification_type"] == 11) {
 open_single_post(data["additionalData"]["data_arr"]["notification_extra"]);	
 }
 
+// need to update the notifications-number badge.
+set_notifications_read_yet_to_true(data["additionalData"]["data_arr"]["notification_id"], function(){
+get_new_notifications_num(function(num) {	
+if(parseFloat(num) > 0) {
+NEW_NOTIFICATIONS_NUM_CONTAINER.html(num).show();	
+}
+else {
+NEW_NOTIFICATIONS_NUM_CONTAINER.html("0").hide();	
+}
+});		
+});
+
 }
 // push_notification_category == 1 is a push notification for a new message 
 else if(data["additionalData"]["push_notification_category"] == 1) {

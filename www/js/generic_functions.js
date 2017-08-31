@@ -290,10 +290,6 @@ main_screen.addClass("main_screen_active");
 
 function open_single_post(post_id) {
 	
-// empty #singlePostsContainer
-$("#singlePostsContainer").html("");
-showLoading($("#singlePostsContainer"), "50%");
-
 $('#singlePostModal').modal("open", {
 inDuration: 300, // Transition in duration
 outDuration: 150, // Transition out duration	
@@ -305,12 +301,21 @@ setTimeout(function(){z_index_stack = parseFloat(this_modal.css("z-index"));},30
 }
 });
 
-if(check_if_modal_is_currently_being_viewed("singlePostModal") === true && $("#singlePostModal .singlePost").attr("data-actual-post-id") != post_id) {
 openModalCustom("singlePostModal", true);	
-}	
-else {
-openModalCustom("singlePostModal", false);
-}
+
+/* REMEMBER! The following 2 lines must come after the call to openModalCustom(), 
+otherwise when the user pressed the back button to go back to the previous modal, 
+they would only see a loading circle spinning over and over again. These 2 lines 
+must come after the call to openModalCustom() because in our implementation, 
+the state of the #singlePostModal is recorded as it is when openModalCustom() is 
+called, so we need its state to be a post showing instead of a loading circle 
+spinning for all eternity, to achieve that, we moved these 2 lines of code here,
+so that they execute only after the state of the #singlePostModal is safely 
+recorded. */
+
+// empty #singlePostsContainer
+$("#singlePostsContainer").html("");
+showLoading($("#singlePostsContainer"), "50%");
 
 getPosts(PATH_TO_SERVER_PHP_FILES + "get_single_post.php",{"post_id": post_id},function(data_arr){
 markUpProcessor(data_arr,$("#singlePostsContainer"), "We don't know why the post didn't appear either :(", function(){

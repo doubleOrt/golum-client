@@ -366,6 +366,12 @@ if(typeof message_id == "undefined") {
 return false;	
 }	
 
+// so that a user cannot modify the read-yet of messages sent by themselves.
+if(typeof $(".messageContainer[data-message-id='" + message_id + "']") != "undefined" && $(".messageContainer[data-message-id='" + message_id + "']").hasClass("message0")) {
+console.warn("Users cannot modify the read-yet property of their own messages!");
+return false;	
+}
+
 $.post({
 url: PATH_TO_SERVER_PHP_FILES + "set_messages_read_yet_to_true.php",
 data: {
@@ -386,7 +392,7 @@ $.post({
 url: PATH_TO_SERVER_PHP_FILES + "set_messages_read_yet_to_true.php",
 data: {
 "chat_id": chat_id
-}	
+}
 });
 	
 }
@@ -463,13 +469,13 @@ function there_are_new_messages(data) {
 /* if these two conditionals evaluate to true, then it means that the user just 
 saw the new message therefore we don't need to tell them that they have new messages 
 by adding those badges to the components. Instead, we just append the new message */
-if(CHAT_ID_HOLDER.attr("data-chat-id") == data["chat_id"]) {	
+if(CHAT_ID_HOLDER.attr("data-chat-id") == data["chat_id"]) {
 
 CHAT_CONTENT_CONTAINER_ELEMENT.find(".emptyNowPlaceholder").remove();	
 CHAT_CONTENT_CONTAINER_ELEMENT.append(get_message_markup(data));	
 CHAT_CONTENT_CONTAINER_ELEMENT.scrollTop(CHAT_CONTENT_CONTAINER_ELEMENT[0].scrollHeight);		
 
-if(check_if_modal_is_currently_being_viewed("chatModal") === true) {
+if(check_if_modal_is_currently_being_viewed("chatModal") === true && data["message_sent_by_base_user"] != "1") {
 set_message_read_yet_to_true(data["message_id"]);
 }
 
@@ -690,11 +696,7 @@ return;
 // user wants to send a text message
 else {
 switchChatModalSendButton(0);
-sendTextMessage($("#sendMessage").attr("data-chat-id"), $(".messageTextarea").val(), function(data){
-CHAT_CONTENT_CONTAINER_ELEMENT.find(".emptyNowPlaceholder").remove();	
-CHAT_CONTENT_CONTAINER_ELEMENT.append(get_message_markup(data[0][0]));	
-CHAT_CONTENT_CONTAINER_ELEMENT.scrollTop(CHAT_CONTENT_CONTAINER_ELEMENT[0].scrollHeight);	
-});
+sendTextMessage($("#sendMessage").attr("data-chat-id"), $(".messageTextarea").val(), null);
 $(".messageTextarea").val("");	
 }
 
@@ -703,24 +705,14 @@ $(".messageTextarea").val("");
 // user wants to send an emoji
 $(document).on("click",".emoji",function(e){	
 $("#emojisContainer").fadeOut();
-sendMessage($("#sendMessage").attr("data-chat-id"), $(this).attr("src"), "emoji-message", function(data){
-CHAT_CONTENT_CONTAINER_ELEMENT.find(".emptyNowPlaceholder").remove();	
-CHAT_CONTENT_CONTAINER_ELEMENT.append(get_message_markup(data[0][0]));	
-CHAT_CONTENT_CONTAINER_ELEMENT.scrollTop(CHAT_CONTENT_CONTAINER_ELEMENT[0].scrollHeight);	
-});
+sendMessage($("#sendMessage").attr("data-chat-id"), $(this).attr("src"), "emoji-message", null);
 });
 
 // when users want to send files (images).
 $(document).on("change","#sendImage",function(){
 sendImage(function(data){
-// there were no errors	
-if(data[1] == "0") {	
-CHAT_CONTENT_CONTAINER_ELEMENT.find(".emptyNowPlaceholder").remove();
-CHAT_CONTENT_CONTAINER_ELEMENT.append(get_message_markup(data[0][0]));
-// scroll to the bottom
-CHAT_CONTENT_CONTAINER_ELEMENT.scrollTop(CHAT_CONTENT_CONTAINER_ELEMENT[0].scrollHeight);		
-}
-else {
+// if there were any errors	
+if(data[1] != "0") {	
 Materialize.toast(data[1], 6000, "red");	
 }
 });

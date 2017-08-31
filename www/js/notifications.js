@@ -489,13 +489,13 @@ new_notifications_timeout = setTimeout(function() {
 
 var active_tab = NOTIFICATIONS_TABS_STATE_HOLDER.attr("data-active-tab");
 
-// user switched to the PEOPLE tab
+// the "unread" tab is active
 if(active_tab == "0") {
 getNotifications(0, 0, function(data){
 new_notifications_callback(data, FIRST_TAB_NOTIFICATIONS_CONTAINER);
 });
 }
-// user switched to the TAGS tab
+// the "all" tab is active
 else if(active_tab == "1"){
 getNotifications(0, 0, function(data){
 new_notifications_callback(data, SECOND_TAB_NOTIFICATIONS_CONTAINER);
@@ -537,23 +537,27 @@ fitToParent($(this));
 adaptRotateWithMargin($(this), $(this).parent().attr("data-rotate-degree"), false);	
 });
 
-set_notifications_read_yet_to_true();	
 }	
 }
 
 
 
-// use this function to set a message from unread to read.
-function set_notifications_read_yet_to_true(notification_id) {
-		
-if(typeof notification_id == "undefined") {
-return false;	
-}	
+// use this function to set a notification from unread to read.
+function set_notifications_read_yet_to_true(notification_id, callback) {
 
+var data_obj = {};		
+if(notification_id !== undefined && notification_id !== null) {
+data_obj["notification_id"] = notification_id;	
+}		
+		
 $.post({
 url: PATH_TO_SERVER_PHP_FILES + "set_notifications_read_yet_to_true.php",
-data: {
-"notification_id": notification_id
+data: data_obj,
+success: function(data) {
+console.log(data);
+if(typeof callback == "function") {
+callback();	
+}	
 }
 });
 
